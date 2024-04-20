@@ -1,47 +1,52 @@
 /// @description Insert description here
 
+// base stats (do not change)
 base_atk = 0;
 base_hp = 0;
 base_spd = 3;
 base_aspd = 0;
 base_ammo = 0;
+max_energy = 50;
+base_skill_cd = 0;
 
+// dynamic stats (do change)
+energy = 0;
 ammo = 0;
-
 active = true;
+skill_cd = 0;
 
-
+// list of buffs and nerfs
 statuses = [];
 
 
-// this function is called once the ship gets a kill
+// called once the ship gets a kill
 onKill = function(){
-	
+	energy += 5;
 }
 
-// this function is called once the ship hits an enemy
+// called once the ship hits an enemy
 onEnemyHit = function(){
-	
+	energy += 1;
 }
 
-// this function is called once the ship is hit
+// called once the ship is hit
 onHit = function(){
-	
+	energy += 2;
 }
 
 // Basic attack
 onBasicAttack = function(){
-
+	
 }
 
 // Skill attack
 onSkillAttack = function(){
-
+	energy += 10;
 }
 
 // Ultimate attack
 onUltimateAttack = function(){
-
+	energy = 0;
 }
 
 // Movement
