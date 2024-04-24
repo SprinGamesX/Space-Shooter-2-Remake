@@ -4,7 +4,9 @@
   "eventList":[],
   "managed":true,
   "name":"oFireShip1",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"shipId","path":"objects/oParentShip/oParentShip.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
+  ],
   "parent":{
     "name":"Combat",
     "path":"folders/Objects/Combat.yy",

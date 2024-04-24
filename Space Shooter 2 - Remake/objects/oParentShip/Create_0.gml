@@ -4,19 +4,26 @@
 base_atk = 0;
 base_hp = 0;
 base_spd = 3;
-base_aspd = 0;
+base_aspd = 1;
 base_ammo = 0;
 max_energy = 50;
 base_skill_cd = 0;
+base_ba_cd = 0;
+base_reload_cd = 0;
+
+InitiateShip(shipId);
 
 // dynamic stats (do change)
 energy = 0;
 ammo = 0;
 active = true;
 skill_cd = 0;
+ba_cd = 0;
+reload_cd = 0;
+hp = base_hp;
 
 // list of buffs and nerfs
-statuses = [];
+statuses = ds_list_create();
 
 
 // called once the ship gets a kill

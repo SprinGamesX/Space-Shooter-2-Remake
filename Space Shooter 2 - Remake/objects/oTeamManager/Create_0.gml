@@ -4,11 +4,11 @@
 x = -100;
 y = -100;
 
-team_ids = [0,1,0];
+team_ids = [0,1,2];
 team = [noone, noone, noone];
 team[0] = instance_create_layer(room_width / 2, room_height / 2, "Player", global.ships[team_ids[0]]);
 team[1] = instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[1]]);
-team[2] = instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[2]]);
+team[2] = noone //instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[2]]);
 
 active_index = 0;
 
@@ -37,3 +37,7 @@ function switch_ship(_num){
 	
 	switch_cd = switch_cd_max;
 }
+
+// Gui
+padding = 16;
+

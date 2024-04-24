@@ -1,19 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"oIceShip1",
-  "eventList":[
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"oIceShard1",
+  "eventList":[],
   "managed":true,
-  "name":"oIceShip1",
+  "name":"oIceShard1",
   "overriddenProperties":[],
   "parent":{
     "name":"Combat",
     "path":"folders/Objects/Combat.yy",
   },
   "parentObjectId":{
-    "name":"oParentShip",
-    "path":"objects/oParentShip/oParentShip.yy",
+    "name":"oParentProjectile",
+    "path":"objects/oParentProjectile/oParentProjectile.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -33,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sIceShip1",
-    "path":"sprites/sIceShip1/sIceShip1.yy",
+    "name":"sIceShard1",
+    "path":"sprites/sIceShard1/sIceShard1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

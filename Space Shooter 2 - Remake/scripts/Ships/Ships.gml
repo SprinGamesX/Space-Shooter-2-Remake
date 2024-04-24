@@ -7,8 +7,98 @@ global.ships =
 	
 ]
 
+function InitiateShip(_id){
+	var _ship = GetShipDetails(_id);
+	
+	// base stats
+	base_atk = _ship.base_atk;
+	base_hp = _ship.base_hp;
+	base_spd = _ship.base_spd;
+	base_aspd = _ship.base_aspd;
 
+	// basic attack
+	base_reload_cd = _ship.base_reload_cd;
+	base_ammo = _ship.base_ammo;
+	base_ba_cd = _ship.base_ba_cd;
+	base_ba_scale = _ship.base_ba_scale;
 
-function Ships(){
+	// skill
+	base_skill_cd = _ship.base_skill_cd;
+	base_skill_scale = _ship.base_skill_scale;
 
+	// ultimate
+	max_energy = _ship.max_energy;
+	base_ult_scale = _ship.base_ult_scale;
+	
+	instance_destroy(_ship);
+	
 }
+
+
+
+function GetShipDetails(_id){
+	var _inst = noone;
+	switch(_id){
+		// IceShip1
+		case 0:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "IceShip1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 10;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(5);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+		// FireShip1
+		case 1:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "FireShip1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 10;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(5);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+	}
+	
+	return _inst;
+}
+
