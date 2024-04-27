@@ -1,11 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-enum ATTACK_TYPE{
-	BASIC_ATTACK,
-	SKILL,
-	ULTIMATE,
-	MISC
-}
+
 
 function CreateProjectile(_obj ,_parent, _x, _y, _spd, _dir, _scale, _dmgtype){
 	var _inst = instance_create_layer(_x, _y, "Projectiles", _obj);
