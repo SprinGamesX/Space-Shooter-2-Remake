@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"DMGCALC",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"DMGCALC",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

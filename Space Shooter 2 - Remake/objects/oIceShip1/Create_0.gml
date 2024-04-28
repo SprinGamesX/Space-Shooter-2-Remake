@@ -5,13 +5,13 @@
 event_inherited();
 
 onBasicAttack = function(){
-	CreateProjectile(oIceShard1, self, x, y, 10, 0, 0, ATTACK_TYPE.BASIC_ATTACK);
+	CreateProjectile(oIceShard1, self, x, y, 10, 0, ATTACK_TYPE.BASIC_ATTACK, element);
 	ammo--;
 	
 }
 
 onSkillAttack = function(){
-	CreateProjectile(oIceShard1, self, x, y, 10, 5, 0, ATTACK_TYPE.SKILL);
-	CreateProjectile(oIceShard1, self, x, y, 10, -5, 0, ATTACK_TYPE.SKILL);
+	CreateProjectile(oIceShard1, self, x, y, 10, 5, ATTACK_TYPE.SKILL, element,,true);
+	CreateProjectile(oIceShard1, self, x, y, 10, -5, ATTACK_TYPE.SKILL, element,,true);
 	energy += 15;
 }

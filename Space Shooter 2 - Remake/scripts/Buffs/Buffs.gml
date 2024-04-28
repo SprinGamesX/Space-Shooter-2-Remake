@@ -8,7 +8,7 @@ function CheckForExistingBuffs(_list, _name){
 	return existing;
 }
 
-function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stackable = false){
+function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stackable = false, _owner = self){
 	var _inst = instance_create_depth(-100, -100, 999, cStatus)
 	with (_inst){
 		name = _name;
@@ -18,6 +18,7 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 		duration = _duration;
 		stat = _stat;
 		scale = _scale;
+		owner = _owner;
 	}
 	if (!_stackable){
 		var _check = CheckForExistingBuffs(_list, _name)
@@ -25,7 +26,7 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 			ds_list_add(_list, _inst);
 		}
 		else {
-			ds_list_insert(_list,_check,_inst);
+			ds_list_replace(_list,_check,_inst);
 		}
 	}
 	else {
@@ -48,10 +49,10 @@ function CleanBuffs(_list){
 }
 
 function GetBuffByType(_list, _type){
-	var _buff = 1;
+	var _buff = 0;
 	for (var i = 0; i < ds_list_size(_list); i++){
 		if (_list[|i].stat == _type) _buff += _list[|i].scale;
 	}
-	return max(0.1,_buff);
+	return _buff;
 }
 

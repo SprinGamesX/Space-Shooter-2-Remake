@@ -53,7 +53,8 @@ if (ammo <= 0){
 
 // Debug
 if (keyboard_check_pressed(ord("K"))){
-	ApplyBuff(statuses,"Test", false, true, STAT.ASPD, 1, seconds(5));
-	show_debug_message("Buffed ASPD +100%");
+	ApplyBuff(statuses,"Test", false, true, STAT.DMG, 1000, seconds(5));
+	CreateDmgIndicator("DMG +100%", x, y);
+	show_debug_message(ds_list_size(statuses));
 }
 

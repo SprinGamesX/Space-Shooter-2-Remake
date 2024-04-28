@@ -7,7 +7,8 @@ enum ELEMENT{
 	VENOM,
 	LIGHTNING,
 	STEEL,
-	QUANTUM
+	QUANTUM,
+	NONE
 }
 
 enum ATTACK_TYPE{
@@ -28,8 +29,18 @@ enum STAT{
 	BA_BONUS, // increase/decreases BASIC ATTACK DMG based on %
 	SK_BONUS, // increase/decreases SKILL DMG based on %
 	UT_BONUS, // increase/decreases ULTIMATE DMG based on %
-	DEF_PEN // increase/decreases DEFENSE PENENTRATION based on %
+	DEF_PEN, // increase/decreases DEFENSE PENENTRATION based on %
+	CRIT,
+	CRITDMG
 }
+
+enum ENEMY_STAT{
+	DMG,
+	HP,
+	DEF,
+	RES,
+	
+}	
 
 // Elemental debuffs and more unusual debuffs
 enum DEBUFF{
