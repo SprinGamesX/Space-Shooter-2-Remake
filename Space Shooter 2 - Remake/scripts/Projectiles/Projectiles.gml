@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 
-function CreateProjectile(_obj ,_parent, _x, _y, _spd, _dir, _atk_type, _element, _pierces = 1, _is_seeker = false){
+function CreateProjectile(_obj ,_parent, _x, _y, _spd, _dir, _atk_type, _element, _pierces = 1, _is_seeker = false, _aoe = 1){
 	var _inst = instance_create_layer(_x, _y, "Projectiles", _obj);
 	with(_inst){
 		parent = _parent;
@@ -12,6 +12,7 @@ function CreateProjectile(_obj ,_parent, _x, _y, _spd, _dir, _atk_type, _element
 		element = _element;
 		pierces = _pierces;
 		seeker = _is_seeker;
+		aoe = _aoe;
 	}
 	_inst.onCreation();
 	return _inst;
@@ -36,4 +37,32 @@ function SeekClosestEnemy(_correction = 30, _exclude_normals = false){
 		if ((_r - _d) < 0) direction -= _correction * _error;
 	}
 	else seek_closest_enemy();
+}
+
+function AoeSpriteByElement(_element){
+	switch(_element){
+		case ELEMENT.ICE: return sAoeIce;
+		case ELEMENT.FIRE: return sAoeFire;
+		case ELEMENT.LIFE: return sAoeLife;
+		case ELEMENT.VENOM: return sAoeVenom;
+		case ELEMENT.LIGHTNING: return sAoeLightning;
+		case ELEMENT.QUANTUM: return sAoeQuantum;
+		case ELEMENT.STEEL: return sAoeSteel;
+	}
+}
+
+function CreateAoe(_parent, _x, _y, _atk_type, _element, _size, _ignored_enemy = noone){
+	var _inst = instance_create_layer(_x, _y, "Aoe", oAoe);
+	with(_inst){
+		sprite_index = AoeSpriteByElement(_element);
+		parent = _parent;
+		atk_type = _atk_type;
+		size = _size;
+		image_xscale = size;
+		image_yscale = size;
+		element = _element;
+		if (_ignored_enemy != noone) ds_list_add(hitlist, _ignored_enemy);
+		active = true;
+	}
+	return _inst;
 }

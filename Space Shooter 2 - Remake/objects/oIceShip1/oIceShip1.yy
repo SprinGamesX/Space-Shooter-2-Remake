@@ -8,8 +8,8 @@
   "name":"oIceShip1",
   "overriddenProperties":[],
   "parent":{
-    "name":"Combat",
-    "path":"folders/Objects/Combat.yy",
+    "name":"Ships",
+    "path":"folders/Objects/Combat/Ships.yy",
   },
   "parentObjectId":{
     "name":"oParentShip",

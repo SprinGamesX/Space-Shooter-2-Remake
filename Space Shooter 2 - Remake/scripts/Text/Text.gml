@@ -25,3 +25,28 @@ function ColorForElement(_element){
 		case ELEMENT.NONE: return c_white;
 	}
 }
+
+function StatToString(_stat){
+	switch(_stat){
+		case STAT.ATK: return "ATK";
+		case STAT.ASPD: return "ASPD";
+		case STAT.BA_BONUS: return "BASIC ATTACK BONUS";
+		case STAT.CRIT: return "CR";
+		case STAT.CRITDMG: return "CRDM";
+		case STAT.DEF_PEN: return "DEF PEN";
+		case STAT.DMG: return "DMG";
+		case STAT.HP: return "MAX HP";
+		case STAT.RES: return "RES";
+		case STAT.RES_PEN: return "RES PEN";
+		case STAT.SK_BONUS: return "SKILL BONUS";
+		case STAT.SPD: return "SPD";
+		case STAT.UT_BONUS: return "ULTIMATE BONUS";
+		case STAT.ICEDMG: return "ICE DMG";
+		case STAT.FIREDMG: return "FIRE DMG";
+		case STAT.LIFEDMG: return "LIFE DMG";
+		case STAT.VENOMDMG: return "VENOM DMG";
+		case STAT.LIGHTNINGDMG: return "LIGHTNING DMG";
+		case STAT.STEELDMG: return "STEEL DMG";
+		case STAT.QUANTUMDMG: return "QUANTUM DMG";
+	}
+}

@@ -3,8 +3,12 @@
 global.ships = 
 [
 	oIceShip1,
-	oFireShip1
-	
+	oFireShip1,
+	oLifeShip1,
+	oVenomShip1,
+	oLightningShip1,
+	oSteelShip1,
+	oQuantumShip1
 ]
 
 function InitiateShip(_id){
@@ -44,7 +48,7 @@ function GetShipDetails(_id){
 			_inst = instance_create_depth(-100,-100,999, cShip);
 			with(_inst){
 				
-				name = "IceShip1";
+				name = "Ice1";
 				lvl = 1;
 
 				// base stats
@@ -55,7 +59,7 @@ function GetShipDetails(_id){
 
 				// basic attack
 				base_reload_cd = seconds(1);
-				base_ammo = 10;
+				base_ammo = 30;
 				base_ba_cd = seconds(0.25);
 				base_ba_scale = 0.1;
 
@@ -73,7 +77,65 @@ function GetShipDetails(_id){
 			_inst = instance_create_depth(-100,-100,999, cShip);
 			with(_inst){
 				
-				name = "FireShip1";
+				name = "Fire1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(4);
+				base_ammo = 200;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(15);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+		
+		// LifeShip1
+		case 2:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Life1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(0.5);
+				base_ammo = 10;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(15);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+		case 3:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Venom1";
 				lvl = 1;
 
 				// base stats
@@ -89,7 +151,7 @@ function GetShipDetails(_id){
 				base_ba_scale = 0.1;
 
 				// skill
-				base_skill_cd = seconds(5);
+				base_skill_cd = seconds(15);
 				base_skill_scale = 0.4;
 
 				// ultimate
@@ -97,8 +159,93 @@ function GetShipDetails(_id){
 				base_ult_scale = 0.75;
 			}
 		} break;
+		case 4:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Lightning1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 10;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(15);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+		case 5:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Steel1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 10;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(15);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+		case 6:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Quantum1";
+				lvl = 1;
+
+				// base stats
+				base_atk = 30;
+				base_hp = 100;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 10;
+				base_ba_cd = seconds(0.25);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(15);
+				base_skill_scale = 0.4;
+
+				// ultimate
+				max_energy = 50;
+				base_ult_scale = 0.75;
+			}
+		} break;
+		
+		
 	}
-	
 	return _inst;
 }
 

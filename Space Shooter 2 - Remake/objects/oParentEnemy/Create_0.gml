@@ -20,6 +20,10 @@ onHit = function(_projectile){
 	var attacker = _projectile.parent;
 	var base_dmg = 0;
 	
+	// notify the ship and the projectile that it hit
+	attacker.onHit(self);
+	_projectile.onHit(self);
+	
 	// Gets base dmg
 	switch(_projectile.atk_type){
 		case ATTACK_TYPE.BASIC_ATTACK:
@@ -31,6 +35,9 @@ onHit = function(_projectile){
 		case ATTACK_TYPE.ULTIMATE:
 			base_dmg = attacker.onUltHit(self);
 		break;
+		case ATTACK_TYPE.FOLLOWUP:
+			base_dmg = attacker.onFollowupHit(self);
+		break;
 	}
 	// Enemy def calculation
 	var def = (5000 - (base_def + (base_def * (1 + GetBuffByType(statuses, ENEMY_STAT.DEF) - GetBuffByType(attacker.statuses, STAT.DEF_PEN)))))/5000
@@ -39,7 +46,7 @@ onHit = function(_projectile){
 	var critdmg = attacker.getCrit();
 	
 	// Enemy - Attacker advantage
-	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker.statuses, STAT.DMG)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(statuses, ENEMY_STAT.RES))) * (1 - IsElementStrong(_projectile.element, element)) * (def);
+	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker.statuses, STAT.DMG) + GetElementalBuff(attacker.statuses, attacker.element)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(statuses, ENEMY_STAT.RES))) * (1 + IsElementStrong(_projectile.element, element)) * (def);
 	
 	
 	hp -= _dmg_dealt;

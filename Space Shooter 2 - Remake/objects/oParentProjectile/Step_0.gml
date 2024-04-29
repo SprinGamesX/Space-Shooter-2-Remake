@@ -6,6 +6,7 @@ image_angle = direction;
 
 var _col = instance_place(x,y, oParentEnemy);
 if (_col != noone and ds_list_find_index(hitlist, _col) == -1){
+	last_hit_enemy = _col;
 	_col.onHit(self);
 	pierces--;
 	ds_list_add(hitlist, _col);

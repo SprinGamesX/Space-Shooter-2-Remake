@@ -15,6 +15,8 @@ enum ATTACK_TYPE{
 	BASIC_ATTACK,
 	SKILL,
 	ULTIMATE,
+	FOLLOWUP,
+	AOE,
 	MISC
 }
 
@@ -31,7 +33,14 @@ enum STAT{
 	UT_BONUS, // increase/decreases ULTIMATE DMG based on %
 	DEF_PEN, // increase/decreases DEFENSE PENENTRATION based on %
 	CRIT,
-	CRITDMG
+	CRITDMG,
+	ICEDMG,
+	FIREDMG,
+	LIFEDMG,
+	VENOMDMG,
+	LIGHTNINGDMG,
+	STEELDMG,
+	QUANTUMDMG
 }
 
 enum ENEMY_STAT{

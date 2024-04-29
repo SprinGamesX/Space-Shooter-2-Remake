@@ -1,7 +1,7 @@
 Ally
 (Effects are gurenteed on weak enemies)
 Venom - 75% chance to inflict poison (DoT)
-Ice - 50% chance to apply Freeze upon hit (Freeze increases incoming Ice dmg)
+Ice - 50% chance to apply Freeze upon hit (Freeze reduces RES and SPD)
 Fire - 65% chance to inflict Explosive on hit (Explosive detonates when enemy is hit dealing aoe dmg to itself and nearby enemies)
 Lightning - 80% chance to inflict Shock for 5 seconds (Shocked enemies deal dmg to a random nearby enemy upon hit)
 Life - 70% chance to inflict Sapped for 6 seconds (Sapped enemies heal the attacker for a certain % of HP)

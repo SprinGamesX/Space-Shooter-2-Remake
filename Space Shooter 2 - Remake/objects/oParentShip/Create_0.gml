@@ -33,14 +33,17 @@ onKill = function(){
 	energy += 5;
 }
 
-// called once the ship hits an enemy
+// called once the ship is Hit
 onEnemyHit = function(){
 	energy += 1;
 }
 
-// called once the ship is hit
-onHit = function(){
+// called once the ship hits an enemy
+onHit = function(_enemy){
 	energy += 2;
+	if (element == ELEMENT.VENOM){
+		ApplyPoison(_enemy,"Poison", 0.5, seconds(1));
+	}
 }
 
 // Basic attack
@@ -70,6 +73,10 @@ onSkillHit = function(_enemy){
 onUltHit = function(_enemy){
 	var _extra = 0;
 	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_ult_scale + _extra);
+}
+onFollowupHit = function(_enemy){
+	var _extra = 0;
+	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_skill_scale + _extra);
 }
 
 // Movement
@@ -106,5 +113,9 @@ getCrit = function(){
 		return base_critdmg + GetBuffByType(statuses, STAT.CRITDMG);
 	}
 	return 0;
+}
+
+getAtk = function(){
+	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK)));
 }
 

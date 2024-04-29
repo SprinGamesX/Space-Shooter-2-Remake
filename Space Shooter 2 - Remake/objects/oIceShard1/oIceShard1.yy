@@ -6,8 +6,8 @@
   "name":"oIceShard1",
   "overriddenProperties":[],
   "parent":{
-    "name":"Combat",
-    "path":"folders/Objects/Combat.yy",
+    "name":"Projectiles",
+    "path":"folders/Objects/Combat/Projectiles.yy",
   },
   "parentObjectId":{
     "name":"oParentProjectile",
