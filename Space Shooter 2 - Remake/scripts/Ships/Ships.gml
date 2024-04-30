@@ -98,7 +98,7 @@ function GetShipDetails(_id){
 
 				// ultimate
 				max_energy = 50;
-				base_ult_scale = 0.75;
+				base_ult_scale = 0.2;
 			}
 		} break;
 		
@@ -249,3 +249,15 @@ function GetShipDetails(_id){
 	return _inst;
 }
 
+function ConsumeHp(_target ,_hp){
+	_target.hp = max(hp - _hp, 1);
+	_target.onHpReduction(_hp);
+		
+	
+}
+
+function RestoreHp(_target, _hp){
+	_target.hp = min(hp + _hp, base_hp);
+	_target.onHpRestoration(_hp);
+	CreateIndicator("+" + string(_hp), _target.x, _target.y, ELEMENT.LIFE);
+}

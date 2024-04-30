@@ -52,6 +52,10 @@ enum ENEMY_STAT{
 }	
 
 // Elemental debuffs and more unusual debuffs
-enum DEBUFF{
-	
+enum MOVEMENT_PATTERN{
+	LINE,
+	CURVE,
+	CIRCLE,
+	GRAVITATE
 }
+

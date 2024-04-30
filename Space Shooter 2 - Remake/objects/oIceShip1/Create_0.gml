@@ -21,7 +21,7 @@ onUltimateAttack = function(){
 
 onHit = function(_enemy){
 	energy += 1;
-	//ApplyBuff(statuses, "Hit", false, true, STAT.FIREDMG, 0.01, seconds(5), 10);
+	ApplyElementalDebuff(element, _enemy);
 }
 
 onSkillHit = function(_enemy){

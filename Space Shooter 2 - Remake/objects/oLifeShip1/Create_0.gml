@@ -6,12 +6,14 @@ event_inherited();
 
 onBasicAttack = function(){
 	CreateProjectile(oLifeBud, self, x, y, 4, 0, ATTACK_TYPE.BASIC_ATTACK, element,,true);
+	ConsumeHp(self, base_hp * 0.01);
 	ammo--;
 }
 
 // Skill attack
 onSkillAttack = function(){
 	energy += 10;
+	RestoreHp(self, base_hp * 0.25);
 }
 
 // Ultimate attack

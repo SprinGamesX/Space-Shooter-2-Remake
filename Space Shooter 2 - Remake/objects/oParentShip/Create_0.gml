@@ -23,6 +23,7 @@ skill_cd = 0;
 ba_cd = 0;
 reload_cd = 0;
 hp = base_hp;
+shield = 0;
 
 // list of buffs and nerfs
 statuses = ds_list_create();
@@ -34,16 +35,25 @@ onKill = function(){
 }
 
 // called once the ship is Hit
-onEnemyHit = function(){
+onEnemyHit = function(_enemy){
+	var _res = 0;
+	if (element == ELEMENT.STEEL) and (RollChance(0.25)){
+		_res = 0.5;
+		CreateDmgIndicator("Blocked", x, y, ELEMENT.STEEL);
+	}
 	energy += 1;
+	hp -= (_enemy.base_dmg * (1 + GetBuffByType(_enemy.statuses, ENEMY_STAT.DMG))) * (1 - GetBuffByType(statuses, STAT.RES) - _res);
+	if (!_enemy.is_boss) instance_destroy(_enemy);
 }
 
 // called once the ship hits an enemy
 onHit = function(_enemy){
 	energy += 2;
-	if (element == ELEMENT.VENOM){
-		ApplyPoison(_enemy,"Poison", 0.5, seconds(1));
-	}
+	ApplyElementalDebuff(element, _enemy);
+}
+
+onAllyHit = function(_enemy, _ally){
+	energy += 0.2;
 }
 
 // Basic attack
@@ -77,6 +87,14 @@ onUltHit = function(_enemy){
 onFollowupHit = function(_enemy){
 	var _extra = 0;
 	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_skill_scale + _extra);
+}
+
+onHpReduction = function(_amount){
+	
+}
+
+onHpRestoration = function(_amount){
+	
 }
 
 // Movement
@@ -117,5 +135,9 @@ getCrit = function(){
 
 getAtk = function(){
 	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK)));
+}
+
+getMaxHp = function(){
+	return (base_hp * (1 + GetBuffByType(statuses, STAT.HP)));
 }
 

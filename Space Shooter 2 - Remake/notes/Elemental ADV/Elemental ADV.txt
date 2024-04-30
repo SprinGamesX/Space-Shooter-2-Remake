@@ -1,12 +1,12 @@
 Ally
 (Effects are gurenteed on weak enemies)
-Venom - 75% chance to inflict poison (DoT)
-Ice - 50% chance to apply Freeze upon hit (Freeze reduces RES and SPD)
++ Venom - 75% chance to inflict poison (DoT)
++ Ice - 50% chance to apply Freeze upon hit (Freeze reduces RES and DMG)
 Fire - 65% chance to inflict Explosive on hit (Explosive detonates when enemy is hit dealing aoe dmg to itself and nearby enemies)
 Lightning - 80% chance to inflict Shock for 5 seconds (Shocked enemies deal dmg to a random nearby enemy upon hit)
 Life - 70% chance to inflict Sapped for 6 seconds (Sapped enemies heal the attacker for a certain % of HP)
 Quantum - 40% chance to inflict Entangled (Entangled enemies will be teleported to a random location and recieve dmg equal to 1% of their Max Hp)
-Steel - upon being hit there is a 50% chance to resist 25% of the dmg
++ Steel - upon being hit there is a 25% chance to resist 50% of the dmg
 
 
 
@@ -17,7 +17,7 @@ Enemy
 Ice - upon being hit there is a 5% chance to create a blizzard, reducing the ships SPD by 20% for 5s
 Fire - upon hitting the ship it has a 30% chance to to launch an additional attack
 Life - upon hit it has a 10% chance to heal 25% of the dmg suffered
-Lightning - upon being hit there is a 15% chance to be Energized, Energized enemies will have their DMG and SPD will be increased for 10s
+Lightning - upon being hit there is a 15% chance to be Energized, Energized enemies will have their DMG and SPD increased for 10s
 Quantum - upon being hit there is a 40% chance to inflict one of three nerfs, SPD -15% ATK -15% ASPD -20% for 3s, it also has 2% chance to evade an attack upon being hit, when an ally is debuffed this chance is doubled
 Venom - upon hit there is a 75% chance to inflict Weakened on the ship, weakend ships will have their ATK & ASPD reduced by 10% for 5s stacking up to 3
 Steel - 20% chance to deflect attacks

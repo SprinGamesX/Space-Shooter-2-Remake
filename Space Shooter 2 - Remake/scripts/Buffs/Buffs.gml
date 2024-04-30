@@ -32,7 +32,7 @@ function CreateBuffIndicator(_positive, _stat, _scale, _x = x, _y = y){
 		
 }
 
-function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self){
+function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
 	var _inst = instance_create_depth(-100, -100, 999, cStatus)
 	var _check = CheckForExistingBuffs(_list, _name);
 	with (_inst){
@@ -50,7 +50,8 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 	// if ship does not have the buff
 	if (_check == -1){
 		ds_list_add(_list, _inst);
-		CreateBuffIndicator(_isPositive, _stat, _scale);
+		if (_show_indicator)
+			CreateBuffIndicator(_isPositive, _stat, _scale);
 	}
 	
 	// if buff exists
@@ -62,7 +63,8 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 		else {
 			_inst = _list[| _check];
 			_inst.addStack(_stacks, _duration);
-			CreateBuffIndicator(_isPositive, _stat, _scale);
+			if (_show_indicator)
+				CreateBuffIndicator(_isPositive, _stat, _scale);
 		}
 		
 	}
@@ -72,7 +74,7 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 	return _inst;
 }
 
-function ApplyDebuff(_enemy,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self){
+function ApplyDebuff(_enemy,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
 	var _list = _enemy.statuses;
 	var _inst = instance_create_depth(-100, -100, 999, cStatus)
 	var _check = CheckForExistingBuffs(_list, _name);
@@ -91,7 +93,8 @@ function ApplyDebuff(_enemy,_name ,_isInfinite, _isPositive, _stat, _scale, _dur
 	// if ship does not have the buff
 	if (_check == -1){
 		ds_list_add(_list, _inst);
-		CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
+		if (_show_indicator)
+			CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
 	}
 	
 	// if buff exists
@@ -103,7 +106,8 @@ function ApplyDebuff(_enemy,_name ,_isInfinite, _isPositive, _stat, _scale, _dur
 		else {
 			_inst = _list[| _check];
 			_inst.addStack(_stacks, _duration);
-			CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
+			if (_show_indicator)
+				CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
 		}
 		
 	}

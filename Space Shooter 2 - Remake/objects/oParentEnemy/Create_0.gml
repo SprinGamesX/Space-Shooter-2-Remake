@@ -10,9 +10,26 @@ base_res = 0;
 base_def = 0;
 leader = noone;
 element = ELEMENT.NONE;
+movement = MOVEMENT_PATTERN.LINE;
 
 // dynamic stats
 hp = base_hp;
+
+// movement
+// (Line)
+dir = 0;
+
+// (Curve)
+curve = 0;
+
+// (Circle)
+base_x = 0;
+base_y = 0;
+radius = 0;
+
+// (Gravitate)
+grav = 0;
+
 
 statuses = ds_list_create();
 
@@ -60,3 +77,6 @@ onHit = function(_projectile){
 	CreateDmgIndicator(string(_dmg_dealt), x, y, _projectile.element);
 }
 
+onDeath = function(){
+	instance_destroy();
+}

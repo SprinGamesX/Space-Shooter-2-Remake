@@ -12,6 +12,12 @@ function CreateDmgIndicator(_text, _x, _y, _element = ELEMENT.NONE){
 		onCreate(_text, ColorForElement(_element));
 	}
 }
+function CreateIndicator(_text, _x, _y, _element = ELEMENT.NONE, _font = font_stat){
+	with(instance_create_layer(_x, _y, "Misc", oDamage)){
+		onCreate(_text, ColorForElement(_element));
+		font = _font;
+	}
+}
 
 function ColorForElement(_element){
 	switch(_element){

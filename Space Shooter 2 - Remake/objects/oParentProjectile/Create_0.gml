@@ -3,10 +3,12 @@
 
 hitlist = ds_list_create();
 last_hit_enemy = noone;
+trail = 0;
 
 onCreation = function(){
 	speed = spd;
 	direction = dir;
+	trail = GetTrailByElement(element);
 }
 
 onHit = function(_enemy){

@@ -23,3 +23,24 @@ function ApplyPoison(_enemy ,_name , _scale, _duration, _stacks = 1, _owner = se
 	}
 	return _inst;
 }
+
+function IsEnemyImmune(_element, _enemy_element){
+	var _w = IsElementStrong(_element, _enemy_element);
+	if(_w == -0.5) return 0;
+	if(_w == 0.25) return 100;
+	return 1;
+	
+}
+
+function ApplyElementalDebuff(_element, _enemy){
+	
+	var chance = IsEnemyImmune(_element, _enemy.element);
+	
+	if (_element == ELEMENT.VENOM) and (RollChance(0.75 * chance)){
+		ApplyPoison(_enemy,"Poison", 0.5, seconds(1));
+	}
+	if (_element == ELEMENT.ICE) and (RollChance(0.5 * chance)){
+		ApplyDebuff(_enemy, "Frozen", false, false, ENEMY_STAT.DMG, 0.05, seconds(5), 5, 1);
+		ApplyDebuff(_enemy, "Shiver", false, false, ENEMY_STAT.RES, 0.04, seconds(5), 5, 1);
+	}
+}

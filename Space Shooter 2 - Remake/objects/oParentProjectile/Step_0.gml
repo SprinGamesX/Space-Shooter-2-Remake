@@ -4,6 +4,7 @@ KillOutOfBounds(50);
 image_angle = direction;
 
 
+
 var _col = instance_place(x,y, oParentEnemy);
 if (_col != noone and ds_list_find_index(hitlist, _col) == -1){
 	last_hit_enemy = _col;
@@ -16,4 +17,8 @@ if (_col != noone and ds_list_find_index(hitlist, _col) == -1){
 
 if (seeker){
 	SeekClosestEnemy();
+}
+
+if (part_type_exists(trail)){
+	SpawnParticleByElement(element, trail);
 }

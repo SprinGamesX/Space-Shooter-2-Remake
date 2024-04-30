@@ -6,3 +6,8 @@ function seconds(_time){
 function minutes(_time){
 	return _time * 60 * game_get_speed(gamespeed_fps);
 }
+
+function RollChance(_odds){
+	randomize();
+	return (_odds >= random(1));
+}

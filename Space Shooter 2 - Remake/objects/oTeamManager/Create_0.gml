@@ -1,10 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+global.particleSystem = part_system_create();
+part_system_layer(global.particleSystem, layer_get_id("Parts"));
+
 x = -100;
 y = -100;
 
-team_ids = [0,5,6];
+team_ids = [5,1,2];
 team = [noone, noone, noone];
 team[0] = instance_create_layer(room_width / 2, room_height / 2, "Player", global.ships[team_ids[0]]);
 team[1] = instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[1]]);
@@ -36,6 +39,25 @@ function switch_ship(_num){
 	team[_num].active = true;
 	
 	switch_cd = switch_cd_max;
+}
+
+getActiveShip = function(){
+	return team[active_index];
+}
+
+getInactiveShips = function(){
+	var _team = [noone, noone];
+	for (var i = 0; i < 3; i++){
+		if (i != active_index) {
+			if (_team[0] == noone) _team[0] = team[i];
+			else _team[1] = team[i];
+		}
+	}
+	return _team;
+}
+
+getAllShips = function(){
+	return team;
 }
 
 // Gui
