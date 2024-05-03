@@ -11,6 +11,13 @@ global.ships =
 	oQuantumShip1
 ]
 
+
+global.chips = array_create(array_length(global.ships));
+
+global.currentShip = 0;
+
+
+
 function InitiateShip(_id){
 	var _ship = GetShipDetails(_id);
 	
@@ -260,4 +267,26 @@ function RestoreHp(_target, _hp){
 	_target.hp = min(hp + _hp, base_hp);
 	_target.onHpRestoration(_hp);
 	CreateIndicator("+" + string(_hp), _target.x, _target.y, ELEMENT.LIFE);
+}
+
+
+function SaveChips(){
+	ini_open("chips.ini")
+	for (var i = 0; i < array_length(global.chips); i++){
+		for (var j = 0; j < 10; j++){
+			ini_write_real(i, j, global.chips[i][j]);
+		}
+	}
+	ini_close();
+}
+
+function LoadChips(){
+	ini_open("chips.ini")
+	for (var i = 0; i < array_length(global.chips); i++){
+		global.chips[i] = array_create(10);
+		for (var j = 0; j < 10; j++){
+			global.chips[i][j] = ini_read_real(i, j, -1);
+		}
+	}
+	ini_close();
 }

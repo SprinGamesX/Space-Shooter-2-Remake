@@ -21,3 +21,6 @@ if (_col != noone){
 }
 
 if (hp <= 0) onDeath();
+if (!entrance_done){
+	onEntrance();
+}

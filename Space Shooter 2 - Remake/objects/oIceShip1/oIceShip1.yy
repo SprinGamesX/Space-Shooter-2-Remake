@@ -6,7 +6,9 @@
   ],
   "managed":true,
   "name":"oIceShip1",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"element","path":"objects/oParentShip/oParentShip.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ELEMENT.ICE",},
+  ],
   "parent":{
     "name":"Ships",
     "path":"folders/Objects/Combat/Ships.yy",

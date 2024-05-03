@@ -5,7 +5,7 @@ borders = 64;
 // bg particle
 
 global.background_system = part_system_create();
-part_system_layer(global.background_system,layer_get_id("Back"));
+part_system_depth(global.background_system,layer_get_depth(layer_get_id("Back")));
 
 alarm[0] = 2;
 star = part_type_create();

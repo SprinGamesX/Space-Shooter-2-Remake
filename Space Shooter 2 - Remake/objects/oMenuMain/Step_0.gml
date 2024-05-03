@@ -23,7 +23,7 @@ if (keyboard_check_pressed(global.key_confirm)){
 			// options ig
 		break;
 		case 2: 
-			// idk
+			room_goto(rHangar);
 		break;
 		case 3: 
 			game_end();

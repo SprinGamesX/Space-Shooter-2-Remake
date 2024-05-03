@@ -27,6 +27,7 @@ shield = 0;
 
 // list of buffs and nerfs
 statuses = ds_list_create();
+chips = array_create(10);
 
 
 // called once the ship gets a kill

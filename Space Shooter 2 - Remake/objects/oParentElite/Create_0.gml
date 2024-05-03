@@ -14,6 +14,17 @@ base_res = 0;
 base_def = 0;
 leader = noone;
 element = ELEMENT.NONE;
+isAttacking = false;
 
 // dynamic stats
 hp = base_hp;
+
+// Attacks
+attackQueue = ds_queue_create();
+attack_cd = 0;
+max_attack_cd = 0;
+
+onAttackFinish = function(){
+	show_debug_message("attack finished");
+	isAttacking = false;
+}

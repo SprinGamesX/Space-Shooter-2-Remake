@@ -12,6 +12,11 @@ leader = noone;
 element = ELEMENT.NONE;
 movement = MOVEMENT_PATTERN.LINE;
 
+// entrance
+image_xscale = 0;
+image_yscale = 0;
+entrance_done = false;
+
 // dynamic stats
 hp = base_hp;
 
@@ -79,4 +84,12 @@ onHit = function(_projectile){
 
 onDeath = function(){
 	instance_destroy();
+}
+
+onEntrance = function(){
+	if (image_xscale < 1){
+		image_xscale += 0.02;
+		image_yscale += 0.02;
+	}
+	else entrance_done = true;
 }

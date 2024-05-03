@@ -28,7 +28,7 @@ function ColorForElement(_element){
 		case ELEMENT.STEEL: return c_gray;
 		case ELEMENT.QUANTUM: return c_blue;
 		case ELEMENT.VENOM: return c_purple;
-		case ELEMENT.NONE: return c_white;
+		case ELEMENT.NONE: return make_color_rgb(192, 32, 43);
 	}
 }
 

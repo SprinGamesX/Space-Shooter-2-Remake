@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 global.particleSystem = part_system_create();
-part_system_layer(global.particleSystem, layer_get_id("Parts"));
+part_system_depth(global.particleSystem,layer_get_depth(layer_get_id("Parts")));
 
 x = -100;
 y = -100;

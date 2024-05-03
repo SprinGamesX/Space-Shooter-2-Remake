@@ -1,0 +1,34 @@
+Rarities
+
+Common - 150/200
+Rare - 40/200
+EPIC - 9/200
+PERFECT - 1/200
+
+Probablity of getting a certain stat
+
+ATK - 15%
+HP - 15%
+CRITRATE - 5%
+CRITDMG - 5%
+SPD - 10%
+RES - 10%
+ASPD - 5%
+ICEDMG - 5%
+FIREDMG - 5%
+LIFEDMG - 5%
+VENOMDMG - 5%
+LIGHTNINGDMG - 5%
+STEELDMG - 5%
+QUANTUMDMG - 5%
+
+Max buff a chip can provide
+
+ATK - 40%
+HP - 52%
+CRIT - 32%
+CRITDMG - 64%
+SPD - 10%
+RES - 10%
+ASPD - 20%
+ELEMENTAL - 20%

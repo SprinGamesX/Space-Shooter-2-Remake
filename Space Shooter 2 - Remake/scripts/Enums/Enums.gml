@@ -1,14 +1,14 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 enum ELEMENT{
-	ICE,
-	FIRE,
-	LIFE,
-	VENOM,
-	LIGHTNING,
-	STEEL,
-	QUANTUM,
-	NONE
+	ICE = 1,
+	FIRE = 2,
+	LIFE = 3,
+	VENOM = 4,
+	LIGHTNING = 5,
+	STEEL = 6,
+	QUANTUM = 7,
+	NONE = 0
 }
 
 enum ATTACK_TYPE{
@@ -51,7 +51,7 @@ enum ENEMY_STAT{
 	
 }	
 
-// Elemental debuffs and more unusual debuffs
+// Enemy Movement Patterns
 enum MOVEMENT_PATTERN{
 	LINE,
 	CURVE,
@@ -59,3 +59,32 @@ enum MOVEMENT_PATTERN{
 	GRAVITATE
 }
 
+enum ENEMYSIZE{
+	NORMAL,
+	SMALL
+}
+
+// Chip Rarities
+enum RARITY{
+	COMMON = 0,
+	RARE = 1,
+	EPIC = 2,
+	PERFECT = 3
+}
+
+enum CHIPSTAT{
+	ATK = 0,
+	HP = 1,
+	CRITRATE = 2,
+	CRITDMG = 3,
+	SPD = 4,
+	RES = 5,
+	ASPD = 6,
+	ICEDMG = 7,
+	FIREDMG = 8,
+	LIFEDMG = 9,
+	VENOMDMG = 10,
+	LIGHTNINGDMG = 11,
+	STEELDMG = 12,
+	QUANTUMDMG = 13
+}

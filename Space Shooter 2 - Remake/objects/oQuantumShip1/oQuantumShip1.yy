@@ -7,8 +7,8 @@
   "managed":true,
   "name":"oQuantumShip1",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"shipId","path":"objects/oParentShip/oParentShip.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"6",},
-    {"$GMOverriddenProperty":"","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"element","path":"objects/oParentShip/oParentShip.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ELEMENT.QUANTUM",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"shipId","path":"objects/oParentShip/oParentShip.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"6",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"element","path":"objects/oParentShip/oParentShip.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ELEMENT.QUANTUM",},
   ],
   "parent":{
     "name":"Ships",
