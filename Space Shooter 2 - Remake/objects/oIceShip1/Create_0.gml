@@ -28,7 +28,7 @@ onSkillHit = function(_enemy){
 	var _extra = 0;
 	ApplyDebuff(_enemy, "DR", false, false, ENEMY_STAT.RES, 0.4, seconds(10));
 	CreateProjectile(oIceShard1, self, x, y, 15, random_range(-180, 180), ATTACK_TYPE.FOLLOWUP, element,,true);
-	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_skill_scale + _extra);
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_skill_scale + _extra);
 }
 
 onUltHit = function(_enemy){
@@ -36,10 +36,10 @@ onUltHit = function(_enemy){
 	for (var i = 0; i < 5; i++){
 		CreateProjectile(oIceShard1, self, x, y, 15, random_range(-180, 180), ATTACK_TYPE.FOLLOWUP, element,,true);
 	}
-	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_ult_scale + _extra);
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_ult_scale + _extra);
 }
 
 onFollowupHit = function(_enemy){
 	var _extra = 0;
-	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * ((base_skill_scale/4) + _extra);
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * ((base_skill_scale/4) + _extra);
 }

@@ -12,6 +12,8 @@ global.ships =
 ]
 
 
+
+global.shipLv = array_create(array_length(global.ships));
 global.chips = array_create(array_length(global.ships));
 
 global.currentShip = 0;
@@ -287,6 +289,21 @@ function LoadChips(){
 		for (var j = 0; j < 10; j++){
 			global.chips[i][j] = ini_read_real(i, j, -1);
 		}
+	}
+	ini_close();
+}
+
+function SaveShips(){
+	ini_open("data.ini");
+	for (var i = 0; i < array_length(global.shipLv); i++){
+		ini_write_real("levels", i, global.shipLv[i]);
+	}
+	ini_close();
+}
+function LoadShips(){
+	ini_open("data.ini");
+	for (var i = 0; i < array_length(global.shipLv); i++){
+		global.shipLv[i] = ini_read_real("levels", i, 1);
 	}
 	ini_close();
 }

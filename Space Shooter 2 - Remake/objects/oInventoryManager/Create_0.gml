@@ -16,7 +16,10 @@ for (var i = 0; i < ds_list_size(inventory); i++){
 }
 ini_close();
 
+
+// Loading stuff
 LoadChips();
+LoadShips();
 
 show_debug_message("Created");
 

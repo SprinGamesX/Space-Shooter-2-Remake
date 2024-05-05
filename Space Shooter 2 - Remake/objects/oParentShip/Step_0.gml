@@ -32,7 +32,7 @@ if (ba_cd <= 0){
 	ba_cd = 0;	
 }
 else {
-	ba_cd -= (base_aspd * (1 + GetBuffByType(statuses, STAT.ASPD)));
+	ba_cd -= (base_aspd * (1 + GetBuffByType(self, STAT.ASPD)));
 }
 
 if (skill_cd <= 0){

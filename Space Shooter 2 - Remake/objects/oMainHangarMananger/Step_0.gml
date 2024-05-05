@@ -12,6 +12,7 @@ if (keyboard_check_pressed(ord("1"))){
 	global.currentShip = ship_index;
 	global.currentShipSlot = 1;
 	room_goto(rInventory);
+	InventorySort(oInventoryManager.inventory);
 }
 if (keyboard_check_pressed(ord("2"))){
 	global.currentShip = ship_index;
@@ -56,4 +57,13 @@ if (keyboard_check_pressed(ord("0"))){
 	global.currentShip = ship_index;
 	global.currentShipSlot = 0;
 	room_goto(rInventory);
+}
+
+if (keyboard_check_pressed(vk_escape)){
+	room_goto(rMenu);
+}
+
+if (keyboard_check_pressed(global.key_up)){
+	global.currentShip = ship_index;
+	room_goto(rShipDetails);
 }

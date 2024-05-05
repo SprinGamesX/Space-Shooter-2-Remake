@@ -39,9 +39,16 @@ if (room == rInventory){
 			case 0: 
 				var _chip = inventory[|selected];
 				UnequipCurrentChip(global.chips[global.currentShip][global.currentShipSlot]);
-				_chip.ownerId = global.currentShip;
-				_chip.ownerSlot = global.currentShipSlot;
-				SaveChip(_chip.uuid);
+				if (_chip.ownerId != -1){
+					global.chips[_chip.ownerId, _chip.ownerSlot] = -1;
+				}
+				if (!(inventory[|selected].uuid == global.chips[global.currentShip][global.currentShipSlot])){
+					_chip.ownerId = global.currentShip;
+					_chip.ownerSlot = global.currentShipSlot;
+					SaveChip(_chip.uuid);
+				}
+				else global.chips[global.currentShip][global.currentShipSlot] = -1;
+				
 				isSelected = false; inside_selected = -1;
 			break;
 			case 1: 
@@ -55,6 +62,9 @@ if (room == rInventory){
 	
 	if (keyboard_check_pressed(vk_escape)){
 		room_goto(rHangar);
+	}
+	if (keyboard_check_pressed(vk_shift)){
+		InventorySort(inventory);
 	}
 	
 	

@@ -132,22 +132,56 @@ function CleanBuffs(_list){
 	}
 }
 
-function GetBuffByType(_list, _type){
+function GetChipType(_type){
+	switch(_type){
+		case STAT.ATK: return CHIPSTAT.ATK;
+		case STAT.HP: return CHIPSTAT.HP;
+		case STAT.ASPD: return CHIPSTAT.ASPD;
+		case STAT.CRIT: return CHIPSTAT.CRITRATE;
+		case STAT.CRITDMG: return CHIPSTAT.CRITDMG;
+		case STAT.SPD: return CHIPSTAT.SPD;
+		case STAT.RES: return CHIPSTAT.RES;
+		case STAT.ICEDMG: return CHIPSTAT.ICEDMG;
+		case STAT.FIREDMG: return CHIPSTAT.FIREDMG;
+		case STAT.LIFEDMG: return CHIPSTAT.LIFEDMG;
+		case STAT.VENOMDMG: return CHIPSTAT.VENOMDMG;
+		case STAT.LIGHTNINGDMG: return CHIPSTAT.LIGHTNINGDMG;
+		case STAT.STEELDMG: return CHIPSTAT.STEELDMG;
+		case STAT.QUANTUMDMG: return CHIPSTAT.QUANTUMDMG;
+		
+	}
+	return -1;
+}
+
+function GetBuffByType(_attacker, _type){
 	var _buff = 0;
+	var _isShip = false;
+	var _list = _attacker.statuses;
+	if (object_is_ancestor(_attacker.object_index, oParentShip)) _isShip = true;
+	if (_isShip)
+		var _chips = _attacker.chips;
+		
 	for (var i = 0; i < ds_list_size(_list); i++){
 		if (_list[|i].stat == _type) _buff += _list[|i].get();
 	}
+	if (_isShip){
+		var _chipstat = GetChipType(_type);
+	
+		for (var i = 0; _chipstat != -1 and i < array_length(_chips); i++){
+			if (instance_exists(_chips[i])) and (_chips[i].stat == _chipstat) _buff += _chips[i].get();
+		}}
 	return _buff;
 }
 
-function GetElementalBuff(_list ,_element){
+function GetElementalBuff(_attacker ,_element){
+	 
 	switch(_element){
-		case ELEMENT.ICE: return GetBuffByType(_list, STAT.ICEDMG);
-		case ELEMENT.FIRE: return GetBuffByType(_list, STAT.FIREDMG);
-		case ELEMENT.LIGHTNING: return GetBuffByType(_list, STAT.LIGHTNINGDMG);
-		case ELEMENT.LIFE: return GetBuffByType(_list, STAT.LIFEDMG);
-		case ELEMENT.VENOM: return GetBuffByType(_list, STAT.VENOMDMG);
-		case ELEMENT.STEEL: return GetBuffByType(_list, STAT.STEELDMG);
-		case ELEMENT.QUANTUM: return GetBuffByType(_list, STAT.QUANTUMDMG);
+		case ELEMENT.ICE: return GetBuffByType(_attacker, STAT.ICEDMG);
+		case ELEMENT.FIRE: return GetBuffByType(_attacker, STAT.FIREDMG);
+		case ELEMENT.LIGHTNING: return GetBuffByType(_attacker, STAT.LIGHTNINGDMG);
+		case ELEMENT.LIFE: return GetBuffByType(_attacker, STAT.LIFEDMG);
+		case ELEMENT.VENOM: return GetBuffByType(_attacker, STAT.VENOMDMG);
+		case ELEMENT.STEEL: return GetBuffByType(_attacker, STAT.STEELDMG);
+		case ELEMENT.QUANTUM: return GetBuffByType(_attacker, STAT.QUANTUMDMG);
 	}
 }

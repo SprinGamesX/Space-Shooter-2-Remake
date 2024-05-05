@@ -11,3 +11,4 @@ ini_write_string("Saves", "inv", savedList);
 ini_close();
 
 SaveChips();
+SaveShips();

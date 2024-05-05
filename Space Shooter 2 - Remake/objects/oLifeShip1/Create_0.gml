@@ -23,13 +23,13 @@ onUltimateAttack = function(){
 
 onBasicHit = function(_enemy){
 	var _extra = 0;
-	return (base_hp * (1 + GetBuffByType(statuses, STAT.HP))) * (base_ba_scale + _extra);
+	return (base_hp * (1 + GetBuffByType(self, STAT.HP))) * (base_ba_scale + _extra);
 }
 onSkillHit = function(_enemy){
 	var _extra = 0;
-	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_skill_scale + _extra);
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_skill_scale + _extra);
 }
 onUltHit = function(_enemy){
 	var _extra = 0;
-	return (base_atk * (1 + GetBuffByType(statuses, STAT.ATK))) * (base_ult_scale + _extra);
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_ult_scale + _extra);
 }

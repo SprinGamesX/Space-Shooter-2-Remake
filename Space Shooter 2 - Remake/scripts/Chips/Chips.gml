@@ -38,9 +38,13 @@ function GenerateChipStat(){
 			scale = 0.025;
 			stat = CHIPSTAT.RES;
 		}
-		else if (_stat < 65){
+		else if (_stat < 62.5){
 			scale = 0.05;
 			stat = CHIPSTAT.ASPD;
+		}
+		else if (_stat < 65){
+			scale = 0.03;
+			stat = CHIPSTAT.ENERGYBOOST;
 		}
 		else if (_stat < 70){
 			scale = 0.05;
@@ -137,6 +141,7 @@ function GetChipStatString(_stat){
 		case CHIPSTAT.QUANTUMDMG: return "QUANTUM DMG";
 		case CHIPSTAT.STEELDMG: return "STEEL DMG";
 		case CHIPSTAT.VENOMDMG: return "VENOM DMG";
+		case CHIPSTAT.ENERGYBOOST: return "ENERGY BOOST";
 	}
 }
 

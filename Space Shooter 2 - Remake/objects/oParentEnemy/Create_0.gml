@@ -62,18 +62,18 @@ onHit = function(_projectile){
 		break;
 	}
 	// Enemy def calculation
-	var def = (5000 - (base_def + (base_def * (1 + GetBuffByType(statuses, ENEMY_STAT.DEF) - GetBuffByType(attacker.statuses, STAT.DEF_PEN)))))/5000
+	var def = (5000 - (base_def + (base_def * (1 + GetBuffByType(attacker, ENEMY_STAT.DEF) - GetBuffByType(attacker, STAT.DEF_PEN)))))/5000
 	
 	// Attacker Crit
 	var critdmg = attacker.getCrit();
 	
 	// Enemy - Attacker advantage
-	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker.statuses, STAT.DMG) + GetElementalBuff(attacker.statuses, attacker.element)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(statuses, ENEMY_STAT.RES))) * (1 + IsElementStrong(_projectile.element, element)) * (def);
+	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker, STAT.DMG) + GetElementalBuff(attacker, attacker.element)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(self, ENEMY_STAT.RES))) * (1 + IsElementStrong(_projectile.element, element)) * (def);
 	
 	
 	hp -= _dmg_dealt;
 	//show_debug_message(base_dmg);
-	//show_debug_message(1 + GetBuffByType(attacker.statuses, STAT.DMG))
+	//show_debug_message(1 + GetBuffByType(attacker, STAT.DMG))
 	//show_debug_message(1 + critdmg)
 	//show_debug_message(1 - (base_res + GetBuffByType(statuses, ENEMY_STAT.RES)))
 	//show_debug_message(1 - IsElementStrong(_projectile.element, element))

@@ -7,7 +7,7 @@ part_system_depth(global.particleSystem,layer_get_depth(layer_get_id("Parts")));
 x = -100;
 y = -100;
 
-team_ids = [5,1,2];
+team_ids = [0,1,2];
 team = [noone, noone, noone];
 team[0] = instance_create_layer(room_width / 2, room_height / 2, "Player", global.ships[team_ids[0]]);
 team[1] = instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[1]]);

@@ -48,7 +48,10 @@ if (room == rInventory){
 			draw_sprite_ext(sChip, _chip.stat, room_width - 400, room_height / 2 - 20, 2, 2, 0, ColorForChipRarity(_chip), 1);
 		}
 		// Drawing Options
-		draw_text_scribble(room_width - 250, room_height - 200, inside_selected == 0 ? "[c_aqua][wave]Equip" : "Equip");
+		if (inventory[|selected].uuid == global.chips[global.currentShip][global.currentShipSlot])
+			draw_text_scribble(room_width - 250, room_height - 200, inside_selected == 0 ? "[c_aqua][wave]Remove" : "Remove");
+		else
+			draw_text_scribble(room_width - 250, room_height - 200, inside_selected == 0 ? "[c_aqua][wave]Equip" : "Equip");
 		draw_text_scribble(room_width - 250, room_height - 150, inside_selected == 1 ? "[c_aqua][wave]Return" : "Return");
 		draw_text_scribble(room_width - 250, room_height - 100, inside_selected == 2 ? "[c_aqua][wave]Delete" : "Delete");
 	}
