@@ -7,7 +7,6 @@ if (active){
 	for (var i = 0; i < _count; i++){
 		var _col = list[|i];
 		if (_col != noone and ds_list_find_index(hitlist, _col) == -1){
-			show_debug_message(_col);
 			_col.onHit(self);
 			ds_list_add(hitlist, _col);
 		}

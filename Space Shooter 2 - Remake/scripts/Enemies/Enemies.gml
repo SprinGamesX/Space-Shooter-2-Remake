@@ -23,6 +23,10 @@ function SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = no
 		grav = _grav;
 		dir = _dir;
 		
+		if (_element != ELEMENT.NONE){
+			trail = GetTrailByElement(_element)
+		}
+		
 		sprite_index = sEnemyNormal;
 		if (_isSmall) sprite_index = sEnemySmall;
 		image_index = _element;
@@ -51,4 +55,15 @@ function CreateAttack(_queue, _cd, _repeat = 1, _attacker = self, _var1 = 0, _va
 function GetRandomElement(_includeQuantum = true){
 	var _list = [ELEMENT.NONE, ELEMENT.ICE, ELEMENT.FIRE, ELEMENT.LIFE, ELEMENT.VENOM, ELEMENT.LIGHTNING, ELEMENT.STEEL, ELEMENT.QUANTUM]
 	return _list[random(6 + _includeQuantum)];
+}
+
+function GetNearestInstances(pointx, pointy, object, n)
+{
+    n = min(max(1,n),instance_number(object));
+    var list = ds_priority_create();
+    var nearest = noone;
+    with (object) ds_priority_add(list,id,distance_to_point(pointx,pointy));
+    repeat (n) nearest = ds_priority_delete_min(list);
+    ds_priority_destroy(list);
+    return nearest;
 }

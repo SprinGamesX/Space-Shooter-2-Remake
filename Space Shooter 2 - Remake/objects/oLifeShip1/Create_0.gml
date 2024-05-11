@@ -12,13 +12,16 @@ onBasicAttack = function(){
 
 // Skill attack
 onSkillAttack = function(){
-	energy += 10;
-	RestoreHp(self, base_hp * 0.25);
+	GenerateEnergy(self, 10);
+	RestoreTeamHp(base_hp * 0.1);
+	RestoreHp(self, base_hp * 0.15);
+	
 }
 
 // Ultimate attack
 onUltimateAttack = function(){
 	energy = 0;
+	RestoreTeamHp(base_hp * 0.5);
 }
 
 onBasicHit = function(_enemy){

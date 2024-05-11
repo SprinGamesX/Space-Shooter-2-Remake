@@ -7,13 +7,15 @@ part_system_depth(global.particleSystem,layer_get_depth(layer_get_id("Parts")));
 x = -100;
 y = -100;
 
-team_ids = [0,1,2];
+team_ids = global.party;
 team = [noone, noone, noone];
 team[0] = instance_create_layer(room_width / 2, room_height / 2, "Player", global.ships[team_ids[0]]);
 team[1] = instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[1]]);
 team[2] = instance_create_layer(room_width / 2, -100, "Player", global.ships[team_ids[2]]);
 
 active_index = 0;
+
+
 
 if (team[1] != noone)
 	team[1].active = false;
@@ -58,6 +60,12 @@ getInactiveShips = function(){
 
 getAllShips = function(){
 	return team;
+}
+
+for (var i = 0; i < 3; i++){
+	if (instance_exists(team[i])){
+		team[i].onBattleBegin();
+	}
 }
 
 // Gui

@@ -36,7 +36,15 @@ for (var i = 0; i < 10; i++){
 
 // called once the ship gets a kill
 onKill = function(){
-	energy += 5;
+	GenerateEnergy(self, 5);
+}
+
+onHpReduction = function(_amount){
+	
+}
+
+onHpRestoration = function(_amount){
+	
 }
 
 // called once the ship is Hit
@@ -46,19 +54,32 @@ onEnemyHit = function(_enemy){
 		_res = 0.5;
 		CreateDmgIndicator("Blocked", x, y, ELEMENT.STEEL);
 	}
-	energy += 1;
-	hp -= (_enemy.base_dmg * (1 + GetBuffByType(_enemy, ENEMY_STAT.DMG))) * (1 - GetBuffByType(self, STAT.RES) - _res);
+	GenerateEnergy(self, 2);
+	
+	if (shield > 0){
+		shield -= (_enemy.base_dmg * (1 + GetBuffByType(_enemy, STAT.DMG))) * (1 - GetBuffByType(self, STAT.RES) - _res);
+		if (shield < 0) {
+			hp += shield;
+			onHpReduction(-shield);
+		}
+	}
+	else {
+		var _dmg = (_enemy.base_dmg * (1 + GetBuffByType(_enemy, STAT.DMG))) * (1 - GetBuffByType(self, STAT.RES) - _res);
+		hp -= _dmg;
+		onHpReduction(_dmg);
+		
+	}
 	if (!_enemy.is_boss) instance_destroy(_enemy);
 }
 
 // called once the ship hits an enemy
 onHit = function(_enemy){
-	energy += 2;
+	GenerateEnergy(self, 0.5);
 	ApplyElementalDebuff(element, _enemy);
 }
 
 onAllyHit = function(_enemy, _ally){
-	energy += 0.2;
+	GenerateEnergy(self, 0.1);
 }
 
 // Basic attack
@@ -68,7 +89,7 @@ onBasicAttack = function(){
 
 // Skill attack
 onSkillAttack = function(){
-	energy += 10;
+	GenerateEnergy(self, 10);
 }
 
 // Ultimate attack
@@ -94,12 +115,10 @@ onFollowupHit = function(_enemy){
 	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_skill_scale + _extra);
 }
 
-onHpReduction = function(_amount){
-	
-}
 
-onHpRestoration = function(_amount){
-	
+
+onCrit = function(){
+
 }
 
 // Movement
@@ -133,6 +152,7 @@ movement = function(){
 
 getCrit = function(){
 	if (base_crit + GetBuffByType(self, STAT.CRIT) >= random(1)){
+		onCrit();
 		return base_critdmg + GetBuffByType(self, STAT.CRITDMG);
 	}
 	return 0;
@@ -145,4 +165,9 @@ getAtk = function(){
 getMaxHp = function(){
 	return (base_hp * (1 + GetBuffByType(self, STAT.HP)));
 }
+
+onBattleBegin = function(){
+	
+}
+
 

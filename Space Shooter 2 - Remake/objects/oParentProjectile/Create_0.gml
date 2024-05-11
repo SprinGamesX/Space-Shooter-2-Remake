@@ -12,6 +12,6 @@ onCreation = function(){
 }
 
 onHit = function(_enemy){
+
 	CreateAoe(parent, x, y, atk_type, element, aoe, last_hit_enemy);
-	show_debug_message(_enemy);
 }

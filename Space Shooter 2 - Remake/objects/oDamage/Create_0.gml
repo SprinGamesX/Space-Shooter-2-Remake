@@ -1,6 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-randomize();
 text = "";
 lifetime = seconds(1);
 mLifetime = lifetime;

@@ -89,7 +89,7 @@ for (yy = 0; yy < 7; yy++){
 		if (_index != 0){
 			if (_index == 1 or _index == 4 or _index == 9){
 				draw_sprite_ext(sTreeNodeBug, 0, STARTX + xx*TILE, STARTY + yy*TILE, 1,1, 0, _color, 1);
-				draw_sprite_ext(sPassiveSymb, 0, STARTX + xx*TILE, STARTY + yy*TILE, 1,1, 0, _color, 1);
+				draw_sprite_ext(sPassiveSymb, 0, STARTX + xx*TILE, STARTY + yy*TILE, 1.2,1.2, 0, _color, 1);
 			}
 			
 			else {

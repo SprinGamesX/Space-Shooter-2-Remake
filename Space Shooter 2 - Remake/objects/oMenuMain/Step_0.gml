@@ -17,10 +17,10 @@ if (keyboard_check_pressed(global.key_down)){
 if (keyboard_check_pressed(global.key_confirm)){
 	switch(menu_index){
 		case 0: 
-			room_goto(rBattle);
+			room_goto(rLevelSelection);
 		break;
 		case 1: 
-			// options ig
+			room_goto(rParty);
 		break;
 		case 2: 
 			room_goto(rHangar);

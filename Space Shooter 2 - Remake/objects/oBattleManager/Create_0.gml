@@ -9,7 +9,7 @@ part_system_depth(global.background_system,layer_get_depth(layer_get_id("Back"))
 
 alarm[0] = 2;
 star = part_type_create();
-part_type_life(star,seconds(20), seconds(20));
+part_type_life(star,seconds(12), seconds(12));
 part_type_sprite(star, sStar, false, false, false);
 part_type_speed(star, 2, 2, false, false);
 part_type_direction(star, 179, 181, false, false);

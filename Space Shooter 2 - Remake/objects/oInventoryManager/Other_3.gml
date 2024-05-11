@@ -8,6 +8,9 @@ for (var i = 0; i < ds_list_size(inventory); i++){
 var savedList = ds_list_write(inventory);
 ini_write_string("Saves", "inv", savedList);
 
+ini_write_real("money", "emeralds", global.emeralds);
+ini_write_real("money", "scraps", global.scraps);
+
 ini_close();
 
 SaveChips();

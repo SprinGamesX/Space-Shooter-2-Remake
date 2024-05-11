@@ -39,7 +39,7 @@ if (skill_cd <= 0){
 	skill_cd = 0;	
 }
 else {
-	skill_cd --;
+	skill_cd--;
 }
 if (ammo <= 0){
 	if (reload_cd > 0){
@@ -50,11 +50,3 @@ if (ammo <= 0){
 		ammo = base_ammo;
 	}
 }
-
-// Debug
-if (keyboard_check_pressed(ord("K"))){
-	ApplyBuff(statuses,"Test", false, true, STAT.DMG, 1000, seconds(5));
-	CreateDmgIndicator("DMG +100%", x, y);
-	show_debug_message(ds_list_size(statuses));
-}
-

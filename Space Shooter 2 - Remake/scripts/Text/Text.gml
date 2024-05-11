@@ -21,13 +21,13 @@ function CreateIndicator(_text, _x, _y, _element = ELEMENT.NONE, _font = font_st
 
 function ColorForElement(_element){
 	switch(_element){
-		case ELEMENT.ICE: return c_aqua;
-		case ELEMENT.FIRE: return c_orange;
-		case ELEMENT.LIFE: return c_lime;
-		case ELEMENT.LIGHTNING: return c_yellow;
-		case ELEMENT.STEEL: return c_gray;
-		case ELEMENT.QUANTUM: return c_blue;
-		case ELEMENT.VENOM: return c_purple;
+		case ELEMENT.ICE: return make_color_rgb(121, 236, 238);
+		case ELEMENT.FIRE: return make_color_rgb(238, 137, 64);
+		case ELEMENT.LIFE: return make_color_rgb(75, 221, 80);
+		case ELEMENT.LIGHTNING: return make_color_rgb(238, 235, 48);
+		case ELEMENT.STEEL: return make_color_rgb(176, 172, 158);
+		case ELEMENT.QUANTUM: return make_color_rgb(79,53,165);
+		case ELEMENT.VENOM: return make_color_rgb(190, 83, 190);
 		case ELEMENT.NONE: return make_color_rgb(192, 32, 43);
 	}
 }
@@ -54,5 +54,8 @@ function StatToString(_stat){
 		case STAT.LIGHTNINGDMG: return "LIGHTNING DMG";
 		case STAT.STEELDMG: return "STEEL DMG";
 		case STAT.QUANTUMDMG: return "QUANTUM DMG";
+		case STAT.DEF: return "DEF";
+		case STAT.ENERGYBOOST: return "EB";
+		
 	}
 }

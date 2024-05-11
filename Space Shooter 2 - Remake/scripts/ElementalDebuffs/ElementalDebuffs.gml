@@ -40,7 +40,7 @@ function ApplyElementalDebuff(_element, _enemy){
 		ApplyPoison(_enemy,"Poison", 0.5, seconds(1));
 	}
 	if (_element == ELEMENT.ICE) and (RollChance(0.5 * chance)){
-		ApplyDebuff(_enemy, "Frozen", false, false, ENEMY_STAT.DMG, 0.05, seconds(5), 5, 1);
-		ApplyDebuff(_enemy, "Shiver", false, false, ENEMY_STAT.RES, 0.04, seconds(5), 5, 1);
+		ApplyDebuff(_enemy, "Frozen", false, false, STAT.DMG, 0.05, seconds(5), 5, 1);
+		ApplyDebuff(_enemy, "Shiver", false, false, STAT.RES, 0.04, seconds(5), 5, 1);
 	}
 }

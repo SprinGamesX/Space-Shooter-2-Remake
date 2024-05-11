@@ -27,7 +27,7 @@ if (room == rInventory){
 	
 	// Drawing chip details
 	var _chip = inventory[|selected];
-	draw_sprite_stretched(sInventorySlot, 0, room_width - 500, 16, 500, room_height - 32);
+	draw_sprite_stretched(sInventorySlot, 0, room_width - 500, 32, 500, room_height - 64);
 		draw_setup(font_chips, c_white);
 		draw_text_scribble(room_width - 250, 72, "CHIP DETAILS:")
 	if (instance_exists(_chip)){
@@ -56,7 +56,9 @@ if (room == rInventory){
 		draw_text_scribble(room_width - 250, room_height - 100, inside_selected == 2 ? "[c_aqua][wave]Delete" : "Delete");
 	}
 	
-	
+	draw_setup(font_chips,,fa_right);
+	draw_sprite(sChipScrap, 0, room_width - 32, 16);
+	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.scraps))
 	
 	
 }

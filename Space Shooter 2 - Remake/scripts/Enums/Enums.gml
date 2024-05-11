@@ -41,16 +41,10 @@ enum STAT{
 	LIGHTNINGDMG,
 	STEELDMG,
 	QUANTUMDMG,
-	ENERGYBOOST
+	ENERGYBOOST,
+	DEF
 }
 
-enum ENEMY_STAT{
-	DMG,
-	HP,
-	DEF,
-	RES,
-	
-}	
 
 // Enemy Movement Patterns
 enum MOVEMENT_PATTERN{

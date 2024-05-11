@@ -7,8 +7,8 @@
   "managed":true,
   "name":"oVenomShip1",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"element","path":"objects/oParentShip/oParentShip.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ELEMENT.VENOM",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"shipId","path":"objects/oParentShip/oParentShip.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"3",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"element","path":"objects/oParentShip/oParentShip.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"ELEMENT.VENOM",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"oParentShip","path":"objects/oParentShip/oParentShip.yy",},"propertyId":{"name":"shipId","path":"objects/oParentShip/oParentShip.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"3",},
   ],
   "parent":{
     "name":"Ships",

@@ -24,15 +24,15 @@
   "name":"sUIBox",
   "nineSlice":{
     "$GMNineSliceData":"",
-    "bottom":4,
+    "bottom":6,
     "enabled":true,
     "guideColour":[4294902015,4294902015,4294902015,4294902015,],
     "highlightColour":1728023040,
     "highlightStyle":0,
-    "left":4,
+    "left":6,
     "resourceType":"GMNineSliceData",
     "resourceVersion":"2.0",
-    "right":4,
+    "right":6,
     "tileMode":[
       0,
       0,
@@ -40,7 +40,7 @@
       0,
       0,
     ],
-    "top":4,
+    "top":6,
   },
   "origin":0,
   "parent":{

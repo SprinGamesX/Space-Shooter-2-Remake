@@ -25,6 +25,5 @@ attack_cd = 0;
 max_attack_cd = 0;
 
 onAttackFinish = function(){
-	show_debug_message("attack finished");
 	isAttacking = false;
 }

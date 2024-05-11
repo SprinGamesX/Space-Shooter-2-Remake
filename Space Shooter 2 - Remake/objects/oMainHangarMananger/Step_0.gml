@@ -8,6 +8,8 @@ if (keyboard_check_pressed(global.key_left)){
 	ship_index--;
 	if (ship_index < 0) ship_index = array_length(global.ships) - 1;
 }
+global.currentShip = ship_index;
+
 if (keyboard_check_pressed(ord("1"))){
 	global.currentShip = ship_index;
 	global.currentShipSlot = 1;

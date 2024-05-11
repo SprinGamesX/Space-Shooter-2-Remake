@@ -1,5 +1,5 @@
-/// @description Insert description here
-// You can write your code in this editor
+
+// Drawing inventory
 if (room == rInventory){
 	if (!isSelected){
 		if (keyboard_check_pressed(global.key_right)) selected++;
@@ -56,6 +56,23 @@ if (room == rInventory){
 			break;
 			case 2: 
 				// Delete Chip
+				var _chip = inventory[|selected];
+				UnequipCurrentChip(global.chips[global.currentShip][global.currentShipSlot]);
+				if (_chip.ownerId != -1){
+					global.chips[_chip.ownerId, _chip.ownerSlot] = -1;
+				}
+				if (!(inventory[|selected].uuid == global.chips[global.currentShip][global.currentShipSlot])){
+					_chip.ownerId = global.currentShip;
+					_chip.ownerSlot = global.currentShipSlot;
+				}
+				else global.chips[global.currentShip][global.currentShipSlot] = -1;
+				
+				ds_list_delete(inventory, selected);
+				
+				global.scraps += power(10, _chip.rarity) + irandom(10);
+				instance_destroy(_chip);
+				isSelected = false; inside_selected = -1;
+				
 			break;
 		}
 	}
@@ -68,4 +85,7 @@ if (room == rInventory){
 	}
 	
 	
+	
+	
 }
+	

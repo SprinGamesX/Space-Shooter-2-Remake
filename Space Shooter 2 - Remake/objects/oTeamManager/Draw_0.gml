@@ -1,33 +1,61 @@
-/// @description Insert description here
-// You can write your code in this editor
-
-
-
-
+/// @description
 
 var _alpha = 1;
 if (team[active_index].x < 100 and team[active_index].y >= room_height - padding - 100) _alpha = 0.3;
 // Draw Main ship gui
 var _s = team[active_index];
-draw_sprite_ext(sShipGui, 0, padding, room_height - padding, 1, 1, 0, c_white, _alpha);
+var _xx = padding;
+var _yy = room_height - padding;
+draw_sprite_ext(sShipGui, 0, _xx, _yy, 1, 1, 0, c_white, _alpha);
 
-// Draw ship icon
-draw_sprite_ext(team[active_index].sprite_index,team[active_index].image_index , padding + 48, room_height - padding - 48, 1, 1, 0, c_white, _alpha);
+
 // Draw HP and CD Bars
-var _hp = (_s.hp/_s.base_hp)*100;
+var _hp = (_s.hp/_s.getMaxHp())*100;
+var _shield = min((_s.shield/_s.getMaxHp())*100, 100);
 var _skill_cd_progress = 100 - ((_s.skill_cd/_s.base_skill_cd) * 100)
 var _ult_cd_progress = ((_s.energy/_s.max_energy) * 100)
-draw_sprite_stretched_ext(sShipGuiBarHP, 0, 96 + padding, room_height - padding - 24,(190 * _hp / 100), 20, c_white, _alpha);
-draw_sprite_stretched_ext(sShipGuiBarCDs, 0, 96 + padding, room_height - padding - 60,(190 * _skill_cd_progress / 100), 14, c_white, _alpha);
-draw_sprite_stretched_ext(sShipGuiBarCDs, 1, 96 + padding, room_height - padding - 42,(190 * _ult_cd_progress / 100), 14, c_white, _alpha);
+draw_sprite_stretched_ext(sShipGuiBarHP, 0, _xx + 4, _yy - 24,(216 * _hp / 100), 20, c_white, _alpha);
+if (_s.shield > 0){
+	draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 4, _yy - 24,(216 * _shield / 100), 20, c_white, _alpha);
+}
+draw_sprite_stretched_ext(sShipGuiBarCDs, 1, _xx + 96, _yy - 42,(124 * _skill_cd_progress / 100), 14, c_white, _alpha);
+draw_sprite_stretched_ext(sShipGuiInactiveCD2, 0, _xx + 4 , _yy - 30 - (88 * _ult_cd_progress / 100), 88, (88 * _ult_cd_progress / 100), ColorForElement(_s.element), _ult_cd_progress == 100 ? _alpha - 0.1 : _alpha - 0.7);
 
 // Draw Ammo
 draw_setup(font_fipps, c_white, fa_left, fa_bottom);
 var _text = "[scale, 0.5]Reloading.."
 if (_s.ammo > 0) _text = "[scale, 0.5]AMMO: " + string(_s.ammo) + " / " + string(_s.base_ammo);
-draw_text_scribble(padding + 100, room_height - padding - 54, _text);
+draw_text_scribble(_xx + 100, _yy - 36, _text);
 
-draw_sprite_ext(sShipGui, 1, padding, room_height - padding, 1, 1, 0, c_white, _alpha);
+// Draw ship icon
+draw_sprite_ext(_s.sprite_index,_s.image_index , _xx + 48, _yy - 75, 1, 1, 0, c_white, _alpha );
+
+draw_sprite_ext(sShipGui, 1, _xx, _yy, 1, 1, 0, c_white, _alpha);
 
 
 // Draw team gui
+var _team = getInactiveShips();
+for (var i = 0; i < 2; i++){
+	_s = _team[i];
+	_xx = room_width - (128 + padding + (128* abs(1-i)));
+	_yy = room_height - padding;
+	draw_sprite_ext(sShipGuiInactive, 0, _xx, _yy, 1, 1, 0, c_white, _alpha);
+
+	// Draw HP and CD Bars
+	_hp = (_s.hp/_s.getMaxHp())*100;
+	_shield = min((_s.shield/_s.getMaxHp())*100, 100);
+	_skill_cd_progress = 100 - ((_s.skill_cd/_s.base_skill_cd) * 100)
+	_ult_cd_progress = ((_s.energy/_s.max_energy) * 100)
+	draw_sprite_stretched_ext(sShipGuiBarHP, 0, _xx + 2, _yy - 24,(92 * _hp / 100), 20, c_white, _alpha);
+	if (_s.shield > 0){
+		draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 2, _yy - 24,(92 * _shield / 100), 20, c_white, _alpha);
+	}
+	draw_sprite_stretched_ext(sShipGuiInactiveCD, 0, _xx + 96 , _yy - 2 - (118 * _skill_cd_progress / 100), 14, (118 * _skill_cd_progress / 100), c_white, _alpha);
+	
+	draw_sprite_stretched_ext(sShipGuiInactiveCD2, 0, _xx + 4 , _yy - 30 - (88 * _ult_cd_progress / 100), 88, (88 * _ult_cd_progress / 100), ColorForElement(_s.element), _ult_cd_progress == 100 ? _alpha - 0.1 : _alpha - 0.7);
+	
+	//Draw ship icon
+	draw_sprite_ext(_s.sprite_index,_s.image_index , _xx + 48, _yy - 75, 1, 1, 0, c_white, _alpha);
+	
+	draw_sprite_ext(sShipGuiInactive, 1, _xx, _yy, 1, 1, 0, c_white, _alpha);
+}

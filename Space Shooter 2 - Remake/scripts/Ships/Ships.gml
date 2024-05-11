@@ -18,6 +18,7 @@ global.chips = array_create(array_length(global.ships));
 
 global.currentShip = 0;
 
+global.party = [0,2,4];
 
 
 function InitiateShip(_id){
@@ -74,10 +75,10 @@ function GetShipDetails(_id){
 
 				// skill
 				base_skill_cd = seconds(5);
-				base_skill_scale = 0.4;
+				base_skill_scale = 0.01;
 
 				// ultimate
-				max_energy = 50;
+				max_energy = 100;
 				base_ult_scale = 0.75;
 			}
 		} break;
@@ -106,7 +107,7 @@ function GetShipDetails(_id){
 				base_skill_scale = 0.4;
 
 				// ultimate
-				max_energy = 50;
+				max_energy = 120;
 				base_ult_scale = 0.2;
 			}
 		} break;
@@ -129,14 +130,14 @@ function GetShipDetails(_id){
 				base_reload_cd = seconds(0.5);
 				base_ammo = 10;
 				base_ba_cd = seconds(0.25);
-				base_ba_scale = 0.1;
+				base_ba_scale = 0.05;
 
 				// skill
 				base_skill_cd = seconds(15);
-				base_skill_scale = 0.4;
+				base_skill_scale = 0;
 
 				// ultimate
-				max_energy = 50;
+				max_energy = 140;
 				base_ult_scale = 0.75;
 			}
 		} break;
@@ -164,7 +165,7 @@ function GetShipDetails(_id){
 				base_skill_scale = 0.4;
 
 				// ultimate
-				max_energy = 50;
+				max_energy = 160;
 				base_ult_scale = 0.75;
 			}
 		} break;
@@ -188,12 +189,12 @@ function GetShipDetails(_id){
 				base_ba_scale = 0.1;
 
 				// skill
-				base_skill_cd = seconds(15);
-				base_skill_scale = 0.4;
+				base_skill_cd = seconds(30);
+				base_skill_scale = 0;
 
 				// ultimate
-				max_energy = 50;
-				base_ult_scale = 0.75;
+				max_energy = 250;
+				base_ult_scale = 0.15;
 			}
 		} break;
 		case 5:{
@@ -211,17 +212,17 @@ function GetShipDetails(_id){
 
 				// basic attack
 				base_reload_cd = seconds(1);
-				base_ammo = 10;
-				base_ba_cd = seconds(0.25);
+				base_ammo = 5;
+				base_ba_cd = seconds(0.5);
 				base_ba_scale = 0.1;
 
 				// skill
-				base_skill_cd = seconds(15);
-				base_skill_scale = 0.4;
+				base_skill_cd = seconds(30);
+				base_skill_scale = 0.3;
 
 				// ultimate
-				max_energy = 50;
-				base_ult_scale = 0.75;
+				max_energy = 180;
+				base_ult_scale = 0;
 			}
 		} break;
 		case 6:{
@@ -241,15 +242,15 @@ function GetShipDetails(_id){
 				base_reload_cd = seconds(1);
 				base_ammo = 10;
 				base_ba_cd = seconds(0.25);
-				base_ba_scale = 0.1;
+				base_ba_scale = 0.2;
 
 				// skill
 				base_skill_cd = seconds(15);
-				base_skill_scale = 0.4;
+				base_skill_scale = 0.5;
 
 				// ultimate
-				max_energy = 50;
-				base_ult_scale = 0.75;
+				max_energy = 300;
+				base_ult_scale = 0.25;
 			}
 		} break;
 		
@@ -261,14 +262,33 @@ function GetShipDetails(_id){
 function ConsumeHp(_target ,_hp){
 	_target.hp = max(hp - _hp, 1);
 	_target.onHpReduction(_hp);
-		
-	
 }
 
 function RestoreHp(_target, _hp){
-	_target.hp = min(hp + _hp, base_hp);
+	_target.hp = min(_target.hp + _hp, base_hp);
 	_target.onHpRestoration(_hp);
 	CreateIndicator("+" + string(_hp), _target.x, _target.y, ELEMENT.LIFE);
+}
+function RestoreTeamHp(_hp){
+	var _team = oTeamManager.getAllShips();
+	for (var i = 0; i < array_length(_team); i++){
+		RestoreHp(_team[i], _hp);
+	}
+}
+
+function ApplyShield(_target, _shield){
+	_target.shield += _shield;
+	CreateIndicator("+" + string(_shield) +"S", _target.x, _target.y, ELEMENT.STEEL);
+}
+function ApplyTeamShield(_shield){
+	var _team = oTeamManager.getAllShips();
+	for (var i = 0; i < array_length(_team); i++){
+		ApplyShield(_team[i], _shield);
+	}
+}
+
+function GenerateEnergy(_target, _energy){
+	_target.energy += _energy * (1 + GetBuffByType(_target,STAT.ENERGYBOOST));
 }
 
 

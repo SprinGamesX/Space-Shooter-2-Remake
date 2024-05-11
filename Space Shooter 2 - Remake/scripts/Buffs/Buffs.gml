@@ -11,7 +11,7 @@ function CheckForExistingBuffs(_list, _name){
 function CountExistingBuffs(_list, _name){
 	var existing = 0;
 	for (var i = 0; i < ds_list_size(_list); i++){
-		if (_list[|i].name == _name) existing++;
+		if (instance_exists(_list[|i]) and _list[|i].name == _name) existing++;
 	}
 	return existing;
 }
@@ -68,8 +68,6 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 		}
 		
 	}
-
-	
 	
 	return _inst;
 }
@@ -117,18 +115,20 @@ function ApplyDebuff(_enemy,_name ,_isInfinite, _isPositive, _stat, _scale, _dur
 }
 
 function CleanBuffs(_list){
-	var i = ds_list_size(_list) - 1;
-	while(i >= 0 and !ds_list_empty(_list)){
-		if (!instance_exists(_list[|i])){
-			ds_list_delete(_list, i);
-			i--;
+	if (ds_exists(_list, ds_type_list)){
+		var i = ds_list_size(_list) - 1;
+		while(i >= 0 and !ds_list_empty(_list)){
+			if (!instance_exists(_list[|i])){
+				ds_list_delete(_list, i);
+				i--;
+			}
+			else if (_list[|i].isOver()) {
+				var _i = _list[|i];
+				ds_list_delete(_list, i);
+				instance_destroy(_i);
+			}
+			else i--;
 		}
-		else if (_list[|i].isOver()) {
-			var _i = _list[|i];
-			ds_list_delete(_list, i);
-			instance_destroy(_i);
-		}
-		else i--;
 	}
 }
 
@@ -183,5 +183,13 @@ function GetElementalBuff(_attacker ,_element){
 		case ELEMENT.VENOM: return GetBuffByType(_attacker, STAT.VENOMDMG);
 		case ELEMENT.STEEL: return GetBuffByType(_attacker, STAT.STEELDMG);
 		case ELEMENT.QUANTUM: return GetBuffByType(_attacker, STAT.QUANTUMDMG);
+	}
+}
+
+function ApplyTeamBuff(_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
+	var _team = oTeamManager.getAllShips();
+	for (var i = 0; i < array_length(_team); i++){
+		if (instance_exists(_team[i]))
+			ApplyBuff(_team[i].statuses, _name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking, _stacks, _owner, _show_indicator)
 	}
 }

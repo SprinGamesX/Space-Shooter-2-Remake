@@ -13,7 +13,7 @@ onBasicAttack = function(){
 }
 
 onSkillAttack = function(){
-	energy += 10;
+	GenerateEnergy(self, 10);
 	ApplyBuff(statuses, "Fired up", false, true, STAT.ASPD, 2, seconds(10));
 }
 
@@ -23,6 +23,6 @@ onUltimateAttack = function(){
 }
 
 onHit = function(_enemy){
-	energy += 0.2;
+	GenerateEnergy(self, 0.2);
 	ApplyElementalDebuff(element, _enemy);
 }

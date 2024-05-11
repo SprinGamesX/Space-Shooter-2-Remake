@@ -35,6 +35,7 @@ radius = 0;
 // (Gravitate)
 grav = 0;
 
+trail = -1;
 
 statuses = ds_list_create();
 
@@ -44,6 +45,10 @@ onHit = function(_projectile){
 	
 	// notify the ship and the projectile that it hit
 	attacker.onHit(self);
+	var _allies = oTeamManager.getInactiveShips();
+	for (var i = 0; i < 2; i++){
+		_allies[i].onAllyHit(self, attacker);
+	}
 	_projectile.onHit(self);
 	
 	// Gets base dmg
@@ -62,23 +67,16 @@ onHit = function(_projectile){
 		break;
 	}
 	// Enemy def calculation
-	var def = (5000 - (base_def + (base_def * (1 + GetBuffByType(attacker, ENEMY_STAT.DEF) - GetBuffByType(attacker, STAT.DEF_PEN)))))/5000
+	var def = (5000 - (base_def + (base_def * (1 + GetBuffByType(attacker, STAT.DEF) - GetBuffByType(attacker, STAT.DEF_PEN)))))/5000
 	
 	// Attacker Crit
 	var critdmg = attacker.getCrit();
 	
 	// Enemy - Attacker advantage
-	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker, STAT.DMG) + GetElementalBuff(attacker, attacker.element)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(self, ENEMY_STAT.RES))) * (1 + IsElementStrong(_projectile.element, element)) * (def);
+	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker, STAT.DMG) + GetElementalBuff(attacker, attacker.element)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(self, STAT.RES))) * (1 + IsElementStrong(_projectile.element, element)) * (def);
 	
 	
 	hp -= _dmg_dealt;
-	//show_debug_message(base_dmg);
-	//show_debug_message(1 + GetBuffByType(attacker, STAT.DMG))
-	//show_debug_message(1 + critdmg)
-	//show_debug_message(1 - (base_res + GetBuffByType(statuses, ENEMY_STAT.RES)))
-	//show_debug_message(1 - IsElementStrong(_projectile.element, element))
-	//show_debug_message(def)
-	show_debug_message(string(_dmg_dealt));
 	CreateDmgIndicator(string(_dmg_dealt), x, y, _projectile.element);
 }
 
@@ -93,3 +91,5 @@ onEntrance = function(){
 	}
 	else entrance_done = true;
 }
+
+alarm[0] = 2;

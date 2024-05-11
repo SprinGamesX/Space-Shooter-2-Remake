@@ -10,10 +10,10 @@ if (instance_exists(reciver) and instance_exists(owner) and duration <= 0){
 	var base_dmg = (stack * 0.1) * scale * attacker.getAtk();
 	
 	// Enemy def calculation
-	var def = (5000 - (reciver.base_def + (reciver.base_def * (1 + GetBuffByType(reciver, ENEMY_STAT.DEF) - GetBuffByType(attacker, STAT.DEF_PEN)))))/5000
+	var def = (5000 - (reciver.base_def + (reciver.base_def * (1 + GetBuffByType(reciver, STAT.DEF) - GetBuffByType(attacker, STAT.DEF_PEN)))))/5000
 	
 	// Enemy - Attacker advantage
-	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker, STAT.DMG)) * (1 - (reciver.base_res + GetBuffByType(reciver, ENEMY_STAT.RES))) * (1 + IsElementStrong(ELEMENT.VENOM, reciver.element)) * (def);
+	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker, STAT.DMG)) * (1 - (reciver.base_res + GetBuffByType(reciver, STAT.RES))) * (1 + IsElementStrong(ELEMENT.VENOM, reciver.element)) * (def);
 	
 	
 	reciver.hp -= _dmg_dealt;
