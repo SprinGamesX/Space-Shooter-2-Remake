@@ -1,4 +1,4 @@
 /// @description
-
-if (savelast)	
+last_room = room;
+if (savelast)
 	ds_stack_push(global.history, room);

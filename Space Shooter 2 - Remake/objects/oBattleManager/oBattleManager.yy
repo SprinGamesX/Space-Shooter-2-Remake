@@ -10,8 +10,8 @@
   "name":"oBattleManager",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Menus and stuff",
+    "path":"folders/Objects/Menus and stuff.yy",
   },
   "parentObjectId":null,
   "persistent":false,

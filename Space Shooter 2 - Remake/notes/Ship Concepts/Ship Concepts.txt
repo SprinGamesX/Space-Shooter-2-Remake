@@ -1,0 +1,5 @@
+Ice - 5*
+Concept: uses an ice sword to execute abilites
+
+Steel - 4*
+Adds shields to entire team when hit and doesnt have a shield

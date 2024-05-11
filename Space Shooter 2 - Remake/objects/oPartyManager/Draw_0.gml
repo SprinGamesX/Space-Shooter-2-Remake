@@ -3,8 +3,6 @@
 draw_setup(font_fipps);
 draw_text_scribble(room_width/2, 128, "[scale,2][rainbow]P A R T Y");
 
-
-
 var xx = room_width / 2;
 var yy = room_height / 2;
 

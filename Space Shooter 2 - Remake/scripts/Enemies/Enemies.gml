@@ -32,6 +32,7 @@ function SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = no
 		image_index = _element;
 		
 	}
+	return _inst;
 	
 }
 

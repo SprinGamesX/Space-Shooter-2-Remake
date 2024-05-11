@@ -1,0 +1,9 @@
+- finish skill tree
+- level upgrading
+- ship unlocking
+- domains
+- final boss
+
+Game Modes:
+Endless - Until death
+Rouge lite
