@@ -50,17 +50,22 @@ switch(selector){
 	break;
 }
 
+var _desc = GetDescForAttack(ship_index, selector);
+
 draw_setup(font_UI, _color, fa_left);
-draw_text_scribble(_xx-32, _yy, "[scale, 1]" + _title);
+draw_text_scribble(_xx-32, _yy, _title);
+
+draw_setup(font_descriptions,,fa_left, fa_top);
+draw_text_scribble_ext(_xx-32, _yy + 16, "[scale, 0.8]" + _desc, _area_width - (_xx + 32));
 
 
 // Draw Tree
-// Floor 1
 #macro TILE 80
 #macro STARTX 688
 #macro STARTY 120
 
 var skill_tree = GetTreeForElement(_s.element);
+_color = c_dkgray;
 
 draw_sprite_ext(sElementsST, _s.element, 464*2, room_height/2, 1, 1, 0, c_white, 0.2);
 draw_setup(font_chips)
@@ -86,6 +91,23 @@ for (yy = 0; yy < 7; yy++){
 	for (xx = 0; xx < 7; xx++){
 		//draw_text_scribble(STARTX + xx * TILE, STARTY + yy * TILE, "[scale,0.5](x: " + string(xx) + ",y:" + string(yy) + ")" )
 		var _index = skill_tree[yy][xx];
+		
+		if (treeMode){
+			if(xx == cursor[0] and yy = cursor[1]){
+				draw_sprite(sSTCursor, 0, STARTX + xx*TILE,STARTY + yy*TILE);
+				draw_setup(font_descriptions, ColorForElement(_s.element), fa_left, fa_top);
+				var _text = "Nothing Here...";
+				if (InRange(_index, 9, 13)) _text = GetDescForStat(_arr[_index-4]);
+				else if (InRange(_index, 4, 9)) _text = GetDescForStat(_arr[_index-3]);
+				else if (InRange(_index, 1, 4)) _text = GetDescForStat(_arr[_index-2]);
+				else if (_index != 0) _text = "Passive";
+				
+				
+				draw_text_scribble_ext(_xx-32, _yy + 16, "[scale, 0.8]" + _text, _area_width - (_xx + 32));
+			}
+		}
+		
+		
 		if (_index != 0){
 			if (_index == 1 or _index == 4 or _index == 9){
 				draw_sprite_ext(sTreeNodeBug, 0, STARTX + xx*TILE, STARTY + yy*TILE, 1,1, 0, _color, 1);
@@ -101,6 +123,8 @@ for (yy = 0; yy < 7; yy++){
 				draw_sprite_ext(sChipSymb, _arr[_index][0], STARTX + xx*TILE, STARTY + yy*TILE, 1,1, 0, _color, 1);
 			}
 		}
+		
+		
 	}
 }
 

@@ -15,7 +15,7 @@ onBasicAttack = function(){
 onSkillAttack = function(){
 	GenerateEnergy(self, 10);
 	ammo = 0;
-	ApplyBuff(statuses, "Leathality", true, true, STAT.ATK, 0.5, 1, 3,,,true);
+	ApplyBuff(self, "Leathality", true, true, STAT.ATK, 0.5, 1, 3,,,true);
 }
 
 // Ultimate attack

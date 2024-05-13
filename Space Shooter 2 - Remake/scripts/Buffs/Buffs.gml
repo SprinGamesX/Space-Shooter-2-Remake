@@ -32,7 +32,8 @@ function CreateBuffIndicator(_positive, _stat, _scale, _x = x, _y = y){
 		
 }
 
-function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
+function ApplyBuff(_target,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
+	var _list = _target.statuses;
 	var _inst = instance_create_depth(-100, -100, 999, cStatus)
 	var _check = CheckForExistingBuffs(_list, _name);
 	with (_inst){
@@ -50,8 +51,10 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 	// if ship does not have the buff
 	if (_check == -1){
 		ds_list_add(_list, _inst);
-		if (_show_indicator)
-			CreateBuffIndicator(_isPositive, _stat, _scale);
+		if (_show_indicator){
+			var _xy = oTeamManager.getShipGuiXY(_target);
+			CreateBuffIndicator(_isPositive, _stat, _scale,_xy[0], _xy[1]);
+		}
 	}
 	
 	// if buff exists
@@ -63,8 +66,10 @@ function ApplyBuff(_list,_name ,_isInfinite, _isPositive, _stat, _scale, _durati
 		else {
 			_inst = _list[| _check];
 			_inst.addStack(_stacks, _duration);
-			if (_show_indicator)
-				CreateBuffIndicator(_isPositive, _stat, _scale);
+			if (_show_indicator){
+				var _xy = oTeamManager.getShipGuiXY(_target);
+				CreateBuffIndicator(_isPositive, _stat, _scale,_xy[0], _xy[1]);
+			}
 		}
 		
 	}
@@ -190,6 +195,6 @@ function ApplyTeamBuff(_name ,_isInfinite, _isPositive, _stat, _scale, _duration
 	var _team = oTeamManager.getAllShips();
 	for (var i = 0; i < array_length(_team); i++){
 		if (instance_exists(_team[i]))
-			ApplyBuff(_team[i].statuses, _name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking, _stacks, _owner, _show_indicator)
+			ApplyBuff(_team[i], _name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking, _stacks, _owner, _show_indicator)
 	}
 }

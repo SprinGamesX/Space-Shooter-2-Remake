@@ -79,7 +79,8 @@ onHit = function(_enemy){
 }
 
 onAllyHit = function(_enemy, _ally){
-	GenerateEnergy(self, 0.1);
+	if (hp > 0)
+		GenerateEnergy(self, 0.1);
 }
 
 // Basic attack

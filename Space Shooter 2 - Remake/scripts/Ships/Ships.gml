@@ -267,7 +267,9 @@ function ConsumeHp(_target ,_hp){
 function RestoreHp(_target, _hp){
 	_target.hp = min(_target.hp + _hp, base_hp);
 	_target.onHpRestoration(_hp);
-	CreateIndicator("+" + string(_hp), _target.x, _target.y, ELEMENT.LIFE);
+	
+	var _xy = oTeamManager.getShipGuiXY(_target);
+	CreateIndicator("+" + string(_hp) + " Healing", _xy[0], _xy[1], ELEMENT.LIFE);
 }
 function RestoreTeamHp(_hp){
 	var _team = oTeamManager.getAllShips();
@@ -278,7 +280,9 @@ function RestoreTeamHp(_hp){
 
 function ApplyShield(_target, _shield){
 	_target.shield += _shield;
-	CreateIndicator("+" + string(_shield) +"S", _target.x, _target.y, ELEMENT.STEEL);
+	
+	var _xy = oTeamManager.getShipGuiXY(_target);
+	CreateIndicator("+" + string(_shield) + " Shield", _xy[0], _xy[1], ELEMENT.STEEL);
 }
 function ApplyTeamShield(_shield){
 	var _team = oTeamManager.getAllShips();

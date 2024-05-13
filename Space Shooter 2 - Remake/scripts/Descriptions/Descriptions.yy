@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"Times",
+  "%Name":"Descriptions",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Times",
+  "name":"Descriptions",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

@@ -11,3 +11,7 @@ function RollChance(_odds){
 	randomize();
 	return (_odds >= random(1));
 }
+
+function InRange(_x, _min, _max){
+	return _x > _min and _x < _max;
+}

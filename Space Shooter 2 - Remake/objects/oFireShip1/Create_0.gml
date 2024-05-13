@@ -14,7 +14,7 @@ onBasicAttack = function(){
 
 onSkillAttack = function(){
 	GenerateEnergy(self, 10);
-	ApplyBuff(statuses, "Fired up", false, true, STAT.ASPD, 2, seconds(10));
+	ApplyBuff(self, "Fired up", false, true, STAT.ASPD, 2, seconds(10));
 }
 
 onUltimateAttack = function(){

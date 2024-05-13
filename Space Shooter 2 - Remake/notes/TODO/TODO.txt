@@ -3,6 +3,7 @@
 - ship unlocking
 - domains
 - final boss
+- losing screen
 
 Game Modes:
 Endless - Until death

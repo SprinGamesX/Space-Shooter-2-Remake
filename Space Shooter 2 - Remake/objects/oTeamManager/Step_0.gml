@@ -15,4 +15,11 @@ if (switch_cd <= 0){
 		switch_ship(2);
 		switch_cd = switch_cd_max;
 	}
-} 
+}
+
+for (var i = 0; i < 3; i++){
+	if (team_standing[i] == 1 and team[i].hp <= 0) {
+		team_standing[i] = 0;
+		forceSwitch();
+	}
+}

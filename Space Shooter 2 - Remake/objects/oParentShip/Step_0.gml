@@ -26,27 +26,28 @@ if (active){
 	}
 }
 
-
-// Cooldowns
-if (ba_cd <= 0){
-	ba_cd = 0;	
-}
-else {
-	ba_cd -= (base_aspd * (1 + GetBuffByType(self, STAT.ASPD)));
-}
-
-if (skill_cd <= 0){
-	skill_cd = 0;	
-}
-else {
-	skill_cd--;
-}
-if (ammo <= 0){
-	if (reload_cd > 0){
-		reload_cd--;
+if (hp > 0){
+	// Cooldowns
+	if (ba_cd <= 0){
+		ba_cd = 0;	
 	}
 	else {
-		reload_cd = base_reload_cd;
-		ammo = base_ammo;
+		ba_cd -= (base_aspd * (1 + GetBuffByType(self, STAT.ASPD)));
+	}
+
+	if (skill_cd <= 0){
+		skill_cd = 0;	
+	}
+	else {
+		skill_cd--;
+	}
+	if (ammo <= 0){
+		if (reload_cd > 0){
+			reload_cd--;
+		}
+		else {
+			reload_cd = base_reload_cd;
+			ammo = base_ammo;
+		}
 	}
 }

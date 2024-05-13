@@ -1,5 +1,5 @@
-#macro RARECHANCE 0.25
-#macro EPICCHANCE 0.2
+#macro RARECHANCE 0.4
+#macro EPICCHANCE 0.25
 #macro PERFECTCHANCE 0.05
 
 

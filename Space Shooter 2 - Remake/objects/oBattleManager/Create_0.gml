@@ -1,9 +1,12 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// @description 
 borders = 64;
 
-// bg particle
+gamemode = global.gamemode;
+lv = 1;
 
+elites = ds_list_create();
+
+// bg particle
 global.background_system = part_system_create();
 part_system_depth(global.background_system,layer_get_depth(layer_get_id("Back")));
 

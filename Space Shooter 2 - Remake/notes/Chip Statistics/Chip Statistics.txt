@@ -1,9 +1,9 @@
 Rarities
 
-Common - 150/200
-Rare - 40/200
-EPIC - 9/200
-PERFECT - 1/200
+Common - 60/100
+Rare - 30/100
+EPIC - 9/100
+PERFECT - 1/100
 
 Probablity of getting a certain stat
 
