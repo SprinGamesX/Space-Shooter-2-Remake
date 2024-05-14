@@ -27,6 +27,7 @@ ini_close();
 // Loading stuff
 LoadChips();
 LoadShips();
+LoadSTs();
 
 show_debug_message("Created");
 

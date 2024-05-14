@@ -29,6 +29,8 @@ shield = 0;
 // list of buffs and nerfs
 statuses = ds_list_create();
 chips = array_create(10);
+passives = [global.shipST[shipId][1],global.shipST[shipId][4],global.shipST[shipId][9]];
+
 for (var i = 0; i < 10; i++){
 	chips[i] = oInventoryManager.getChip(global.chips[shipId][i]);
 }

@@ -15,6 +15,7 @@ global.ships =
 
 global.shipLv = array_create(array_length(global.ships));
 global.chips = array_create(array_length(global.ships));
+global.shipST = array_create(array_length(global.ships));
 
 global.currentShip = 0;
 
@@ -328,6 +329,28 @@ function LoadShips(){
 	ini_open("data.ini");
 	for (var i = 0; i < array_length(global.shipLv); i++){
 		global.shipLv[i] = ini_read_real("levels", i, 1);
+		global.shipST[i] = ini_read_real("st", i, 0);
+	}
+	ini_close();
+}
+
+function SaveSTs(){
+	ini_open("ST.ini");
+	for (var i = 0; i < array_length(global.shipST); i++){
+		for (var j = 0; j < 13; j++){
+			ini_write_real(i, j, global.shipST[i][j]);
+		}
+	}
+	ini_close();
+}
+
+function LoadSTs(){
+	ini_open("ST.ini");
+	for (var i = 0; i < array_length(global.shipST); i++){
+		global.shipST[i] = array_create(13);
+		for (var j = 0; j < 13; j++){
+			global.shipST[i][j] = ini_read_real(i, j, 0);
+		}
 	}
 	ini_close();
 }

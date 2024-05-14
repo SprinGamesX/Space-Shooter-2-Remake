@@ -250,4 +250,11 @@ function FindDependency(_element,_num){
 		if (_num == 8) return 6;
 		if (_num == 10 or _num == 11 or _num == 12) return _num-1;
 	}
+	return 0;
+}
+
+function GetCostForSTNode(_num){
+	if (_num < 4) return 10;
+	if (_num < 9) return 20;
+	if (_num < 13) return 30;
 }

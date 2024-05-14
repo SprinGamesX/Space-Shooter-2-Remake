@@ -13,7 +13,7 @@ var _s = instance_create_layer(-100, -100, "Instances", _ship);
 var _color = ColorForElement(_s.element);
 
 draw_setup(font_menu_details, c_white, fa_left);
-draw_text_scribble(16, room_height-32, "[scale, 0.5]Go Back - S   MOVE LEFT - A   MOVE RIGHT - D")
+draw_text_scribble(16, room_height-32, "[scale, 0.5]Go Back - ESC   MOVE LEFT - A   MOVE RIGHT - D")
 
 // Draw abilites n stuff
 var _xx = 64;
@@ -50,7 +50,7 @@ switch(selector){
 	break;
 }
 
-var _desc = GetDescForAttack(ship_index, selector);
+var _desc = GetDescForAttack(global.currentShip, selector);
 
 draw_setup(font_UI, _color, fa_left);
 draw_text_scribble(_xx-32, _yy, _title);
@@ -74,13 +74,17 @@ for (yy = 0; yy < 7; yy++){
 	for (xx = 0; xx < 7; xx++){
 		var _index = skill_tree[yy][xx];
 		if (_index > 1){
+			var _c1 = c_dkgray;
+			var _c2 = c_dkgray;
 			var _d = FindDependency(_s.element,_index);
 			var _d1 = FindXYInST(skill_tree, _d);
+			if (global.shipST[global.currentShip][_d]) _c1 = ColorForElement(_s.element);
+			if (global.shipST[global.currentShip][_index]) _c2 = ColorForElement(_s.element);
 			var _x1 = STARTX + xx*TILE;
 			var _y1 = STARTY + yy*TILE;
 			var _x2 = STARTX + _d1[0]*TILE;
 			var _y2 = STARTY + _d1[1]*TILE;
-			draw_line_width_color(_x1-1, _y1-1, _x2-1, _y2-1, 4, _color, _color);
+			draw_line_width_color(_x1-1, _y1-1, _x2-1, _y2-1, 4, _c2, _c1);
 		}
 	}
 }
@@ -100,15 +104,18 @@ for (yy = 0; yy < 7; yy++){
 				if (InRange(_index, 9, 13)) _text = GetDescForStat(_arr[_index-4]);
 				else if (InRange(_index, 4, 9)) _text = GetDescForStat(_arr[_index-3]);
 				else if (InRange(_index, 1, 4)) _text = GetDescForStat(_arr[_index-2]);
-				else if (_index != 0) _text = "Passive";
+				else if (_index != 0) _text = GetDescForPassive(global.currentShip, _index);
 				
-				
+				if (!global.shipST[global.currentShip][_index]) _text += "\n\nCost: " + string(GetCostForSTNode(_index));
+				if (!global.shipST[global.currentShip][FindDependency(_s.element,_index)]) _text += "\n[c_red]Prerequisites not met";
 				draw_text_scribble_ext(_xx-32, _yy + 16, "[scale, 0.8]" + _text, _area_width - (_xx + 32));
 			}
 		}
 		
 		
 		if (_index != 0){
+			if (global.shipST[global.currentShip][_index]) _color = ColorForElement(_s.element);
+			else _color = c_dkgray;
 			if (_index == 1 or _index == 4 or _index == 9){
 				draw_sprite_ext(sTreeNodeBug, 0, STARTX + xx*TILE, STARTY + yy*TILE, 1,1, 0, _color, 1);
 				draw_sprite_ext(sPassiveSymb, 0, STARTX + xx*TILE, STARTY + yy*TILE, 1.2,1.2, 0, _color, 1);

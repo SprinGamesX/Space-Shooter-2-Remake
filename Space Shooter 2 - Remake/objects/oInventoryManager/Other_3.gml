@@ -15,3 +15,4 @@ ini_close();
 
 SaveChips();
 SaveShips();
+SaveSTs();
