@@ -19,6 +19,7 @@ entrance_done = false;
 
 // dynamic stats
 hp = base_hp;
+explosive_immune = 0;
 
 // movement
 // (Line)
@@ -42,6 +43,25 @@ statuses = ds_list_create();
 onHit = function(_projectile){
 	var attacker = _projectile.parent;
 	var base_dmg = 0;
+	var _exploded = false;
+	
+	if (CheckForStatusByName(self, "Explosive")){
+		CreateAoe(attacker, x, y, ATTACK_TYPE.EXPLOSIVE,ELEMENT.FIRE,3);
+		_exploded = true;
+		explosive_immune = seconds(1);
+	}
+	if (_exploded) RemoveStatusByName(self, "Explosive");
+	if (CheckForStatusByName(self, "Sapped")){
+		if (_projectile.atk_type != ATTACK_TYPE.SAPPED){
+			AdditionallDamage(self, attacker, 0.01, ELEMENT.LIFE);
+		}
+	}
+	if (CheckForStatusByName(self, "Shocked")){
+		var _e = GetNearestInstances(x, y, oParentEnemy, 2);
+		if (_projectile.atk_type != ATTACK_TYPE.SHOCKED){
+			AdditionallDamage(self, attacker, 0.5, ELEMENT.LIGHTNING);
+		}
+	}
 	
 	// notify the ship and the projectile that it hit
 	attacker.onHit(self);
@@ -65,19 +85,29 @@ onHit = function(_projectile){
 		case ATTACK_TYPE.FOLLOWUP:
 			base_dmg = attacker.onFollowupHit(self);
 		break;
+		case ATTACK_TYPE.EXPLOSIVE:
+			base_dmg = attacker.onExplosive(self);
+		break;
+		case ATTACK_TYPE.SAPPED:
+			base_dmg = attacker.onSapped(self);
+		break;
+		case ATTACK_TYPE.SHOCKED:
+			base_dmg = attacker.onShocked(self);
+		break;
 	}
 	// Enemy def calculation
-	var def = (5000 - (base_def + (base_def * (1 + GetBuffByType(attacker, STAT.DEF) - GetBuffByType(attacker, STAT.DEF_PEN)))))/5000
+	var def = GetDefense(attacker, self);
 	
 	// Attacker Crit
 	var critdmg = attacker.getCrit();
 	
 	// Enemy - Attacker advantage
-	var _dmg_dealt = (base_dmg) * (1 + GetBuffByType(attacker, STAT.DMG) + GetElementalBuff(attacker, attacker.element)) * (1 + critdmg) * (1 - (base_res + GetBuffByType(self, STAT.RES))) * (1 + IsElementStrong(_projectile.element, element)) * (def);
+	var _dmg_dealt = GetFinalDamage(attacker, self, base_dmg, def, critdmg, _projectile.atk_type);
 	
 	
 	hp -= _dmg_dealt;
 	CreateDmgIndicator(string(_dmg_dealt), x, y, _projectile.element);
+	
 }
 
 onDeath = function(){

@@ -25,7 +25,7 @@ draw_sprite_stretched_ext(sShipGuiInactiveCD2, 0, _xx + 4 , _yy - 30 - (88 * _ul
 // Draw Ammo
 draw_setup(font_fipps, c_white, fa_left, fa_bottom);
 var _text = "[scale, 0.5]Reloading.."
-if (_s.ammo > 0) _text = "[scale, 0.5]AMMO: " + string(_s.ammo) + " / " + string(_s.base_ammo);
+if (_s.ammo > 0) _text = "[scale, 0.5]AMMO: " + string(_s.ammo) + " / " + string(_s.max_ammo);
 draw_text_scribble(_xx + 100, _yy - 36, _text);
 
 // Draw ship icon

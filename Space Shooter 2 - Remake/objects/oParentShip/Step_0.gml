@@ -4,6 +4,7 @@ CleanBuffs(statuses);
 
 if (active){
 	movement();
+	max_ammo = base_ammo + GetBuffByType(self, STAT.MAX_AMMO);
 }
 
 if (energy > max_energy){
@@ -47,7 +48,8 @@ if (hp > 0){
 		}
 		else {
 			reload_cd = base_reload_cd;
-			ammo = base_ammo;
+			ammo = max_ammo;
 		}
 	}
 }
+if (shield < 0) shield = 0;

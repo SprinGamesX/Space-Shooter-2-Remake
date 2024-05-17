@@ -12,4 +12,4 @@ for (var i = 0; i < 3; i++){
 	part_particles_create(sys, x + random_range(-_w, _w) , y + random_range(-_h, _h), part, 1);
 }
 
-image_angle+=10;
+image_angle += base_spd * (1 + GetBuffByType(self, STAT.SPD));

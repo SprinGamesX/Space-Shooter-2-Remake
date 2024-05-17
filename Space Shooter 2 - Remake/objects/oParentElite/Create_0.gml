@@ -6,7 +6,7 @@ event_inherited();
 
 // main stats
 is_boss = true;
-lv = 1;
+lvl = 1;
 base_hp = 0;
 base_dmg = 0;
 base_spd = 0;
@@ -27,3 +27,11 @@ max_attack_cd = 0;
 onAttackFinish = function(){
 	isAttacking = false;
 }
+
+setup = function(){
+	base_hp = base_hp * (1.25 * lvl);
+	base_dmg = base_dmg * (1.25 * lvl);
+	base_def = min(base_def * (1.1 * lvl), 4000);
+	hp = base_hp;
+}
+

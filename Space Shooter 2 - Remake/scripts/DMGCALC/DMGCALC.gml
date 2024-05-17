@@ -48,3 +48,17 @@ function IsElementStrong(_attacker_elem, _defender_elem){
 	}
 	return 0;
 }
+
+function GetDefense(_attacker, _defender){
+	return max((5000 - (_defender.base_def * ((1 + GetBuffByType(_defender, STAT.DEF) - GetBuffByType(_attacker, STAT.DEF_PEN)))))/5000, 0);
+}
+
+function GetFinalDamage(_attacker, _defender, _base_dmg, _def, _crit, _atktype){
+	return 
+	(_base_dmg) * 
+	(1 + GetBuffByType(_attacker, STAT.DMG) - GetBuffByType(_defender, STAT.DMG_RECIVED) + GetElementalBuff(_attacker, _attacker.element) + GetAttackTypeBuff(_attacker, _atktype)) * 
+	(1 + _crit) * 
+	(1 - min(_defender.base_res + GetBuffByType(_defender, STAT.RES) - GetBuffByType(_attacker, STAT.RES_PEN), 1)) * 
+	(1 + IsElementStrong(_attacker.element, _defender.element)) * 
+	(_def);
+}

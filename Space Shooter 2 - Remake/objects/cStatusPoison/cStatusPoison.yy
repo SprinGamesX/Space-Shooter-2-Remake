@@ -38,5 +38,5 @@
     "path":"sprites/sIconVenom/sIconVenom.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

@@ -1,11 +1,11 @@
 Ally
-(Effects are gurenteed on weak enemies)
+(Effects chances are doubled on weak enemies)
 + Venom - 75% chance to inflict poison (DoT)
-+ Ice - 50% chance to apply Freeze upon hit (Freeze reduces RES and DMG)
-Fire - 65% chance to inflict Explosive on hit (Explosive detonates when enemy is hit dealing aoe dmg to itself and nearby enemies)
-Lightning - 80% chance to inflict Shock for 5 seconds (Shocked enemies deal dmg to a random nearby enemy upon hit)
-Life - 70% chance to inflict Sapped for 6 seconds (Sapped enemies heal the attacker for a certain % of HP)
-Quantum - 40% chance to inflict Entangled (Entangled enemies will be teleported to a random location and recieve dmg equal to 1% of their Max Hp)
++ Ice - 25% chance to apply Freeze upon hit (Freeze reduces RES and DMG)
++ Fire - 30% chance to inflict Explosive on hit (Explosive detonates when enemy is hit dealing aoe dmg to itself and nearby enemies)
++ Lightning - 10% chance to inflict Shock for 5 seconds (Shocked enemies deal dmg to a random nearby enemy upon hit)
++ Life - 40% chance to inflict Sapped for 6 seconds (Sapped enemies will take addtional damage equal to 1% of attacker's hp and have increased RES)
++ Quantum - 1% chance to inflict Entangled (Entangled enemies will be teleported to a random location and recieve dmg equal to 1% of their Max Hp)
 + Steel - upon being hit there is a 25% chance to resist 50% of the dmg
 
 

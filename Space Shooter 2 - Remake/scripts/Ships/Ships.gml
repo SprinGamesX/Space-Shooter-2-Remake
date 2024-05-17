@@ -25,9 +25,11 @@ global.party = [0,2,4];
 function InitiateShip(_id){
 	var _ship = GetShipDetails(_id);
 	
+	level = global.shipLv[_id];
+	
 	// base stats
-	base_atk = _ship.base_atk;
-	base_hp = _ship.base_hp;
+	base_atk = _ship.base_atk + _ship.base_atk*level*0.5; // each level increases atk by 50%
+	base_hp = _ship.base_hp + _ship.base_hp*level*0.4; // each level increases hp by 40%
 	base_spd = _ship.base_spd;
 	base_aspd = _ship.base_aspd;
 
@@ -105,7 +107,7 @@ function GetShipDetails(_id){
 
 				// skill
 				base_skill_cd = seconds(15);
-				base_skill_scale = 0.4;
+				base_skill_scale = 0.15;
 
 				// ultimate
 				max_energy = 120;
@@ -266,7 +268,7 @@ function ConsumeHp(_target ,_hp){
 }
 
 function RestoreHp(_target, _hp){
-	_target.hp = min(_target.hp + _hp, base_hp);
+	_target.hp = min(_target.hp + _hp, _target.base_hp);
 	_target.onHpRestoration(_hp);
 	
 	var _xy = oTeamManager.getShipGuiXY(_target);
@@ -289,6 +291,19 @@ function ApplyTeamShield(_shield){
 	var _team = oTeamManager.getAllShips();
 	for (var i = 0; i < array_length(_team); i++){
 		ApplyShield(_team[i], _shield);
+	}
+}
+
+function RestoreAmmo(_target, _ammo){
+	_target._ammo += _ammo;
+	
+	var _xy = oTeamManager.getShipGuiXY(_target);
+	CreateIndicator("+" + string(_ammo) + " AMMO", _xy[0], _xy[1], ELEMENT.FIRE);
+}
+function RestoreTeamAmmo(_ammo){
+	var _team = oTeamManager.getAllShips();
+	for (var i = 0; i < array_length(_team); i++){
+		RestoreAmmo(_team[i], _ammo);
 	}
 }
 
@@ -348,7 +363,8 @@ function LoadSTs(){
 	ini_open("ST.ini");
 	for (var i = 0; i < array_length(global.shipST); i++){
 		global.shipST[i] = array_create(13);
-		for (var j = 0; j < 13; j++){
+		global.shipST[i][0] = 1;
+		for (var j = 1; j < 13; j++){
 			global.shipST[i][j] = ini_read_real(i, j, 0);
 		}
 	}

@@ -5,12 +5,15 @@ if (ds_list_size(elites) == 1){
 	if (instance_exists(_enemy)){
 		var barWidth = 94 * 2;
 		var _color = ColorForElement(_enemy.element);
-
+		
 		draw_sprite_ext(sEnemyHpBar, 1, room_width/2, 32, 2, 2, 0, _color, 1)
 
 		draw_sprite_ext(sEnemyHpCover, 0, room_width/2 + barWidth, 32,2*(1 - _enemy.hp/_enemy.base_hp), 2,0 ,_color, 1)
 
 		draw_sprite_ext(sEnemyHpBar, 0, room_width/2, 32, 2, 2, 0, _color, 1);
+		draw_setup(font_stat, _color, fa_center, fa_top);
+		draw_text_scribble(room_width/2, 40, "LVL: " + string(_enemy.lvl) + "  " + string(round(_enemy.hp)) + " / " + string(round(_enemy.base_hp)));
+		
 	}
 }
 
@@ -29,6 +32,8 @@ if (ds_list_size(elites) == 2){
 			draw_sprite_ext(sEnemyHpCover, 0, _x + barWidth, 32,2*(1 - _enemy.hp/_enemy.base_hp), 2,0 ,_color, 1)
 
 			draw_sprite_ext(sEnemyHpBar, 0, _x, 32, 2, 2, 0, _color, 1);
+			draw_setup(font_stat, _color, fa_center, fa_top);
+			draw_text_scribble(_x, 40, "LVL: " + string(_enemy.lvl) + "  " + string(round(_enemy.hp)) + " / " + string(round(_enemy.base_hp)));
 		}
 	}
 }

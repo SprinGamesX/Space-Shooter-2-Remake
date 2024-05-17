@@ -1,0 +1,4 @@
+Emeralds - Used for obtaining ships, can be converted to drives
+Cores - Used for upgrading ships above level 60
+Scraps - Used for upgrading skill tree
+Drives - Common currency

@@ -15,3 +15,7 @@ function RollChance(_odds){
 function InRange(_x, _min, _max){
 	return _x > _min and _x < _max;
 }
+
+function RandomizeTime(_base, _factor){
+	return _base + random_range(-_factor, _factor);
+}

@@ -56,7 +56,7 @@ if (room == rInventory){
 		draw_text_scribble(room_width - 250, room_height - 100, inside_selected == 2 ? "[c_aqua][wave]Delete" : "Delete");
 	}
 }
-if (room == rInventory or room == rShipDetails){
+if (room == rInventory or room == rShipDetails or room == rHangar){
 	draw_setup(font_chips,,fa_right);
 	draw_sprite(sChipScrap, 0, room_width - 32, 16);
 	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.scraps))

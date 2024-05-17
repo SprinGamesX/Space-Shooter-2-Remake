@@ -15,4 +15,4 @@ if (invis) image_alpha = 0.1;
 else image_alpha = 1;
 
 
-image_angle+=1;
+image_angle += base_spd * (1 + GetBuffByType(self, STAT.SPD));

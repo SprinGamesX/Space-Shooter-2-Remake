@@ -47,6 +47,9 @@ function ApplyBuff(_target,_name ,_isInfinite, _isPositive, _stat, _scale, _dura
 		owner = _owner;
 		max_stack = _stacking;
 		stack = _stacks;
+		if (_stat == STAT.HEALING_OVER_TIME){
+			target = _target;
+		}
 	}
 	// if ship does not have the buff
 	if (_check == -1){
@@ -159,23 +162,29 @@ function GetChipType(_type){
 }
 
 function GetBuffByType(_attacker, _type){
-	var _buff = 0;
-	var _isShip = false;
-	var _list = _attacker.statuses;
-	if (object_is_ancestor(_attacker.object_index, oParentShip)) _isShip = true;
-	if (_isShip)
-		var _chips = _attacker.chips;
+	if (instance_exists(_attacker)){
+		var _buff = 0;
+		var _isShip = false;
+		var _list = _attacker.statuses;
+		if (ds_exists(_list, ds_type_list)){
+			if (object_is_ancestor(_attacker.object_index, oParentShip)) _isShip = true;
+			if (_isShip)
+				var _chips = _attacker.chips;
 		
-	for (var i = 0; i < ds_list_size(_list); i++){
-		if (_list[|i].stat == _type) _buff += _list[|i].get();
-	}
-	if (_isShip){
-		var _chipstat = GetChipType(_type);
+			for (var i = 0; i < ds_list_size(_list); i++){
+				if (_list[|i].stat == _type) _buff += _list[|i].get();
+			}
+			if (_isShip){
+				var _chipstat = GetChipType(_type);
 	
-		for (var i = 0; _chipstat != -1 and i < array_length(_chips); i++){
-			if (instance_exists(_chips[i])) and (_chips[i].stat == _chipstat) _buff += _chips[i].get();
-		}}
-	return _buff;
+				for (var i = 0; _chipstat != -1 and i < array_length(_chips); i++){
+					if (instance_exists(_chips[i])) and (_chips[i].stat == _chipstat) _buff += _chips[i].get();
+				}}
+			return _buff;
+		}
+		return 0;
+	}
+	return 0;
 }
 
 function GetElementalBuff(_attacker ,_element){
@@ -191,10 +200,110 @@ function GetElementalBuff(_attacker ,_element){
 	}
 }
 
-function ApplyTeamBuff(_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
+function GetAttackTypeBuff(_attacker, _type){
+	switch(_type){
+		case ATTACK_TYPE.BASIC_ATTACK: return GetBuffByType(_attacker, STAT.BA_BONUS);
+		case ATTACK_TYPE.SKILL: return GetBuffByType(_attacker, STAT.SK_BONUS);
+		case ATTACK_TYPE.ULTIMATE: return GetBuffByType(_attacker, STAT.UT_BONUS);
+		case ATTACK_TYPE.FOLLOWUP: return GetBuffByType(_attacker, STAT.FUA_BONUS);
+		case ATTACK_TYPE.DOT: return GetBuffByType(_attacker, STAT.DOT_BONUS);
+	}
+	return 0;
+}
+
+function ApplyTeamBuff(_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false ,_exlude_owner = false){
 	var _team = oTeamManager.getAllShips();
 	for (var i = 0; i < array_length(_team); i++){
-		if (instance_exists(_team[i]))
-			ApplyBuff(_team[i], _name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking, _stacks, _owner, _show_indicator)
+		if (instance_exists(_team[i])){
+			if (_exlude_owner){
+				if (_team[i].id != _owner.id){
+					ApplyBuff(_team[i], _name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking, _stacks, _owner, _show_indicator);
+				}
+			}
+			else {
+				ApplyBuff(_team[i], _name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking, _stacks, _owner, _show_indicator);
+			}
+		}
 	}
+}
+
+function CheckForStatus(_target, _stat){
+	return GetBuffByType(_target, _stat) != 0;
+}
+
+function CheckForStatusByName(_target, _name){
+	var _found = false;
+	for (var i = 0; i < ds_list_size(_target.statuses); i++){
+		if ((_target.statuses[|i].name == _name)){
+			_found = true;
+			break;
+		}
+	}
+	return _found;
+}
+
+function RemoveStatusByName(_target, _name){
+	var _found = false;
+	for (var i = 0; i < ds_list_size(_target.statuses); i++){
+		if ((_target.statuses[|i].name == _name)){
+			ds_list_delete(_target.statuses, i);
+			_found = true;
+			break;
+		}
+	}
+	return _found;
+}
+
+function ApplyHealOverTime(_target, _owner,_scale,_duration, _stacks, _name, _show_indicator = false){
+	var _list = _target.statuses;
+	var _inst = instance_create_depth(-100, -100, 999, cHealingOverTime);
+	var _check = CheckForExistingBuffs(_list, _name);
+	with (_inst){
+		name = _name;
+		duration = _duration;
+		max_duration = _duration;
+		scale = _scale;
+		owner = _owner;
+		max_stack = _stacks;
+		stack = _stacks;
+		target = _target;
+	}
+	// if ship does not have the buff
+	if (_check == -1){
+		ds_list_add(_list, _inst);
+		if (_show_indicator){
+			var _xy = oTeamManager.getShipGuiXY(_target);
+			CreateDmgIndicator("Healing Over Time", _xy[0], _xy[1], ELEMENT.LIFE);
+		}
+	}
+	
+	// if buff exists
+	else{
+		_inst = _list[| _check];
+		_inst.addStack(_stacks, _duration);
+		if (_show_indicator){
+			var _xy = oTeamManager.getShipGuiXY(_target);
+			CreateDmgIndicator("Healing Over Time", _xy[0], _xy[1], ELEMENT.LIFE);
+		}
+		
+	}
+	
+	return _inst;
+}
+
+function ApplyTeamHoT(_owner,_scale,_duration, _stacks, _name, _show_indicator = false, _exlude_owner = false){
+	var _team = oTeamManager.getAllShips();
+	for (var i = 0; i < array_length(_team); i++){
+		if (instance_exists(_team[i])){
+			if (_exlude_owner){
+				if (_team[i].id != _owner.id){
+					ApplyHealOverTime(_team[i], _owner, _scale, _duration, _stacks, _name, _show_indicator);
+				}
+			}
+			else {
+				ApplyHealOverTime(_team[i], _owner, _scale, _duration, _stacks, _name, _show_indicator);
+			}
+		}
+	}
+	
 }

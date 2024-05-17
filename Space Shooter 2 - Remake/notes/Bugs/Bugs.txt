@@ -1,4 +1,1 @@
-- Poison Acting strange at the beginning
-
 Notes:
-Appling poison is currently gurrenteed on all elements

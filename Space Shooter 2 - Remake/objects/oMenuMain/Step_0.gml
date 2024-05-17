@@ -17,7 +17,7 @@ if (keyboard_check_pressed(global.key_down)){
 if (keyboard_check_pressed(global.key_confirm)){
 	switch(menu_index){
 		case 0: 
-			global.gamemode = GAMEMODE.DOMAINS;
+			global.gamemode = GAMEMODE.TRAINING;
 			room_goto(rLevelSelection);
 		break;
 		case 1: 

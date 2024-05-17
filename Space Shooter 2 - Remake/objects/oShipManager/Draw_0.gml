@@ -106,7 +106,7 @@ for (yy = 0; yy < 7; yy++){
 				else if (InRange(_index, 1, 4)) _text = GetDescForStat(_arr[_index-2]);
 				else if (_index != 0) _text = GetDescForPassive(global.currentShip, _index);
 				
-				if (!global.shipST[global.currentShip][_index]) _text += "\n\nCost: " + string(GetCostForSTNode(_index));
+				if (!global.shipST[global.currentShip][_index]) _text += "\n\nCost: " + string(GetCostForSTNode(_index)) + " [sChipScrap]";
 				if (!global.shipST[global.currentShip][FindDependency(_s.element,_index)]) _text += "\n[c_red]Prerequisites not met";
 				draw_text_scribble_ext(_xx-32, _yy + 16, "[scale, 0.8]" + _text, _area_width - (_xx + 32));
 			}

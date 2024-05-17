@@ -24,3 +24,7 @@ if (hp <= 0) onDeath();
 if (!entrance_done){
 	onEntrance();
 }
+if (explosive_immune > 0){
+	explosive_immune--;
+}
+if (!instance_exists(leader)) instance_destroy();

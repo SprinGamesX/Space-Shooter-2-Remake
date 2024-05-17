@@ -16,6 +16,9 @@ team[2] = instance_create_layer(room_width / 2, -100, "Player", global.ships[tea
 
 active_index = 0;
 
+// Gui
+padding = 16;
+
 if (team[1] != noone)
 	team[1].active = false;
 if (team[2] != noone)
@@ -46,7 +49,7 @@ function switch_ship(_num){
 }
 
 forceSwitch = function(){
-	for (var i = 0; i < 2; i++){
+	for (var i = 0; i < 3; i++){
 		if (team_standing[i] == 1){
 			switch_ship(i);
 			return true;
@@ -92,6 +95,10 @@ getShipGuiXY = function(_obj){
 	
 }
 
+isTeamDead = function(){
+	return team_standing[0] + team_standing[1] + team_standing[2] == 0;
+}
+
 for (var i = 0; i < 3; i++){
 	if (instance_exists(team[i])){
 		team[i].onBattleBegin();
@@ -100,6 +107,5 @@ for (var i = 0; i < 3; i++){
 
 
 
-// Gui
-padding = 16;
+
 

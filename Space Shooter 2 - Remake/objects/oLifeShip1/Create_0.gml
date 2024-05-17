@@ -13,7 +13,7 @@ onBasicAttack = function(){
 // Skill attack
 onSkillAttack = function(){
 	GenerateEnergy(self, 10);
-	RestoreTeamHp(base_hp * 0.1);
+	if (passives[0]) RestoreTeamHp(base_hp * 0.1);
 	RestoreHp(self, base_hp * 0.15);
 	
 }
@@ -22,6 +22,11 @@ onSkillAttack = function(){
 onUltimateAttack = function(){
 	energy = 0;
 	RestoreTeamHp(base_hp * 0.5);
+	if (passives[2]) ApplyTeamHoT(self, 0.05, seconds(1), 5, "Sprout", true);
+}
+
+onHpRestoration = function(_amount){
+	GenerateEnergy(self, 1);
 }
 
 onBasicHit = function(_enemy){

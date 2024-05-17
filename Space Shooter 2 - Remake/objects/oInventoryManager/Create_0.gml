@@ -7,7 +7,7 @@ offset = 0;
 inside_selected = -1;
 isSelected = false;
 
-
+global.clearAll = false;
 
 ini_open("inventory.ini");
 

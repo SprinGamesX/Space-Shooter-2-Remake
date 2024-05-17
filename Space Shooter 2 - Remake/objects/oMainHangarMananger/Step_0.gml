@@ -3,10 +3,12 @@
 if (keyboard_check_pressed(global.key_right)){
 	ship_index++;
 	if (ship_index >= array_length(global.ships)) ship_index = 0;
+	updateCost();
 }
 if (keyboard_check_pressed(global.key_left)){
 	ship_index--;
 	if (ship_index < 0) ship_index = array_length(global.ships) - 1;
+	updateCost();
 }
 global.currentShip = ship_index;
 
@@ -68,4 +70,9 @@ if (keyboard_check_pressed(vk_escape)){
 if (keyboard_check_pressed(global.key_up)){
 	global.currentShip = ship_index;
 	room_goto(rShipDetails);
+}
+
+if (keyboard_check_pressed(global.key_confirm) and global.shipLv[global.currentShip] < 100){
+	global.shipLv[global.currentShip]++;
+	updateCost();
 }

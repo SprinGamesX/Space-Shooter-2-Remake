@@ -8,7 +8,7 @@ part = GetTrailByElement(element);
 
 onBasicAttack = function(){
 	if (enhanced){
-		CreateProjectile(oLightningCharge1, self, x, y, 10, 0, ATTACK_TYPE.BASIC_ATTACK, element, 3, ,2,true);	
+		CreateProjectile(oLightningCharge1, self, x, y, 10, 0, ATTACK_TYPE.BASIC_ATTACK, element, passives[1]? 5 : 3, ,2,true);	
 	}
 	else CreateProjectile(oLightningCharge1, self, x, y, 7, 0, ATTACK_TYPE.BASIC_ATTACK, element, 1);
 	ammo--;
@@ -19,6 +19,7 @@ onSkillAttack = function(){
 	GenerateEnergy(self, 10);
 	enhanced = true;
 	enhanced_timer = timer_max;
+	if (passives[0]) ApplyBuff(self, "Electrified", false, true, STAT.ATK, 0.2, seconds(10),,,,true);
 }
 
 // Ultimate attack
@@ -38,4 +39,8 @@ onUltimateAttack = function(){
 onHit = function(_enemy){
 	GenerateEnergy(self, 0.5);
 	ApplyElementalDebuff(element, _enemy);
+}
+
+onBattleBegin = function(){
+	if (passives[2]) ApplyBuff(self, "Stacked", true, true, STAT.MAX_AMMO, 10, 1);
 }

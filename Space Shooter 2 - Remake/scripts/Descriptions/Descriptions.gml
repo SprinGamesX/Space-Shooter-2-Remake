@@ -62,6 +62,36 @@ function GetDescForAttack(_id, _attack){
 					_d = "When using BASIC-ATTACKS consume 1% of its HP.";
 				break;
 			} break;
+		case 3:
+			switch(_attack){
+				case 0:
+					_d = "Deals VENOM damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Increases its own ATK by 50% stacking up to 3 times.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Deals VENOM damage around it equal to [c_orange]" + ud + "%[c_white] of ATK.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "Increases ATK by 10% for all allies.";
+				break;
+			} break;
+		case 4:
+			switch(_attack){
+				case 0:
+					_d = "Deals LIGHTNING damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Enters ENHANCED state, when in ENHANCED state BASIC-ATTACKS will have increased SPEED and will BOUNCE 3 times.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Deals VENOM damage around it equal to [c_orange]" + ud + "%[c_white] of ATK.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "Increases ATK by 10% for all allies.";
+				break;
+			} break;
 		
 	}
 	

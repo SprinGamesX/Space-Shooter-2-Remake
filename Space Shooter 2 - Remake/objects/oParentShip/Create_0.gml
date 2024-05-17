@@ -1,5 +1,7 @@
 /// @description Insert description here
 
+
+
 // base stats (do not change)
 base_atk = 0;
 base_hp = 0;
@@ -25,6 +27,7 @@ ba_cd = 0;
 reload_cd = 0;
 hp = base_hp;
 shield = 0;
+max_ammo = base_ammo;
 
 // list of buffs and nerfs
 statuses = ds_list_create();
@@ -117,6 +120,26 @@ onFollowupHit = function(_enemy){
 	var _extra = 0;
 	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_skill_scale + _extra);
 }
+
+onExplosive = function(_enemy){
+	var _extra = 0;
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (0.15 + _extra);
+}
+
+onSapped = function(_enemy){
+	var _extra = 0;
+	return (base_hp * (1 + GetBuffByType(self, STAT.HP))) * (0.01 + _extra);
+}
+onShocked = function(_enemy){
+	var _extra = 0;
+	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (0.3 + _extra);
+}
+onAdditionalDmg = function(_enemy){
+
+}
+
+
+
 
 
 

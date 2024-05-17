@@ -11,13 +11,13 @@ element = ELEMENT.ICE;
 direction = 180;
 movement = -1;
 
-base_hp = 1500;
+base_hp = 270;
 hp = base_hp;
 base_dmg = 10;
-base_def = 500;
+base_def = 110;
+base_spd = 1;
 
 invis = false;
-
 
 // Attacks
 alarm[0] = seconds(5);

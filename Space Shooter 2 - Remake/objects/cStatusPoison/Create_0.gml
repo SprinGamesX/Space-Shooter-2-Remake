@@ -14,6 +14,7 @@ stack = 0;
 max_stack = 50;
 reciver = noone;
 owner = noone;
+ongoing = false;
 
 get = function(){
 	return scale * stack;
@@ -24,6 +25,31 @@ isOver = function(){
 }
 
 addStack = function(_stacks, _duration){
+	if (stack <= 0) duration = _duration;
 	stack = min(stack + _stacks, max_stack);
-	duration = _duration;
+	
+}
+
+triggerDot = function(){
+	ongoing = true;
+	var attacker = owner;
+	
+	var base_dmg = scale * attacker.getAtk();
+	
+	// Enemy def calculation
+	var def = GetDefense(attacker, reciver);
+	
+	// Enemy - Attacker advantage
+	var _dmg_dealt = GetFinalDamage(attacker, reciver, base_dmg, def, 0,ATTACK_TYPE.DOT);
+	
+	
+	reciver.hp -= _dmg_dealt;
+	
+	CreateDmgIndicator(string(_dmg_dealt) + "P", reciver.x, reciver.y, ELEMENT.VENOM);
+	
+	// reduce stacks
+	duration = max_duration;
+	stack--;
+	show_debug_message("DOT - " + string(stack));
+	ongoing = false;
 }

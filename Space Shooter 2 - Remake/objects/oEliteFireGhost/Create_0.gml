@@ -11,10 +11,11 @@ element = ELEMENT.FIRE;
 direction = 90;
 movement = -1;
 
-base_hp = 1000;
+base_hp = 250;
 hp = base_hp;
 base_dmg = 10;
-base_def = 500;
+base_def = 100;
+base_spd = 10;
 
 
 // Attacks

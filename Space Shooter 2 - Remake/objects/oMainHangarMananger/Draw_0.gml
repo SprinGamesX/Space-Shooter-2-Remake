@@ -13,6 +13,9 @@ draw_sprite_ext(sArrow, 0, room_width/2, 45, 1, 1, 90, c_white, 1);
 draw_text_scribble(room_width/4 * 3, room_height - 110, "D");
 draw_text_scribble(room_width/4, room_height - 110, "A");
 draw_text_scribble(room_width/2, 90, "SKILLS(W)");
+if (global.shipLv[global.currentShip] < 100)
+	draw_text_scribble(room_width/2, room_height - 90, "Upgrade Ship\nCost: " + string(cost) + " [sDrive]");
+else draw_text_scribble(room_width/2, room_height - 90, "MAXED");
 
 
 // Stats

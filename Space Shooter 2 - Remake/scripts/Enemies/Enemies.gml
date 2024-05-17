@@ -36,6 +36,19 @@ function SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = no
 	
 }
 
+function SummonElite(_oEnemy,_x, _y, _lvl){
+	var _inst = instance_create_layer(_x, _y, "Enemies", _oEnemy);
+	with(_inst){
+		lvl = _lvl;
+		base_x = _x;
+		base_y = _y;
+		leader = oBattleManager;
+	}
+	return _inst;
+	
+}
+
+
 function CreateAttack(_queue, _cd, _repeat = 1, _attacker = self, _var1 = 0, _var2 = 0, _var3 = 0, _var4 = 0){
 	var _inst = instance_create_layer(100, -100, "Misc", cEnemyAttack);
 	with (_inst){
@@ -68,3 +81,30 @@ function GetNearestInstances(pointx, pointy, object, n)
     ds_priority_destroy(list);
     return nearest;
 }
+
+function AdditionallDamage(_target, _attacker, _scale, _element, _hpscale = false){
+	var attacker = _attacker
+	var base_dmg = 0;
+	
+	// notify the ship and the projectile that it hit
+	attacker.onAdditionalDmg();
+	// Base dmg
+	if (_hpscale){
+		base_dmg = attacker.getMaxHp() * _scale;
+	}
+	else base_dmg = attacker.getAtk() * _scale;
+	// Enemy def calculation
+	var def = GetDefense(attacker, _target);
+	
+	// Attacker Crit
+	var critdmg = attacker.getCrit();
+	
+	// Enemy - Attacker advantage
+	var _dmg_dealt = GetFinalDamage(attacker, _target, base_dmg, def, critdmg, ATTACK_TYPE.MISC);
+	
+	
+	_target.hp -= _dmg_dealt;
+	CreateDmgIndicator(string(_dmg_dealt), x, y, _element);
+	
+}
+

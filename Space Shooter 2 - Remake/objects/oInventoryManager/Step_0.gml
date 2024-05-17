@@ -83,9 +83,8 @@ if (room == rInventory){
 	if (keyboard_check_pressed(vk_shift)){
 		InventorySort(inventory);
 	}
-	
-	
-	
-	
 }
-	
+if (keyboard_check_pressed(vk_delete) and keyboard_check_pressed(vk_shift)){
+	global.clearAll = true;
+	game_end();
+}

@@ -254,7 +254,10 @@ function FindDependency(_element,_num){
 }
 
 function GetCostForSTNode(_num){
-	if (_num < 4) return 10;
-	if (_num < 9) return 20;
-	if (_num < 13) return 30;
+	if (_num == 1) return 50;
+	if (_num == 4) return 150;
+	if (_num == 9) return 600;
+	if (_num < 4) return 25;
+	if (_num < 9) return 75;
+	if (_num < 13) return 125;
 }

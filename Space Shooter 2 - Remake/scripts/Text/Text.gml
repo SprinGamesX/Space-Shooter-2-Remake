@@ -56,6 +56,8 @@ function StatToString(_stat){
 		case STAT.QUANTUMDMG: return "QUANTUM DMG";
 		case STAT.DEF: return "DEF";
 		case STAT.ENERGYBOOST: return "EB";
-		
+		case STAT.DMG_RECIVED: return "DMG RECEIVED";
+		case STAT.DOT_BONUS: return "DOT BONUS";
+		case STAT.MAX_AMMO: return "MAX AMMO";
 	}
 }

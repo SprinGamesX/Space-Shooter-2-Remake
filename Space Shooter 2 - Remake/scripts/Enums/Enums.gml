@@ -27,20 +27,29 @@ enum ATTACK_TYPE{
 	ULTIMATE,
 	FOLLOWUP,
 	AOE,
-	MISC
+	MISC,
+	EXPLOSIVE,
+	SAPPED,
+	SHOCKED,
+	DOT,
 }
 
 enum STAT{
-	ATK, // increase/decreases ATK based on %
-	HP, // increase/decreases HP based on %
+	// Shard Stats
 	SPD, // increase/decreases SPEED based on %
-	ASPD, // increase/decreases ATTACK SPEED based on %
 	DMG, // increase/decreases DMG based on %
 	RES, // increase/decreases RESISTANCE based on %
+	
+	// Ship
+	ATK, // increase/decreases ATK based on %
+	HP, // increase/decreases HP based on %
+	ASPD, // increase/decreases ATTACK SPEED based on %
 	RES_PEN, // increase/decreases RESISTANCE PENETRATION based on %
 	BA_BONUS, // increase/decreases BASIC ATTACK DMG based on %
 	SK_BONUS, // increase/decreases SKILL DMG based on %
 	UT_BONUS, // increase/decreases ULTIMATE DMG based on %
+	FUA_BONUS, // increase/decreases FOLLOW-UP ATTACK DMG based on %
+	DOT_BONUS, // increase/decreases DAMAGE OVER TIME based on %
 	DEF_PEN, // increase/decreases DEFENSE PENENTRATION based on %
 	CRIT,
 	CRITDMG,
@@ -52,7 +61,13 @@ enum STAT{
 	STEELDMG,
 	QUANTUMDMG,
 	ENERGYBOOST,
-	DEF
+	MAX_AMMO,
+	HEALING_OVER_TIME,
+	
+	// Enemy
+	DEF,
+	DMG_RECIVED,
+	COOLDOWN,
 }
 
 
@@ -61,7 +76,8 @@ enum MOVEMENT_PATTERN{
 	LINE,
 	CURVE,
 	CIRCLE,
-	GRAVITATE
+	GRAVITATE,
+	SPECIAL
 }
 
 enum ENEMYSIZE{
