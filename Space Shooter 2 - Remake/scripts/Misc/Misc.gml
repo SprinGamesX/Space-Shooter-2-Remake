@@ -17,5 +17,8 @@ function InRange(_x, _min, _max){
 }
 
 function RandomizeTime(_base, _factor){
-	return _base + random_range(-_factor, _factor);
+	if (instance_exists(self) and (object_is_ancestor(object_index, oParentEnemy)) and (ds_exists(statuses, ds_type_list))){
+		return ((_base) + random_range(-_factor, _factor)) * (1 - GetBuffByType(self, STAT.COOLDOWN));
+	}
+	return (_base) + random_range(-_factor, _factor);
 }

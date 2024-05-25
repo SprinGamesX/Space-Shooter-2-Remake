@@ -72,7 +72,10 @@ if (keyboard_check_pressed(global.key_up)){
 	room_goto(rShipDetails);
 }
 
-if (keyboard_check_pressed(global.key_confirm) and global.shipLv[global.currentShip] < 100){
+if (keyboard_check_pressed(global.key_confirm) and global.shipLv[global.currentShip] < 100 and cost <= global.drives){
 	global.shipLv[global.currentShip]++;
+	global.drives -= cost;
 	updateCost();
+	SaveShips();
+	SaveCurrencies();
 }

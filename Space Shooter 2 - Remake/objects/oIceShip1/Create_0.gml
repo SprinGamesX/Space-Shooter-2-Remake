@@ -10,6 +10,8 @@ if (passives[1]) fua_chance = 0.1;
 onBasicAttack = function(){
 	CreateProjectile(oIceShard1, self, x, y, 10, 0, ATTACK_TYPE.BASIC_ATTACK, element);
 	ammo--;
+
+	oTeamManager.onTeammateBasic(self);
 }
 
 onSkillAttack = function(){
@@ -18,10 +20,19 @@ onSkillAttack = function(){
 	GenerateEnergy(self, 5);
 	if (passives[0])
 		ApplyBuff(self, "Arch Freeze", false, true, STAT.ATK, 0.1, seconds(5),,,,true);
+
+	oTeamManager.onTeammateSkill(self);
 }
 onUltimateAttack = function(){
 	CreateProjectile(oIceShard1, self, x, y, 15, 0, ATTACK_TYPE.ULTIMATE, element,4);
 	energy = 0;
+	
+	var _team = oTeamManager.getInactiveShips();
+	for (var i = 0; i < 2; i++){
+		_team[i].onAllyUlt(self);
+	}
+	
+	oTeamManager.onTeammateUlt(self);
 }
 
 onHit = function(_enemy){
@@ -43,7 +54,7 @@ onBasicHit = function(){
 onSkillHit = function(_enemy){
 	var _extra = 0;
 	
-	ApplyDebuff(_enemy, "Frosted", false, false, STAT.DEF, 0.2, seconds(10),,,,true);
+	ApplyDebuff(_enemy, "Frosted", 0.65,false, false, STAT.DEF, 0.2, seconds(15),,,,true);
 	
 	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (base_skill_scale + _extra);
 }

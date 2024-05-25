@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
-function SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, _move_pattern = MOVEMENT_PATTERN.LINE, _curve = 0, _radius = 0, _grav = 0, _isSmall = false){
+function SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, _move_pattern = MOVEMENT_PATTERN.LINE, _curve = 0, _radius = 0, _grav = 0, _isSmall = false, _custom_sprite = noone){
 	var _inst = instance_create_layer(_x, _y, "Enemies", _oEnemy);
 	with(_inst){
 		base_hp = _hp;
@@ -23,18 +23,59 @@ function SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = no
 		grav = _grav;
 		dir = _dir;
 		
+		spin = true;
+		
+		if (!ds_exists(statuses, ds_type_list)) {
+			statuses = ds_list_create();
+		}
+		if (instance_exists(leader) and ds_exists(leader.statuses, ds_type_list)){
+			for (var i = 0; i < leader.statuses; i++){
+				ds_list_add(statuses,leader.statuses[|i]);
+			}
+		}
+		
+		if (_custom_sprite == noone){
+			sprite_index = sEnemyNormal;
+			if (_isSmall) sprite_index = sEnemySmall;
+			image_index = _element;
+		}
+		else sprite_index = _custom_sprite;
+		
 		if (_element != ELEMENT.NONE){
 			trail = GetTrailByElement(_element)
 		}
-		
-		sprite_index = sEnemyNormal;
-		if (_isSmall) sprite_index = sEnemySmall;
-		image_index = _element;
 		
 	}
 	return _inst;
 	
 }
+
+function SummonEnemyLiner(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, _isSmall = false, _custom_sprite = noone , _spin = false){
+	var _e = SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner, _element = ELEMENT.NONE, MOVEMENT_PATTERN.LINE, 0,0,0, _isSmall, _custom_sprite);
+	_e.spin = _spin;
+	show_debug_message("ENEMY");
+	return _e;
+}
+
+function SummonEnemySpinner(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, _radius = 0, _isSmall = false, _custom_sprite = noone , _spin = false){
+	var _e = SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner, _element = ELEMENT.NONE, MOVEMENT_PATTERN.CIRCLE, 0,_radius,0, _isSmall, _custom_sprite);
+	_e.spin = _spin;
+	return _e;
+}
+function SummonEnemyCurver(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, _curve = 0, _isSmall = false, _custom_sprite = noone , _spin = false){
+	var _e = SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner, _element = ELEMENT.NONE, MOVEMENT_PATTERN.CURVE, _curve, 0,0, _isSmall, _custom_sprite);
+	_e.spin = _spin;
+	return _e;
+}
+function SummonEnemyGravitator(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, _gravity = 0, _isSmall = false, _custom_sprite = noone , _spin = false){
+	var _e = SummonEnemy(_oEnemy,_x, _y, _hp, _def, _dmg, _spd, _dir, _summoner = noone, _element = ELEMENT.NONE, MOVEMENT_PATTERN.GRAVITATE, 0, 0,_gravity, _isSmall, _custom_sprite);
+	_e.spin = _spin;
+	return _e;
+}
+
+
+	
+
 
 function SummonElite(_oEnemy,_x, _y, _lvl){
 	var _inst = instance_create_layer(_x, _y, "Enemies", _oEnemy);
@@ -104,7 +145,7 @@ function AdditionallDamage(_target, _attacker, _scale, _element, _hpscale = fals
 	
 	
 	_target.hp -= _dmg_dealt;
-	CreateDmgIndicator(string(_dmg_dealt), x, y, _element);
+	CreateDmgIndicator(string(round(_dmg_dealt)), x, y, _element);
 	
 }
 

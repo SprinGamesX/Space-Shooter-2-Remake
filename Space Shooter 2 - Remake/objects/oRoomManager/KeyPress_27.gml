@@ -1,2 +1,4 @@
 /// @description return to previous if exists
-goBack();
+if (room != rRewards){
+	goBack();
+}

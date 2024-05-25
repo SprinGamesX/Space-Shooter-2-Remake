@@ -2,16 +2,16 @@
 // You can write your code in this editor
 switch(movement){
 	case MOVEMENT_PATTERN.LINE:{
-		MoveLine(true);
+		MoveLine(spin);
 	} break;
 	case MOVEMENT_PATTERN.CURVE:{
-		MoveCurve(true);
+		MoveCurve(spin);
 	} break;
 	case MOVEMENT_PATTERN.GRAVITATE:{
-		MoveGravitate(true);
+		MoveGravitate(spin);
 	} break;
 	case MOVEMENT_PATTERN.CIRCLE:{
-		MoveCircle(true);
+		MoveCircle(spin);
 	} break;
 }
 
@@ -28,3 +28,4 @@ if (explosive_immune > 0){
 	explosive_immune--;
 }
 if (!instance_exists(leader)) instance_destroy();
+

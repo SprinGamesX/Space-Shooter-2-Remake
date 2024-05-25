@@ -12,6 +12,8 @@ onBasicAttack = function(){
 	}
 	else CreateProjectile(oLightningCharge1, self, x, y, 7, 0, ATTACK_TYPE.BASIC_ATTACK, element, 1);
 	ammo--;
+	
+	oTeamManager.onTeammateBasic(self);
 }
 
 // Skill attack
@@ -20,6 +22,8 @@ onSkillAttack = function(){
 	enhanced = true;
 	enhanced_timer = timer_max;
 	if (passives[0]) ApplyBuff(self, "Electrified", false, true, STAT.ATK, 0.2, seconds(10),,,,true);
+
+	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
@@ -33,6 +37,8 @@ onUltimateAttack = function(){
 		for (var i = 90; i > -91; i-= 30)
 			CreateProjectile(oLightningCharge1, self, x, y, 15, i, ATTACK_TYPE.ULTIMATE, element, 15,true);
 	}
+	
+	oTeamManager.onTeammateUlt(self);
 }
 
 // called once the ship hits an enemy

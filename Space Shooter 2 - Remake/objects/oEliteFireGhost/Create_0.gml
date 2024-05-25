@@ -11,26 +11,11 @@ element = ELEMENT.FIRE;
 direction = 90;
 movement = -1;
 
-base_hp = 250;
+base_hp = 500;
 hp = base_hp;
 base_dmg = 10;
 base_def = 100;
 base_spd = 10;
-
-
-// Attacks
-var attack1 = CreateAttack(attackQueue, seconds(0.2), 5,,72);
-with (attack1){
-	attack = function(){
-		var _dir = random(360);
-		var _x = attacker.x + lengthdir_x(var1, _dir);
-		var _y = attacker.y + lengthdir_y(var1, _dir);
-		
-		var _target = oTeamManager.getActiveShip();
-		
-		var _inst = SummonEnemy(oEnemyNormal, _x, _y, attacker.base_hp / 10, 100, 30, 7, point_direction(_x, _y, _target.x, _target.y),attacker, attacker.element,,,,,true);
-	}
-}
 
 alarm[0] = seconds(5);
 alarm[1] = seconds(15);

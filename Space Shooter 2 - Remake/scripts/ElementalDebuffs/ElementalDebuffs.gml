@@ -41,8 +41,8 @@ function ApplyElementalDebuff(_element, _enemy, _owner = self){
 		ApplyPoison(_enemy,"Poison", 0.2, seconds(1));
 	}
 	if (_element == ELEMENT.ICE) and (RollChance(0.25 * chance)){
-		ApplyDebuff(_enemy, "Frozen", false, false, STAT.DMG_RECIVED, 0.02, seconds(5), 5, 1);
-		ApplyDebuff(_enemy, "Shiver", false, false, STAT.RES, 0.02, seconds(5), 5, 1);
+		ApplyDebuff(_enemy, "Frozen",2, false, false, STAT.DMG_RECIVED, 0.02, seconds(5), 5, 1);
+		ApplyDebuff(_enemy, "Shiver",2, false, false, STAT.RES, 0.02, seconds(5), 5, 1);
 	}
 	if (_element == ELEMENT.QUANTUM) and (RollChance(0.01 * chance)){
 		CreateDmgIndicator("Entangled", _enemy.x, _enemy.y, ELEMENT.QUANTUM);
@@ -54,12 +54,12 @@ function ApplyElementalDebuff(_element, _enemy, _owner = self){
 		
 	}
 	if (_element == ELEMENT.FIRE) and (RollChance(0.3 * chance) and !_enemy.explosive_immune > 0){
-		ApplyDebuff(_enemy, "Explosive", true, false, STAT.DMG, -0.05,1,,,_owner);
+		ApplyDebuff(_enemy, "Explosive",3, true, false, STAT.DMG, -0.05,1,,,_owner);
 	}
 	if (_element == ELEMENT.LIFE) and (RollChance(0.4 * chance)){
-		ApplyDebuff(_enemy, "Sapped", false, false, STAT.RES, -0.05,seconds(6),,,_owner);
+		ApplyDebuff(_enemy, "Sapped",3, false, false, STAT.RES, -0.05,seconds(6),,,_owner);
 	}
 	if (_element == ELEMENT.LIGHTNING) and (RollChance(0.1 * chance)){
-		ApplyDebuff(_enemy, "Shocked", false, false, STAT.SPD, 0,seconds(5),,,_owner);
+		ApplyDebuff(_enemy, "Shocked",3, false, false, STAT.SPD, 0,seconds(5),,,_owner);
 	}
 }

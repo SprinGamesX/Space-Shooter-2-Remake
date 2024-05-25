@@ -4,7 +4,7 @@ with (attack1){
 	attack = function(){
 		
 		if (var1) {
-			SummonEnemy(oEnemyLifeArrow, attacker.x, attacker.y, attacker.base_hp, 5000, attacker.base_dmg*10, 20, attacker.direction,,attacker.element);
+			SummonEnemy(oEnemyLifeArrow, attacker.x, attacker.y, attacker.base_hp, 5000, attacker.base_dmg*10, 20, attacker.direction,attacker,attacker.element);
 			var1 = false;
 		}
 		else {

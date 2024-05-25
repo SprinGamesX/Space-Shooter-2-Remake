@@ -6,4 +6,4 @@ with (attack1){
 	}
 }
 
-alarm[1] = seconds(15);
+alarm[1] = RandomizeTime(seconds(15), seconds(3));

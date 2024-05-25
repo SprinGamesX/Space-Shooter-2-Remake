@@ -45,7 +45,7 @@ triggerDot = function(){
 	
 	reciver.hp -= _dmg_dealt;
 	
-	CreateDmgIndicator(string(_dmg_dealt) + "P", reciver.x, reciver.y, ELEMENT.VENOM);
+	CreateDmgIndicator(string(round(_dmg_dealt)) + "P", reciver.x, reciver.y, ELEMENT.VENOM);
 	
 	// reduce stacks
 	duration = max_duration;

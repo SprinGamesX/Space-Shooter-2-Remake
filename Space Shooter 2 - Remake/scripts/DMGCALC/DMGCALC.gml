@@ -58,7 +58,7 @@ function GetFinalDamage(_attacker, _defender, _base_dmg, _def, _crit, _atktype){
 	(_base_dmg) * 
 	(1 + GetBuffByType(_attacker, STAT.DMG) - GetBuffByType(_defender, STAT.DMG_RECIVED) + GetElementalBuff(_attacker, _attacker.element) + GetAttackTypeBuff(_attacker, _atktype)) * 
 	(1 + _crit) * 
-	(1 - min(_defender.base_res + GetBuffByType(_defender, STAT.RES) - GetBuffByType(_attacker, STAT.RES_PEN), 1)) * 
+	(1 - min(_defender.base_res + GetBuffByType(_defender, STAT.RES) + GetElementalRes(_defender, _attacker.element) - GetBuffByType(_attacker, STAT.RES_PEN), 1)) * 
 	(1 + IsElementStrong(_attacker.element, _defender.element)) * 
 	(_def);
 }

@@ -14,13 +14,21 @@ function GenerateChipStat(){
 	with(_inst){
 		var _stat = random(100);
 		uuid = _uuid+1;
-		if (_stat < 15){
+		if (_stat < 10){
 			scale = 0.1;
 			stat = CHIPSTAT.ATK;
 		}
-		else if (_stat < 30){
+		else if (_stat < 20){
 			scale = 0.13;
 			stat = CHIPSTAT.HP;
+		}
+		else if (_stat < 25){
+			scale = 0.05;
+			stat = CHIPSTAT.HEALINGBONUS;
+		}
+		else if (_stat < 30){
+			scale = 0.1;
+			stat = CHIPSTAT.EFFECTCHANCE;
 		}
 		else if (_stat < 35){
 			scale = 0.08;
@@ -142,6 +150,8 @@ function GetChipStatString(_stat){
 		case CHIPSTAT.STEELDMG: return "STEEL DMG";
 		case CHIPSTAT.VENOMDMG: return "VENOM DMG";
 		case CHIPSTAT.ENERGYBOOST: return "ENERGY BOOST";
+		case CHIPSTAT.HEALINGBONUS: return "HEALING BONUS";
+		case CHIPSTAT.EFFECTCHANCE: return "EFFECT CHANCE";
 	}
 }
 
@@ -163,6 +173,19 @@ function SaveChip(_uuid){
 	global.chips[global.currentShip][global.currentShipSlot] = _uuid;
 }
 
+function FindChip(_chip){
+	for (var i = 0; i < ds_list_size(oInventoryManager.inventory) and instance_exists(_chip); i++){
+		if (_chip.uuid == oInventoryManager.inventory[|i].uuid) return i;
+	}
+	return -1;
+}
+function FindChipByUUID(_uuid){
+	for (var i = 0; i < ds_list_size(oInventoryManager.inventory); i++){
+		if (_uuid == oInventoryManager.inventory[|i].uuid) return oInventoryManager.inventory[|i];
+	}
+	return noone;
+}
+
 function UnequipCurrentChip(_uuid){
 	for (var i = 0; i < ds_list_size(oInventoryManager.inventory); i++){
 		if (oInventoryManager.inventory[|i].uuid == _uuid){
@@ -175,6 +198,27 @@ function UnequipCurrentChip(_uuid){
 	return false;
 }
 
+function EquipChip(_chip){
+	if (!instance_exists(_chip)) return false;
+	var _chip2 = FindChipByUUID(global.chips[global.currentShip][global.currentShipSlot]);
+	if (_chip2 != -1) UnequipChip(_chip2);
+	
+	
+	global.chips[global.currentShip][global.currentShipSlot] = _chip.uuid;
+	_chip.ownerId = global.currentShip;
+	_chip.ownerSlot = global.currentShipSlot;
+	return true;
+}
+function UnequipChip(_chip){
+	if (!instance_exists(_chip)) return false;
+	if (_chip.ownerId != -1){
+		global.chips[_chip.ownerId][_chip.ownerSlot] = -1;
+	}
+	_chip.ownerId = -1;
+	_chip.ownerSlot = -1;
+	return true;
+}
+
 function GetChipStat(_array, _stat){
 	var _sum = 0;
 	for (var i = 0; i < array_length(_array); i++){
@@ -184,4 +228,40 @@ function GetChipStat(_array, _stat){
 		}
 	}
 	return _sum;
+}
+
+function GetStatFromChip(_type){
+	switch(_type){
+		case CHIPSTAT.ATK: return STAT.ATK;
+		case CHIPSTAT.HP: return STAT.HP;
+		case CHIPSTAT.ASPD: return STAT.ASPD;
+		case CHIPSTAT.CRITRATE: return STAT.CRIT;
+		case CHIPSTAT.CRITDMG: return STAT.CRITDMG;
+		case CHIPSTAT.SPD: return STAT.SPD;
+		case CHIPSTAT.RES: return STAT.RES;
+		case CHIPSTAT.ICEDMG: return STAT.ICEDMG;
+		case CHIPSTAT.FIREDMG: return STAT.FIREDMG;
+		case CHIPSTAT.LIFEDMG: return STAT.LIFEDMG;
+		case CHIPSTAT.VENOMDMG: return STAT.VENOMDMG;
+		case CHIPSTAT.LIGHTNINGDMG: return STAT.LIGHTNINGDMG;
+		case CHIPSTAT.STEELDMG: return STAT.STEELDMG;
+		case CHIPSTAT.QUANTUMDMG: return STAT.QUANTUMDMG;
+		case CHIPSTAT.ENERGYBOOST: return STAT.ENERGYBOOST;
+		case CHIPSTAT.HEALINGBONUS: return STAT.HEALING_BONUS;
+		case CHIPSTAT.EFFECTCHANCE: return STAT.EFFECT_CHANCE;
+		
+	}
+	return -1;
+}
+
+function GetChipForElement(_element){
+	switch(_element){
+		case ELEMENT.ICE: return CHIPSTAT.ICEDMG;
+		case ELEMENT.FIRE: return CHIPSTAT.FIREDMG;
+		case ELEMENT.LIFE: return CHIPSTAT.LIFEDMG;
+		case ELEMENT.VENOM: return CHIPSTAT.VENOMDMG;
+		case ELEMENT.LIGHTNING: return CHIPSTAT.LIGHTNINGDMG;
+		case ELEMENT.STEEL: return CHIPSTAT.STEELDMG;
+		case ELEMENT.QUANTUM: return CHIPSTAT.QUANTUMDMG;
+	}
 }

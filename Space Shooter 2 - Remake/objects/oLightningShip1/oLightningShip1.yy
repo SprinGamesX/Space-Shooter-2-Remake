@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sLightningShip",
-    "path":"sprites/sLightningShip/sLightningShip.yy",
+    "name":"sLightningShip1",
+    "path":"sprites/sLightningShip1/sLightningShip1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

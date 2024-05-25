@@ -11,4 +11,4 @@ with (attack1){
 }
 invis = true;
 
-alarm[2] = seconds(60);
+alarm[2] = RandomizeTime(seconds(60), seconds(10));

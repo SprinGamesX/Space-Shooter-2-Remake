@@ -23,7 +23,7 @@ function GetDescForAttack(_id, _attack){
 					_d = "Deals ICE damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
 				break;
 				case 1:
-					_d = "Shoots 5 shards that deal ICE damage equal to [c_orange]" + sd + "%[c_white] of ATK. enemies hit will have their DEF reduced by 20%.\n\nCD: " + sc + " seconds";
+					_d = "Shoots 5 shards that deal ICE damage equal to [c_orange]" + sd + "%[c_white] of ATK. enemies hit will have a 65% base chance to have their DEF reduced by 20%.\n\nCD: " + sc + " seconds";
 				break;
 				case 2:
 					_d = "Shoots a shard that deals ICE damage equal to [c_orange]" + ud + "%[c_white] of ATK and can pierce five enemies, each enemy hit will trigger 3 follow up attacks.\n\nCD: " + uc + " energy";
@@ -86,10 +86,40 @@ function GetDescForAttack(_id, _attack){
 					_d = "Enters ENHANCED state, when in ENHANCED state BASIC-ATTACKS will have increased SPEED and will BOUNCE 3 times.\n\nCD: " + sc + " seconds" ;
 				break;
 				case 2:
-					_d = "Deals VENOM damage around it equal to [c_orange]" + ud + "%[c_white] of ATK.\n\nCD: " + uc + " energy";
+					_d = "Sends a barrage of tracking bullets that deals LIGHTNING damage around it equal to [c_orange]6x" + ud + "%[c_white] of ATK.\n\nCD: " + uc + " energy";
 				break;
 				case 3:
-					_d = "Increases ATK by 10% for all allies.";
+					_d = "When ENHANCED this ship will not consume AMMO. Additionally when ENHACNED the ultimate will fire 9 bullets instead of 6";
+				break;
+			} break;
+		case 5:
+			switch(_attack){
+				case 0:
+					_d = "Deals STEEL damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Provides itself with a shield equal to [c_orange]10%[c_white] of HP.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Provides all allies with a shield equal to [c_orange]25%[c_white] of HP.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "When protected by a shield: BASIC-ATTACKS will be considered as SKILL damage and will deal AOE damage equal to [c_orange]" + sd + "%[c_white] of ATK. It will also not consume AMMO when protected.";
+				break;
+			} break;
+		case 6:
+			switch(_attack){
+				case 0:
+					_d = "Deals QUANTUM damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Shoots a barrage of projectiles that deal damage equal to [c_orange]10x" + sd + "%[c_white] of ATKs.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Enters ENTANGLED state, When in ENTANGLED state this ship will shoot an additional FOLLOW-UP ATTACK on BASIC-ATTACK hit, dealing damage equal to [c_orange]" + ud +"%[c_white] of ATK.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "All shots this character shoots will also be applied with CRACKSHOT. CRACKSHOT will track the enemy after travelling a certain amount of distance.";
 				break;
 			} break;
 		

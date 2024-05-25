@@ -7,13 +7,16 @@ PERFECT - 1/100
 
 Probablity of getting a certain stat
 
-ATK - 15%
-HP - 15%
+ATK - 10%
+HP - 10%
+HEALING BONUS - 5%
+EFFECT CHANCE - 5%
 CRITRATE - 5%
 CRITDMG - 5%
 SPD - 10%
 RES - 10%
-ASPD - 5%
+ASPD - 2.5%
+ENERGY REGEN - 2.5%
 ICEDMG - 5%
 FIREDMG - 5%
 LIFEDMG - 5%
@@ -21,6 +24,7 @@ VENOMDMG - 5%
 LIGHTNINGDMG - 5%
 STEELDMG - 5%
 QUANTUMDMG - 5%
+
 
 Max buff a chip can provide
 
@@ -30,5 +34,8 @@ CRIT - 32%
 CRITDMG - 64%
 SPD - 10%
 RES - 10%
+ENERGY REGEN - 12%
 ASPD - 20%
 ELEMENTAL - 20%
+HEALING BONUS - 20%
+EFFECT CHANCE - 40%

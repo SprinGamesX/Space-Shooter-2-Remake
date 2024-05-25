@@ -36,9 +36,9 @@ function StatToString(_stat){
 	switch(_stat){
 		case STAT.ATK: return "ATK";
 		case STAT.ASPD: return "ASPD";
-		case STAT.BA_BONUS: return "BASIC ATTACK BONUS";
-		case STAT.CRIT: return "CR";
-		case STAT.CRITDMG: return "CRDM";
+		case STAT.BA_BONUS: return "BASIC-ATTACK BONUS";
+		case STAT.CRIT: return "CRIT";
+		case STAT.CRITDMG: return "CRIT DMG";
 		case STAT.DEF_PEN: return "DEF PEN";
 		case STAT.DMG: return "DMG";
 		case STAT.HP: return "MAX HP";
@@ -55,9 +55,13 @@ function StatToString(_stat){
 		case STAT.STEELDMG: return "STEEL DMG";
 		case STAT.QUANTUMDMG: return "QUANTUM DMG";
 		case STAT.DEF: return "DEF";
-		case STAT.ENERGYBOOST: return "EB";
+		case STAT.ENERGYBOOST: return "ENERGY BOOST";
 		case STAT.DMG_RECIVED: return "DMG RECEIVED";
 		case STAT.DOT_BONUS: return "DOT BONUS";
 		case STAT.MAX_AMMO: return "MAX AMMO";
+		case STAT.HEALING_BONUS: return "HEALING BONUS";
+		case STAT.EFFECT_CHANCE: return "EFFECT CHANCE";
+		case STAT.COOLDOWN: return "COOLDOWN";
+		case STAT.FUA_BONUS: return "FOLLOW-UP BONUS";
 	}
 }

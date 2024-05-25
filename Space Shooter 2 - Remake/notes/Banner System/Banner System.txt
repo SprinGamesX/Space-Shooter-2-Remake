@@ -1,0 +1,5 @@
+Each banner will include all ships from its element
+
+Chance for SSR ship : 1%
+Chance for SR ship: 10%
+Chance for R ship : 89%

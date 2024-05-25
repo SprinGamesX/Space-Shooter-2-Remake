@@ -80,45 +80,47 @@ function ApplyBuff(_target,_name ,_isInfinite, _isPositive, _stat, _scale, _dura
 	return _inst;
 }
 
-function ApplyDebuff(_enemy,_name ,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
+function ApplyDebuff(_enemy,_name ,_chance,_isInfinite, _isPositive, _stat, _scale, _duration, _stacking = 1, _stacks = 1, _owner = self, _show_indicator = false){
 	var _list = _enemy.statuses;
 	var _inst = instance_create_depth(-100, -100, 999, cStatus)
 	var _check = CheckForExistingBuffs(_list, _name);
-	with (_inst){
-		name = _name;
-		infinite = _isInfinite;
-		if (_isPositive) multiplier = 1;
-		else multiplier = -1;
-		duration = _duration;
-		stat = _stat;
-		scale = _scale;
-		owner = _owner;
-		max_stack = _stacking;
-		stack = _stacks;
-	}
-	// if ship does not have the buff
-	if (_check == -1){
-		ds_list_add(_list, _inst);
-		if (_show_indicator)
-			CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
-	}
-	
-	// if buff exists
-	else{
-		// if buff does/doesn't stack
-		if (_stacking == 1){
-			ds_list_replace(_list,_check,_inst);
+	if (RollChance(_chance + GetBuffByType(_owner, STAT.EFFECT_CHANCE) - GetBuffByType(_enemy, STAT.EFFECT_RES))){
+		with (_inst){
+			name = _name;
+			infinite = _isInfinite;
+			if (_isPositive) multiplier = 1;
+			else multiplier = -1;
+			duration = _duration;
+			stat = _stat;
+			scale = _scale;
+			owner = _owner;
+			max_stack = _stacking;
+			stack = _stacks;
 		}
-		else {
-			_inst = _list[| _check];
-			_inst.addStack(_stacks, _duration);
+		// if ship does not have the buff
+		if (_check == -1){
+			ds_list_add(_list, _inst);
 			if (_show_indicator)
 				CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
 		}
-		
-	}
-
 	
+		// if buff exists
+		else{
+			// if buff does/doesn't stack
+			if (_stacking == 1){
+				ds_list_replace(_list,_check,_inst);
+			}
+			else {
+				_inst = _list[| _check];
+				_inst.addStack(_stacks, _duration);
+				if (_show_indicator)
+					CreateBuffIndicator(_isPositive, _stat, _scale, _enemy.x, _enemy.y);
+			}
+		
+		}
+
+	}
+	else if (_show_indicator) { CreateDmgIndicator("RESIST", _enemy.x, _enemy.y, ELEMENT.NONE); show_debug_message("Resisted") }
 	return _inst;
 }
 
@@ -156,29 +158,35 @@ function GetChipType(_type){
 		case STAT.LIGHTNINGDMG: return CHIPSTAT.LIGHTNINGDMG;
 		case STAT.STEELDMG: return CHIPSTAT.STEELDMG;
 		case STAT.QUANTUMDMG: return CHIPSTAT.QUANTUMDMG;
+		case STAT.ENERGYBOOST: return CHIPSTAT.ENERGYBOOST;
+		case STAT.HEALING_BONUS: return CHIPSTAT.HEALINGBONUS;
+		case STAT.EFFECT_CHANCE: return CHIPSTAT.EFFECTCHANCE;
 		
 	}
 	return -1;
 }
 
 function GetBuffByType(_attacker, _type){
-	if (instance_exists(_attacker)){
+	
+	//if (object_is_ancestor(_attacker.object_index, oParentEnemy) and !object_is_ancestor(_attacker.object_index, oParentElite)) _attacker = _attacker.leader;
+		if (instance_exists(_attacker)){
 		var _buff = 0;
 		var _isShip = false;
 		var _list = _attacker.statuses;
 		if (ds_exists(_list, ds_type_list)){
 			if (object_is_ancestor(_attacker.object_index, oParentShip)) _isShip = true;
-			if (_isShip)
-				var _chips = _attacker.chips;
 		
 			for (var i = 0; i < ds_list_size(_list); i++){
-				if (_list[|i].stat == _type) _buff += _list[|i].get();
+				if (instance_exists(_list[|i]) and _list[|i].stat == _type) _buff += _list[|i].get();
 			}
 			if (_isShip){
+				var _chips = _attacker.chips;
+				var _pbuffs = _attacker.stbuffs;
 				var _chipstat = GetChipType(_type);
 	
 				for (var i = 0; _chipstat != -1 and i < array_length(_chips); i++){
 					if (instance_exists(_chips[i])) and (_chips[i].stat == _chipstat) _buff += _chips[i].get();
+					if (i < 9) and (is_array(_pbuffs[i])) and (_pbuffs[i][0] == _chipstat) _buff += _pbuffs[i][1];
 				}}
 			return _buff;
 		}
@@ -197,6 +205,19 @@ function GetElementalBuff(_attacker ,_element){
 		case ELEMENT.VENOM: return GetBuffByType(_attacker, STAT.VENOMDMG);
 		case ELEMENT.STEEL: return GetBuffByType(_attacker, STAT.STEELDMG);
 		case ELEMENT.QUANTUM: return GetBuffByType(_attacker, STAT.QUANTUMDMG);
+	}
+}
+
+function GetElementalRes(_attacker ,_element){
+	 
+	switch(_element){
+		case ELEMENT.ICE: return GetBuffByType(_attacker, STAT.ICERES);
+		case ELEMENT.FIRE: return GetBuffByType(_attacker, STAT.FIRERES);
+		case ELEMENT.LIGHTNING: return GetBuffByType(_attacker, STAT.LIGHTNINGRES);
+		case ELEMENT.LIFE: return GetBuffByType(_attacker, STAT.LIFERES);
+		case ELEMENT.VENOM: return GetBuffByType(_attacker, STAT.VENOMRES);
+		case ELEMENT.STEEL: return GetBuffByType(_attacker, STAT.STEELRES);
+		case ELEMENT.QUANTUM: return GetBuffByType(_attacker, STAT.QUANTUMRES);
 	}
 }
 
@@ -233,10 +254,12 @@ function CheckForStatus(_target, _stat){
 
 function CheckForStatusByName(_target, _name){
 	var _found = false;
-	for (var i = 0; i < ds_list_size(_target.statuses); i++){
-		if ((_target.statuses[|i].name == _name)){
-			_found = true;
-			break;
+	if (instance_exists(_target) and ds_exists(_target.statuses, ds_type_list)){
+		for (var i = 0; i < ds_list_size(_target.statuses) and instance_exists(_target); i++){
+			if (instance_exists(_target) and (_target.statuses[|i].name == _name)){
+				_found = true;
+				break;
+			}
 		}
 	}
 	return _found;

@@ -6,6 +6,9 @@ lv = 1;
 
 elites = ds_list_create();
 
+global.rewards = [0,0];
+endless_began = false;
+
 // bg particle
 global.background_system = part_system_create();
 part_system_depth(global.background_system,layer_get_depth(layer_get_id("Back")));

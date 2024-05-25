@@ -6,6 +6,9 @@ hp = base_hp;
 base_def = 100;
 
 element = ELEMENT.NONE;
+spin = true;
+
+setup();
 
 attack_cd = seconds(1);
 max_attack_cd = attack_cd;

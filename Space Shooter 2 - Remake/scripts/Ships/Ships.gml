@@ -8,7 +8,8 @@ global.ships =
 	oVenomShip1,
 	oLightningShip1,
 	oSteelShip1,
-	oQuantumShip1
+	oQuantumShip1,
+	oLightningShip2
 ]
 
 
@@ -32,6 +33,7 @@ function InitiateShip(_id){
 	base_hp = _ship.base_hp + _ship.base_hp*level*0.4; // each level increases hp by 40%
 	base_spd = _ship.base_spd;
 	base_aspd = _ship.base_aspd;
+	hp = base_hp;
 
 	// basic attack
 	base_reload_cd = _ship.base_reload_cd;
@@ -257,6 +259,35 @@ function GetShipDetails(_id){
 			}
 		} break;
 		
+		case 7:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Lightning2";
+				lvl = 1;
+
+				// base stats
+				base_atk = 40;
+				base_hp = 110;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 5;
+				base_ba_cd = seconds(0.5);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(30);
+				base_skill_scale = 0;
+
+				// ultimate
+				max_energy = 180;
+				base_ult_scale = 0;
+			}
+		} break;
+		
 		
 	}
 	return _inst;
@@ -267,17 +298,18 @@ function ConsumeHp(_target ,_hp){
 	_target.onHpReduction(_hp);
 }
 
-function RestoreHp(_target, _hp){
+function RestoreHp(_target, _hp, _provider){
+	_hp = _hp * (1 + GetBuffByType(_provider, STAT.HEALING_BONUS));
 	_target.hp = min(_target.hp + _hp, _target.base_hp);
 	_target.onHpRestoration(_hp);
 	
 	var _xy = oTeamManager.getShipGuiXY(_target);
 	CreateIndicator("+" + string(_hp) + " Healing", _xy[0], _xy[1], ELEMENT.LIFE);
 }
-function RestoreTeamHp(_hp){
+function RestoreTeamHp(_hp, _provider){
 	var _team = oTeamManager.getAllShips();
 	for (var i = 0; i < array_length(_team); i++){
-		RestoreHp(_team[i], _hp);
+		RestoreHp(_team[i], _hp, _provider);
 	}
 }
 
@@ -310,6 +342,24 @@ function RestoreTeamAmmo(_ammo){
 function GenerateEnergy(_target, _energy){
 	_target.energy += _energy * (1 + GetBuffByType(_target,STAT.ENERGYBOOST));
 }
+function GenerateTeamEnergy(_energy, _exclude_self){
+	var _team = oTeamManager.getAllShips();
+	for (var i = 0; i < array_length(_team); i++){
+		if (instance_exists(_team[i])){
+			if (_exclude_self){
+				if (_team[i].id != self.id){
+					GenerateEnergy(_team[i], _energy);
+				}
+			}
+			else {
+				GenerateEnergy(_team[i], _energy);
+			}
+		}
+	}
+	
+	
+}
+
 
 
 function SaveChips(){
@@ -369,4 +419,18 @@ function LoadSTs(){
 		}
 	}
 	ini_close();
+}
+
+function GetShipStat(_ship,_type){
+	with(_ship){
+		switch(_type){
+			case STAT.ATK: return getAtk();
+			case STAT.HP: return getMaxHp();
+			case STAT.CRIT: return  (base_crit + GetBuffByType(self, STAT.CRIT))*100;
+			case STAT.CRITDMG: return (base_critdmg + GetBuffByType(self, STAT.CRITDMG))*100;
+			case STAT.SPD: return base_spd * (1 + GetBuffByType(self, STAT.SPD));
+			case STAT.ASPD: return base_aspd * (1 + GetBuffByType(self, STAT.ASPD));
+		}
+		return (GetBuffByType(_ship,_type) * 100);
+	}
 }

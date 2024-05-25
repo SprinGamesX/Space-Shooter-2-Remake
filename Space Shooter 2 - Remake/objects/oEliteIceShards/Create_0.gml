@@ -11,7 +11,7 @@ element = ELEMENT.ICE;
 direction = 180;
 movement = -1;
 
-base_hp = 270;
+base_hp = 550;
 hp = base_hp;
 base_dmg = 10;
 base_def = 110;

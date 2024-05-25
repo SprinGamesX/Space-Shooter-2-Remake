@@ -24,14 +24,15 @@ attackQueue = ds_queue_create();
 attack_cd = 0;
 max_attack_cd = 0;
 
+
 onAttackFinish = function(){
 	isAttacking = false;
 }
 
 setup = function(){
-	base_hp = base_hp * (1.25 * lvl);
-	base_dmg = base_dmg * (1.25 * lvl);
-	base_def = min(base_def * (1.1 * lvl), 4000);
+	base_hp = base_hp * power(1.08, lvl);
+	base_dmg = base_dmg * power(1.05, lvl);
+	base_def = min(base_def * power(1.04, lvl), 4000);
 	hp = base_hp;
 }
 

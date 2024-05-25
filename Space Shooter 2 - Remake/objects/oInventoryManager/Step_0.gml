@@ -26,6 +26,20 @@ if (room == rInventory){
 		if (offset >= 1)
 			offset--;
 	}
+	
+	if (keyboard_check(vk_shift) and keyboard_check_pressed(ord("K")) and (instance_exists(inventory[|selected]))){
+		// Delete Chip
+		var _chip = inventory[|selected];
+		// Compensate
+		global.scraps += power(10, _chip.rarity) + irandom(10);
+		UnequipChip(_chip);
+		instance_destroy(_chip);
+		
+		
+		ds_list_delete(inventory, selected);
+				
+		isSelected = false; inside_selected = -1;
+	}
 
 	if (keyboard_check_pressed(vk_enter)){
 		ds_list_add(inventory, GenerateRandomChip());
@@ -36,41 +50,36 @@ if (room == rInventory){
 	}
 	else if (keyboard_check_pressed(global.key_confirm) and (isSelected)){
 		switch(inside_selected){
-			case 0: 
-				var _chip = inventory[|selected];
-				UnequipCurrentChip(global.chips[global.currentShip][global.currentShipSlot]);
-				if (_chip.ownerId != -1){
-					global.chips[_chip.ownerId, _chip.ownerSlot] = -1;
+			case 0:
+				// Equip
+				// If remove
+				if(inventory[|selected].uuid == global.chips[global.currentShip][global.currentShipSlot]){
+					var _chip = inventory[|selected];
+					UnequipChip(_chip);
 				}
-				if (!(inventory[|selected].uuid == global.chips[global.currentShip][global.currentShipSlot])){
-					_chip.ownerId = global.currentShip;
-					_chip.ownerSlot = global.currentShipSlot;
-					SaveChip(_chip.uuid);
+				else {
+					var _chip = inventory[|selected];
+					UnequipChip(_chip);
+					EquipChip(_chip);
 				}
-				else global.chips[global.currentShip][global.currentShipSlot] = -1;
-				
 				isSelected = false; inside_selected = -1;
 			break;
-			case 1: 
+			case 1:
+				// Return
 				isSelected = false; inside_selected = -1;
 			break;
 			case 2: 
 				// Delete Chip
 				var _chip = inventory[|selected];
-				UnequipCurrentChip(global.chips[global.currentShip][global.currentShipSlot]);
-				if (_chip.ownerId != -1){
-					global.chips[_chip.ownerId, _chip.ownerSlot] = -1;
-				}
-				if (!(inventory[|selected].uuid == global.chips[global.currentShip][global.currentShipSlot])){
-					_chip.ownerId = global.currentShip;
-					_chip.ownerSlot = global.currentShipSlot;
-				}
-				else global.chips[global.currentShip][global.currentShipSlot] = -1;
+				
+				global.scraps += power(10, _chip.rarity) + irandom(10);
+				UnequipChip(_chip);
+				instance_destroy(_chip);
+				
 				
 				ds_list_delete(inventory, selected);
 				
-				global.scraps += power(10, _chip.rarity) + irandom(10);
-				instance_destroy(_chip);
+				
 				isSelected = false; inside_selected = -1;
 				
 			break;

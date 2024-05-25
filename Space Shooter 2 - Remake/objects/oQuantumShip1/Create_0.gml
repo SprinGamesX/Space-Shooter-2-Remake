@@ -12,6 +12,8 @@ onBasicAttack = function(){
 	if !(entangled and passives[2]){
 		ammo--;
 	}
+	
+	oTeamManager.onTeammateBasic(self);
 }
 
 onSkillAttack = function(){
@@ -19,6 +21,8 @@ onSkillAttack = function(){
 	for (var i = 0; i < 10; i++){
 		CreateProjectile(oQuantumOrbs1, self, x, y, 15, random(360), ATTACK_TYPE.SKILL, element,,,,,true);
 	}
+	
+	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
@@ -27,6 +31,8 @@ onUltimateAttack = function(){
 	entangled = true;
 	entangled_timer = seconds(20);
 	if (passives[0]) ApplyBuff(self, "Entangled",false, true, STAT.ASPD, 0.5, seconds(5),,,,true);
+
+	oTeamManager.onTeammateUlt(self);
 }
 
 onBasicHit = function(_enemy){

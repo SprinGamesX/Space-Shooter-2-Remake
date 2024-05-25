@@ -11,7 +11,7 @@ element = ELEMENT.LIFE;
 direction = 90;
 movement = MOVEMENT_PATTERN.SPECIAL;
 
-base_hp = 200;
+base_hp = 520;
 hp = base_hp;
 base_dmg = 10;
 base_def = 120;

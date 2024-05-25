@@ -106,7 +106,7 @@ onHit = function(_projectile){
 	
 	
 	hp -= _dmg_dealt;
-	CreateDmgIndicator(string(_dmg_dealt), x, y, _projectile.element);
+	CreateDmgIndicator(string(round(_dmg_dealt)), x, y, _projectile.element);
 	
 }
 

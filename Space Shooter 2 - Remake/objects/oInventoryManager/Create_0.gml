@@ -18,8 +18,9 @@ for (var i = 0; i < ds_list_size(inventory); i++){
 	inventory[|i] = DecompressChip(inventory[|i]);
 }
 
-global.emeralds = ini_read_real("money", "emeralds", 0);
-global.scraps = ini_read_real("money", "scraps", 0);
+global.emeralds = ini_read_real("money", "emeralds", 100);
+global.scraps = ini_read_real("money", "scraps", 50);
+global.drives = ini_read_real("money", "drives", 1000);
 
 ini_close();
 

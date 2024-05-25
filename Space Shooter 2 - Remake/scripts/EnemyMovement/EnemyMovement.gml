@@ -4,8 +4,9 @@ function MoveLine(_spin){
 	speed = base_spd * (1 + GetBuffByType(self, STAT.SPD));
 	direction = dir;
 	if (_spin){
-		image_angle += 1 * GetBuffByType(self, STAT.SPD);
+		image_angle += 1 * (1 + GetBuffByType(self, STAT.SPD));
 	}
+	else image_angle = direction - 180;
 	KillOutOfBounds(50);
 }
 function MoveCurve(_spin){

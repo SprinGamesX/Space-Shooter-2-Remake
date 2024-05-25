@@ -7,11 +7,16 @@ if (room == rInventory){
 	// Drawing inventory UI
 	var _xx = 64;
 	var _yy = 64;
+	var i2 = -1;
+	var _eq = FindChipByUUID(global.chips[global.currentShip][global.currentShipSlot]);
+	if (instance_exists(_eq)) i2 = FindChip(_eq);
 	for (var i = 0; i < DISPLAY_AMOUNT; i++){
 		var xx = _xx +  (i mod ITEMS_PER_ROW) * 72;
 		var yy = _yy + (i div ITEMS_PER_ROW) * 72;
 		
+		
 		draw_sprite(sInventorySlot, selected - (offset*10) == i , xx, yy);
+		if (i2 != -1 and i == (i2 - (offset*10)) and i != (selected - (offset*10))) draw_sprite_ext(sInventorySlot, 1 , xx, yy,1,1,0,c_purple, 1);
 		var _index = i + (offset * 10);
 		var _chip = inventory[|_index];
 		if (instance_exists(_chip)){
@@ -20,6 +25,7 @@ if (room == rInventory){
 				draw_sprite_ext(object_get_sprite(global.ships[_chip.ownerId]), 0, xx, yy - 32, 0.75, 0.75, 0, c_white, 1);
 			}
 		}
+		
 	}
 	
 	draw_setup();
@@ -55,9 +61,20 @@ if (room == rInventory){
 		draw_text_scribble(room_width - 250, room_height - 150, inside_selected == 1 ? "[c_aqua][wave]Return" : "Return");
 		draw_text_scribble(room_width - 250, room_height - 100, inside_selected == 2 ? "[c_aqua][wave]Delete" : "Delete");
 	}
+	draw_setup(font_menu_details, c_white, fa_left);
+	draw_text_scribble(16, room_height-16, "[scale, 0.5]Go Back - ESC   MOVEMENT - WASD  SELECT - SPACE  INSTA DELETE - SHIFT + K")
 }
-if (room == rInventory or room == rShipDetails or room == rHangar){
+if (room == rInventory or room == rShipDetails){
 	draw_setup(font_chips,,fa_right);
 	draw_sprite(sChipScrap, 0, room_width - 32, 16);
 	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.scraps))
+}
+if (room == rHangar){
+	draw_setup(font_chips,,fa_right);
+	draw_sprite(sDrive, 0, room_width - 32, 16);
+	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.drives));
+}
+if (room == rRewards){
+	draw_setup(font_chips,,fa_right);
+	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.drives) + "[scale, 1][sDrive][scale, 0.5]   " + string(global.scraps) + "[scale, 1][sChipScrap]");
 }

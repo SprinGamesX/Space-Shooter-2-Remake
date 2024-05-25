@@ -26,7 +26,7 @@ addStack = function(_stacks, _duration){
 
 heal = function(){
 	if (instance_exists(target) and instance_exists(owner)){
-		RestoreHp(target, scale * owner.getMaxHp());
+		RestoreHp(target, scale * owner.getMaxHp(), owner);
 	}
 	stack--;
 	duration = max_duration;

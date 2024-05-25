@@ -12,6 +12,13 @@ goBack = function(){
 	}
 }
 
+goMain = function(){
+	savelast = false;
+	ds_stack_clear(global.history);
+	room_goto(rMenu);
+}
+
+
 getLastRoom = function(){
 	return last_room;
 }

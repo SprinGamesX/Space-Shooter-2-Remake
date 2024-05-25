@@ -17,7 +17,7 @@ get = function(){
 }
 
 isOver = function(){
-	return duration <= 0;
+	return (duration <= 0 and !infinite);
 }
 
 addStack = function(_stacks, _duration){

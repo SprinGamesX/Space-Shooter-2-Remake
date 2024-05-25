@@ -1,1 +1,2 @@
 Notes:
+fire enemy becomes faster sometimes

@@ -30,3 +30,35 @@ function CompareChip(_c1, _c2){
 	
 	return false;
 }
+
+function GenerateInventoryChips(_num){
+	if (instance_exists(oInventoryManager)){
+		for (var i = 0; i < _num; i++){
+			ds_list_add(oInventoryManager.inventory, GenerateRandomChip());
+		}
+	}
+}
+
+
+function SaveCurrencies(){
+	
+	ini_open("inventory.ini");
+	
+	ini_write_real("money", "emeralds", global.emeralds);
+	ini_write_real("money", "scraps", global.scraps);
+	ini_write_real("money", "drives", global.drives);
+
+	ini_close();
+}
+
+function SaveInventory(){
+	
+	ini_open("inventory.ini");
+	
+	for (var i = 0; i < ds_list_size(inventory); i++){
+	inventory[|i] = inventory[|i].compress();
+		}
+	var savedList = ds_list_write(inventory);
+	ini_write_string("Saves", "inv", savedList);
+
+}

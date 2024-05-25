@@ -4,8 +4,8 @@ with (attack1){
 	attack = function(){
 		
 		if (var1) {
-			SummonEnemy(oEnemyLifeArrow, attacker.x, attacker.y, attacker.base_hp/10, 100, attacker.base_dmg, 10, attacker.direction + 40,,attacker.element,MOVEMENT_PATTERN.CURVE,-0.7);
-			SummonEnemy(oEnemyLifeArrow, attacker.x, attacker.y, attacker.base_hp/10, 100, attacker.base_dmg, 10, attacker.direction - 40,,attacker.element,MOVEMENT_PATTERN.CURVE,0.7);
+			SummonEnemy(oEnemyLifeArrow, attacker.x, attacker.y, attacker.base_hp/10, 100, attacker.base_dmg, 10, attacker.direction + 40,attacker,attacker.element,MOVEMENT_PATTERN.CURVE,-0.7);
+			SummonEnemy(oEnemyLifeArrow, attacker.x, attacker.y, attacker.base_hp/10, 100, attacker.base_dmg, 10, attacker.direction - 40,attacker,attacker.element,MOVEMENT_PATTERN.CURVE,0.7);
 			var1 = false;
 		}
 		else {

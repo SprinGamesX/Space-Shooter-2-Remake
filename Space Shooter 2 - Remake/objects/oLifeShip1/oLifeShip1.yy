@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sLifeShip",
-    "path":"sprites/sLifeShip/sLifeShip.yy",
+    "name":"sLifeShip1",
+    "path":"sprites/sLifeShip1/sLifeShip1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

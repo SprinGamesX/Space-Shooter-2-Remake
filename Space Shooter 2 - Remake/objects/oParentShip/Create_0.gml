@@ -33,9 +33,25 @@ max_ammo = base_ammo;
 statuses = ds_list_create();
 chips = array_create(10);
 passives = [global.shipST[shipId][1],global.shipST[shipId][4],global.shipST[shipId][9]];
+stbuffs = array_create(9);
 
+hp = base_hp;
 for (var i = 0; i < 10; i++){
 	chips[i] = oInventoryManager.getChip(global.chips[shipId][i]);
+}
+var _arr = array_create(9);
+var _index = 0;
+for (var i = 0; i < 13; i++){
+	if (i > 1 and i != 4 and i != 9){
+		_arr[_index] = global.shipST[shipId][i];
+		_index++;
+	}
+}
+var _tree = GetShipTree(shipId); 
+for (var i = 0; i < 9; i++){
+	if (_arr[i]){
+		stbuffs[i] = _tree[i];
+	}
 }
 
 
@@ -91,16 +107,21 @@ onAllyHit = function(_enemy, _ally){
 // Basic attack
 onBasicAttack = function(){
 	
+	oTeamManager.onTeammateBasic(self);
 }
 
 // Skill attack
 onSkillAttack = function(){
 	GenerateEnergy(self, 10);
+	
+	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
 onUltimateAttack = function(){
 	energy = 0;
+	
+	oTeamManager.onTeammateUlt(self);
 }
 
 // called when atk/skill/ult hits; calculates base dmg
@@ -138,8 +159,21 @@ onAdditionalDmg = function(_enemy){
 
 }
 
+onAllyBasic = function(){
+	
+}
 
+onAllySkill = function(){
+	
+}
 
+onAllyUlt = function(){
+	
+}
+
+onAllyFua = function(){
+	
+}
 
 
 

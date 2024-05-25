@@ -35,11 +35,11 @@ draw_sprite_ext(sShipGui, 1, _xx, _yy, 1, 1, 0, _color, _alpha);
 
 
 // Draw team gui
-var _team = getInactiveShips();
+var _team = [team[getInactiveIndexes()[0]], team[getInactiveIndexes()[1]]];
 for (var i = 0; i < 2; i++){
 	var _dead = false;
 	_s = _team[i];
-	if (_team[i].hp <= 0) {
+	if (team_standing[getInactiveIndexes()[i]] == 0) {
 		_color = c_dkgray
 		_dead = true;
 	}
@@ -49,18 +49,19 @@ for (var i = 0; i < 2; i++){
 	draw_sprite_ext(sShipGuiInactive, 0, _xx, _yy, 1, 1, 0, _color, _alpha);
 
 	// Draw HP and CD Bars
-	_hp = (_s.hp/_s.getMaxHp())*100;
-	_shield = min((_s.shield/_s.getMaxHp())*100, 100);
-	_skill_cd_progress = 100 - ((_s.skill_cd/_s.base_skill_cd) * 100)
-	_ult_cd_progress = ((_s.energy/_s.max_energy) * 100)
-	draw_sprite_stretched_ext(sShipGuiBarHP, 0, _xx + 2, _yy - 24,(92 * _hp / 100), 20, _color, _alpha);
-	if (_s.shield > 0){
-		draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 2, _yy - 24,(92 * _shield / 100), 20, _color, _alpha);
+	if (!_dead){
+		_hp = (_s.hp/_s.getMaxHp())*100;
+		_shield = min((_s.shield/_s.getMaxHp())*100, 100);
+		_skill_cd_progress = 100 - ((_s.skill_cd/_s.base_skill_cd) * 100)
+		_ult_cd_progress = ((_s.energy/_s.max_energy) * 100)
+		draw_sprite_stretched_ext(sShipGuiBarHP, 0, _xx + 2, _yy - 24,(92 * _hp / 100), 20, _color, _alpha);
+		if (_s.shield > 0){
+			draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 2, _yy - 24,(92 * _shield / 100), 20, _color, _alpha);
+		}
+		draw_sprite_stretched_ext(sShipGuiInactiveCD, 0, _xx + 96 , _yy - 2 - (118 * _skill_cd_progress / 100), 14, (118 * _skill_cd_progress / 100), _color, _alpha);
+	
+		draw_sprite_stretched_ext(sShipGuiInactiveCD2, 0, _xx + 4 , _yy - 30 - (88 * _ult_cd_progress / 100), 88, (88 * _ult_cd_progress / 100), ColorForElement(_s.element), _ult_cd_progress == 100 ? _alpha - 0.1 : _alpha - 0.7);
 	}
-	draw_sprite_stretched_ext(sShipGuiInactiveCD, 0, _xx + 96 , _yy - 2 - (118 * _skill_cd_progress / 100), 14, (118 * _skill_cd_progress / 100), _color, _alpha);
-	
-	draw_sprite_stretched_ext(sShipGuiInactiveCD2, 0, _xx + 4 , _yy - 30 - (88 * _ult_cd_progress / 100), 88, (88 * _ult_cd_progress / 100), ColorForElement(_s.element), _ult_cd_progress == 100 ? _alpha - 0.1 : _alpha - 0.7);
-	
 	//Draw ship icon
 	draw_sprite_ext(_s.sprite_index,_s.image_index , _xx + 48, _yy - 75, 1, 1, 0, _color, _alpha);
 	

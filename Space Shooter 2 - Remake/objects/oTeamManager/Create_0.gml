@@ -24,7 +24,7 @@ if (team[1] != noone)
 if (team[2] != noone)
 	team[2].active = false;
 	
-switch_cd = seconds(1);
+switch_cd = seconds(0);
 switch_cd_max = switch_cd;
 
 function switch_ship(_num){
@@ -97,6 +97,54 @@ getShipGuiXY = function(_obj){
 
 isTeamDead = function(){
 	return team_standing[0] + team_standing[1] + team_standing[2] == 0;
+}
+
+onTeammateBasic = function(_teammate){
+	var _team = getInactiveShips();
+	for (var i = 0; i < 2; i++){
+		_team[i].onAllyBasic(_teammate);
+	}
+}
+
+onTeammateSkill = function(_teammate){
+	var _team = getInactiveShips();
+	for (var i = 0; i < 2; i++){
+		_team[i].onAllySkill(_teammate);
+	}
+}
+
+onTeammateUlt = function(_teammate){
+	var _team = getInactiveShips();
+	for (var i = 0; i < 2; i++){
+		_team[i].onAllyUlt(_teammate);
+	}
+}
+
+onTeammateFua = function(_teammate){
+	var _team = getInactiveShips();
+	for (var i = 0; i < 2; i++){
+		_team[i].onAllyFua(_teammate);
+	}
+}
+
+getInactiveIndexes = function(){
+	if (team_standing[0] == 0){
+		if (active_index == 1) return [2,0];
+		if (active_index == 2) return [1,0];
+	}
+	if (team_standing[1] == 0){
+		if (active_index == 0) return [2,1];
+		if (active_index == 2) return [0,1];
+	}
+	if (team_standing[2] == 0){
+		if (active_index == 0) return [1,2];
+		if (active_index == 1) return [0,2];
+	}
+	else {
+		if (active_index == 0) return [1,2];
+		if (active_index == 1) return [0,2];
+		if (active_index == 2) return [0,1];
+	}
 }
 
 for (var i = 0; i < 3; i++){

@@ -4,10 +4,7 @@
 - Dedicated Chip slots
 
 Stuff i have to do before making ships:
-- level upgrading
-- losing screen
-- New Stats: Effect Chance, Healing bonus
-- New Enemy related stats: DMG recived, Elemental DMG recived, CD reduction/addition
+- followers ig
 
 Game Modes:
 Endless - Until death

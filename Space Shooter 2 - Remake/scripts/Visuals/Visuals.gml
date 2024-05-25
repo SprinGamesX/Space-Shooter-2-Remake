@@ -39,7 +39,13 @@ function GetTrailByElement(_element){
 		
 		} break;
 		case ELEMENT.STEEL:{
-			part_type_sprite(_part, sprite_index, 1, 0, 0);
+			var _enemy = object_is_ancestor(object_index, oParentEnemy)
+			
+			part_type_sprite(_part, sprite_index,_enemy ? 0 : 1, 0, 0);
+			if (sprite_index == sEnemyNormal or sprite_index == sEnemySmall){
+				part_type_subimage(_part, 6);
+			}
+			
 			part_type_alpha2(_part, 0.2, 0);
 			part_type_life(_part, seconds(0.1), seconds(0.1));
 			part_type_orientation(_part, image_angle, image_angle, 0, 1, 1);
