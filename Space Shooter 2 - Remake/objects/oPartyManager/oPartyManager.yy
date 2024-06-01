@@ -32,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sIceShip1",
+    "path":"sprites/sIceShip1/sIceShip1.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

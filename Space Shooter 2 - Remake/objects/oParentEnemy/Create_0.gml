@@ -44,22 +44,24 @@ onHit = function(_projectile){
 	var attacker = _projectile.parent;
 	var base_dmg = 0;
 	var _exploded = false;
-	
-	if (CheckForStatusByName(self, "Explosive")){
-		CreateAoe(attacker, x, y, ATTACK_TYPE.EXPLOSIVE,ELEMENT.FIRE,3);
-		_exploded = true;
-		explosive_immune = seconds(1);
-	}
-	if (_exploded) RemoveStatusByName(self, "Explosive");
-	if (CheckForStatusByName(self, "Sapped")){
-		if (_projectile.atk_type != ATTACK_TYPE.SAPPED){
-			AdditionallDamage(self, attacker, 0.01, ELEMENT.LIFE);
+	if (instance_exists(self)){
+		if (CheckForStatusByName(self, "Explosive")){
+			CreateAoe(attacker, x, y, ATTACK_TYPE.EXPLOSIVE,ELEMENT.FIRE,3);
+			_exploded = true;
+			explosive_immune = seconds(1);
 		}
-	}
-	if (CheckForStatusByName(self, "Shocked")){
-		var _e = GetNearestInstances(x, y, oParentEnemy, 2);
-		if (_projectile.atk_type != ATTACK_TYPE.SHOCKED){
-			AdditionallDamage(self, attacker, 0.5, ELEMENT.LIGHTNING);
+		if (_exploded) RemoveStatusByName(self, "Explosive");
+		
+		if (CheckForStatusByName(self, "Sapped")){
+			if (_projectile.atk_type != ATTACK_TYPE.SAPPED){
+				AdditionallDamage(self, attacker, 0.01, ELEMENT.LIFE);
+			}
+		}
+		if (CheckForStatusByName(self, "Shocked")){
+			var _e = GetNearestInstances(x, y, oParentEnemy, 2);
+			if (_projectile.atk_type != ATTACK_TYPE.SHOCKED){
+				AdditionallDamage(self, attacker, 0.25, ELEMENT.LIGHTNING);
+			}
 		}
 	}
 	
@@ -111,6 +113,10 @@ onHit = function(_projectile){
 }
 
 onDeath = function(){
+	var _ships = oTeamManager.getAllShips();
+	for (var i = 0; i < 3; i++){
+		_ships[i].onKill();
+	}
 	instance_destroy();
 }
 

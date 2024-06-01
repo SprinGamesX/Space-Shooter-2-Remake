@@ -8,7 +8,7 @@ y = -100;
 name = "Poison";
 duration = 0;
 max_duration = 0;
-stat = 0;
+stat = STAT.DOT_BONUS;
 scale = 0;
 stack = 0;
 max_stack = 50;
@@ -34,6 +34,8 @@ triggerDot = function(){
 	ongoing = true;
 	var attacker = owner;
 	
+	owner.onPoison(reciver);
+	
 	var base_dmg = scale * attacker.getAtk();
 	
 	// Enemy def calculation
@@ -52,4 +54,6 @@ triggerDot = function(){
 	stack--;
 	show_debug_message("DOT - " + string(stack));
 	ongoing = false;
+	
+	
 }

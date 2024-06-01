@@ -10,8 +10,6 @@ if (passives[1]) fua_chance = 0.1;
 onBasicAttack = function(){
 	CreateProjectile(oIceShard1, self, x, y, 10, 0, ATTACK_TYPE.BASIC_ATTACK, element);
 	ammo--;
-
-	oTeamManager.onTeammateBasic(self);
 }
 
 onSkillAttack = function(){
@@ -21,7 +19,6 @@ onSkillAttack = function(){
 	if (passives[0])
 		ApplyBuff(self, "Arch Freeze", false, true, STAT.ATK, 0.1, seconds(5),,,,true);
 
-	oTeamManager.onTeammateSkill(self);
 }
 onUltimateAttack = function(){
 	CreateProjectile(oIceShard1, self, x, y, 15, 0, ATTACK_TYPE.ULTIMATE, element,4);
@@ -32,7 +29,6 @@ onUltimateAttack = function(){
 		_team[i].onAllyUlt(self);
 	}
 	
-	oTeamManager.onTeammateUlt(self);
 }
 
 onHit = function(_enemy){

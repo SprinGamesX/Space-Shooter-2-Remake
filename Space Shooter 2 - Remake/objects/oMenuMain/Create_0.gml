@@ -1,6 +1,6 @@
 /// @description Setup
 options = [
-	"CAMPAIGN","ENDLESS","PARTY", "HANGAR", "EXIT"
+	"CAMPAIGN","ENDLESS","PARTY", "HANGAR", "Construct", "EXIT"
 ]
 
 menu_index = 0;

@@ -9,12 +9,18 @@ global.ships =
 	oLightningShip1,
 	oSteelShip1,
 	oQuantumShip1,
-	oLightningShip2
+	oLightningShip2,
+	oIceShip2,
+	oFireShip2,
+	oIceShip3,
+	oLifeShip2,
+	oVenomShip2
 ]
 
 
 
 global.shipLv = array_create(array_length(global.ships));
+global.shipInventory = array_create(array_length(global.ships));
 global.chips = array_create(array_length(global.ships));
 global.shipST = array_create(array_length(global.ships));
 
@@ -29,7 +35,7 @@ function InitiateShip(_id){
 	level = global.shipLv[_id];
 	
 	// base stats
-	base_atk = _ship.base_atk + _ship.base_atk*level*0.5; // each level increases atk by 50%
+	base_atk = _ship.base_atk + _ship.base_atk*level*0.2; // each level increases atk by 50%
 	base_hp = _ship.base_hp + _ship.base_hp*level*0.4; // each level increases hp by 40%
 	base_spd = _ship.base_spd;
 	base_aspd = _ship.base_aspd;
@@ -288,6 +294,149 @@ function GetShipDetails(_id){
 			}
 		} break;
 		
+		case 8:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Ice2";
+				lvl = 1;
+
+				// base stats
+				base_atk = 50;
+				base_hp = 140;
+				base_spd = 5;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(0.5);
+				base_ammo = 5;
+				base_ba_cd = seconds(0.05);
+				base_ba_scale = 0.05;
+
+				// skill
+				base_skill_cd = seconds(30);
+				base_skill_scale = 0;
+
+				// ultimate
+				max_energy = 180;
+				base_ult_scale = 0.3;
+			}
+		} break;
+		
+		case 9:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Fire2";
+				lvl = 1;
+
+				// base stats
+				base_atk = 40;
+				base_hp = 110;
+				base_spd = 4;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(0.5);
+				base_ammo = 50;
+				base_ba_cd = seconds(0.2);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(30);
+				base_skill_scale = 0;
+
+				// ultimate
+				max_energy = 90;
+				base_ult_scale = 0;
+			}
+		} break;
+		
+		case 10:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Ice3";
+				lvl = 1;
+
+				// base stats
+				base_atk = 40;
+				base_hp = 110;
+				base_spd = 3;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(1);
+				base_ammo = 7;
+				base_ba_cd = seconds(0.5);
+				base_ba_scale = 0.1;
+
+				// skill
+				base_skill_cd = seconds(20);
+				base_skill_scale = 0;
+
+				// ultimate
+				max_energy = 150;
+				base_ult_scale = 0;
+			}
+		} break;
+		case 11:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Life2";
+				lvl = 1;
+
+				// base stats
+				base_atk = 40;
+				base_hp = 110;
+				base_spd = 3;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(2);
+				base_ammo = 20;
+				base_ba_cd = seconds(0.5);
+				base_ba_scale = 0.05;
+
+				// skill
+				base_skill_cd = seconds(20);
+				base_skill_scale = 0.15;
+
+				// ultimate
+				max_energy = 220;
+				base_ult_scale = 0;
+			}
+		} break;
+		
+		case 12:{
+			_inst = instance_create_depth(-100,-100,999, cShip);
+			with(_inst){
+				
+				name = "Venom2";
+				lvl = 1;
+
+				// base stats
+				base_atk = 50;
+				base_hp = 140;
+				base_spd = 5;
+				base_aspd = 1;
+
+				// basic attack
+				base_reload_cd = seconds(0.3);
+				base_ammo = 3;
+				base_ba_cd = seconds(0.05);
+				base_ba_scale = 0.05;
+
+				// skill
+				base_skill_cd = seconds(10);
+				base_skill_scale = 0.02;
+
+				// ultimate
+				max_energy = 120;
+				base_ult_scale = 0.3;
+			}
+		} break;
 		
 	}
 	return _inst;
@@ -327,7 +476,7 @@ function ApplyTeamShield(_shield){
 }
 
 function RestoreAmmo(_target, _ammo){
-	_target._ammo += _ammo;
+	_target.ammo += _ammo;
 	
 	var _xy = oTeamManager.getShipGuiXY(_target);
 	CreateIndicator("+" + string(_ammo) + " AMMO", _xy[0], _xy[1], ELEMENT.FIRE);
@@ -388,13 +537,16 @@ function SaveShips(){
 	for (var i = 0; i < array_length(global.shipLv); i++){
 		ini_write_real("levels", i, global.shipLv[i]);
 	}
+	for (var i = 0; i < array_length(global.shipInventory); i++){
+		ini_write_real("inv", i, global.shipInventory[i]);
+	}
 	ini_close();
 }
 function LoadShips(){
 	ini_open("data.ini");
 	for (var i = 0; i < array_length(global.shipLv); i++){
 		global.shipLv[i] = ini_read_real("levels", i, 1);
-		global.shipST[i] = ini_read_real("st", i, 0);
+		global.shipInventory[i] = ini_read_real("inv", i, i < 3 ? 1 : 0);
 	}
 	ini_close();
 }
@@ -434,3 +586,49 @@ function GetShipStat(_ship,_type){
 		return (GetBuffByType(_ship,_type) * 100);
 	}
 }
+
+function CreateFollower(_obj_type, _owner, _dix, _diy, _cd, _lifespan){
+	
+	var _inst = instance_create_depth(_owner.x, _owner.y, _owner.depth-1, _obj_type);
+	with (_inst){
+		owner = _owner;
+		dir = 0;
+		disx = _dix;
+		disy = _diy;
+		cd = _cd;
+		cdMax = _cd;
+		lifespan = _lifespan;
+	}
+	
+	return _inst;
+}
+
+function TriggerDots(_enemy){
+	if (instance_exists(_enemy)){
+		var _list = _enemy.statuses;
+		for (var i = 0; i < ds_list_size(_list); i++){
+			if (_list[|i].object_index == cStatusPoison){
+				_list[|i].triggerDot();
+			} 
+		}
+	}
+}
+
+function UnlockShip(_obj){
+	for (var i = 0; i < array_length(global.ships); i++){
+		if (global.ships[i] == _obj and global.shipInventory[i] == 0) {
+			global.shipInventory[i] = 1;
+			return true;
+		}
+	}
+	return false;
+}
+
+function GetShip(_obj){
+	if (!UnlockShip(_obj)){
+		global.emeralds += 20;
+		global.scraps += 100;
+		global.drives += 2000;
+	}
+}
+

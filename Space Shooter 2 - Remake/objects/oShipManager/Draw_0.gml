@@ -22,13 +22,13 @@ var _area_width = 512;
 var _area_height = room_height - _yy;
 
 draw_sprite_stretched_ext(sUIBox, 0, 16, 16, _area_width, _area_height, ColorForElement(_s.element), 1);
-draw_sprite_ext(_s.sprite_index, 0, _xx, _yy, 2, 2, 0, c_white, 1);
-draw_sprite_ext(sElementalIcons, _ship.element, _xx + 64, _yy + 16, 2, 2, 0, c_white, 1);
+draw_sprite_ext(_s.sprite_index, 0, _xx + 32, _yy + 32, 2, 2, 0, c_white, 1);
+//draw_sprite_ext(sElementalIcons, _ship.element, _xx + 96, _yy + 48, 2, 2, 0, c_white, 1);
 draw_setup(font_UI, _color, fa_left);
-draw_text_scribble(_xx + 96, _yy + 16, "[scale,0.6]LV: " + string(global.shipLv[global.currentShip]));
+//draw_text_scribble(_xx + 96, _yy + 16, "[scale,0.6]LV: " + string(global.shipLv[global.currentShip]));
 
 
-_yy += 128;
+_yy += 148;
 for (var i = 0; i < 5; i++){
 	if (i == selector) draw_sprite_ext(sAbiltySelect, 0, _xx + 96*i, _yy, 1, 1, 0, _color, 1);
 	draw_sprite_ext(sAbilityButtons, i, _xx + 96*i, _yy, 1, 1, 0, _color, 1);
@@ -77,6 +77,7 @@ for (yy = 0; yy < 7; yy++){
 			var _c1 = c_dkgray;
 			var _c2 = c_dkgray;
 			var _d = FindDependency(_s.element,_index);
+			var _d2 = FindLevelDependency(_index);
 			var _d1 = FindXYInST(skill_tree, _d);
 			if (global.shipST[global.currentShip][_d]) _c1 = ColorForElement(_s.element);
 			if (global.shipST[global.currentShip][_index]) _c2 = ColorForElement(_s.element);
@@ -107,7 +108,7 @@ for (yy = 0; yy < 7; yy++){
 				else if (_index != 0) _text = GetDescForPassive(global.currentShip, _index);
 				
 				if (!global.shipST[global.currentShip][_index]) _text += "\n\nCost: " + string(GetCostForSTNode(_index)) + " [sChipScrap]";
-				if (!global.shipST[global.currentShip][FindDependency(_s.element,_index)]) _text += "\n[c_red]Prerequisites not met";
+				if (!global.shipST[global.currentShip][FindDependency(_s.element,_index)]) or (FindLevelDependency(_index) > global.shipLv[global.currentShip]) _text += "\n[c_red]Prerequisites not met";
 				draw_text_scribble_ext(_xx-32, _yy + 16, "[scale, 0.8]" + _text, _area_width - (_xx + 32));
 			}
 		}

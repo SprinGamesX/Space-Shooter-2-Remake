@@ -12,7 +12,7 @@ function MoveLine(_spin){
 function MoveCurve(_spin){
 	speed = base_spd * (1 + GetBuffByType(self, STAT.SPD));
 	direction = dir;
-	dir += curve;
+	dir += curve * (1 + GetBuffByType(self, STAT.SPD));
 	if (_spin){
 		image_angle += 1 * (1 + GetBuffByType(self, STAT.SPD));
 	}

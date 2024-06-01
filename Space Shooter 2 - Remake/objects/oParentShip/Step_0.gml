@@ -16,14 +16,17 @@ if (active){
 	if (ammo > 0 and ba_cd == 0 and keyboard_check(global.key_ba)){
 		ba_cd = base_ba_cd;
 		onBasicAttack();
+		oTeamManager.onTeammateBasic(self);
 	}
 	if (skill_cd == 0 and keyboard_check(global.key_sk)){
 		skill_cd = base_skill_cd;
 		onSkillAttack();
+		oTeamManager.onTeammateSkill(self);
 	}
 	if (energy >= max_energy and keyboard_check(global.key_ut)){
 		energy = 0;
 		onUltimateAttack();
+		oTeamManager.onTeammateUlt(self);
 	}
 }
 
@@ -53,3 +56,4 @@ if (hp > 0){
 	}
 }
 if (shield < 0) shield = 0;
+if (ammo > max_ammo) ammo = max_ammo;

@@ -7,7 +7,7 @@ disy = 0;
 cd = 0;
 cdMax = 0;
 isFollow = true;
-hp = 0;
+hp = 1;
 lifespan = 0;
 
 follow = function(){

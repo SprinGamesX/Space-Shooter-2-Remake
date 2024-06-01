@@ -15,4 +15,9 @@ max_attack_cd = attack_cd;
 
 onDeath = function(){
 	hp = base_hp;
+	
+	var _ships = oTeamManager.getAllShips();
+	for (var i = 0; i < 3; i++){
+		_ships[i].onKill();
+	}
 }

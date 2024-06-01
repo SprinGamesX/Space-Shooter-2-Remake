@@ -1,0 +1,6 @@
+Campaign -
+1. A series of battles, after each battle the player is given a buff
+and a choice for the next domain
+
+2. A series of battles, after each battle the player is returned to a rougelike map to choose
+the next domain, the player will also gain a buff after each fight

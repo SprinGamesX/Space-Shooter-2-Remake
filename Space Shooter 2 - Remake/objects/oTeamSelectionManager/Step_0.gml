@@ -17,7 +17,7 @@ switch(editor){
 	
 	case 3:{
 		if(keyboard_check_pressed(global.key_confirm)){
-			room_goto(rBattle);
+			room_goto(rCampaign);
 		}
 	} break;
 }

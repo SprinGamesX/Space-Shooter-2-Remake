@@ -5,14 +5,11 @@ animation();
 
 if (cd <= 0){
 	skill();
-	cd = max_cd;
+	cd = cdMax;
 }
 else { cd--; }
 
-duration--;
-if (duration == 0){
-	instance_destroy();
-}
+
 if (lifespan > 0) lifespan--;
 else instance_destroy();
 

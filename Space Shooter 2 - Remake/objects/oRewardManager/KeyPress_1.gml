@@ -9,6 +9,10 @@ if (timer <= 0){
 		global.scraps += global.rewards[1];
 		global.rewards[1] = 0;
 	}
+	if (global.rewards[2] > 0) {
+		global.emeralds += global.rewards[2];
+		global.rewards[2] = 0;
+	}
 	SaveCurrencies();
 	oRoomManager.goMain();
 }

@@ -31,7 +31,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sBarrier",
+    "path":"sprites/sBarrier/sBarrier.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

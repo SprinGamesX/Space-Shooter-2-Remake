@@ -31,7 +31,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sFireShip1",
+    "path":"sprites/sFireShip1/sFireShip1.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

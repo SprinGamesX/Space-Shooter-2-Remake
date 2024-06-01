@@ -33,6 +33,10 @@ if (explosive_immune > 0){
 if (recoil1 > 0) recoil1 -= 0.1;
 if (recoil2 > 0) recoil2 -= 0.1;
 
+if (!instance_exists(leader)){
+	instance_destroy();
+}
+
 var _s = oTeamManager.getActiveShip();
 rot = point_direction(x, y, _s.x, _s.y);
 image_angle = direction - 180;

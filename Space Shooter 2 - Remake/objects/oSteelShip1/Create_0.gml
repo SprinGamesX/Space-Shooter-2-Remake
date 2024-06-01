@@ -12,7 +12,6 @@ onBasicAttack = function(){
 		CreateProjectile(oSteelBar, self, x, y, 10, 0, ATTACK_TYPE.BASIC_ATTACK, element);
 		ammo--;
 	}
-	oTeamManager.onTeammateBasic(self);
 }
 
 // Skill attack
@@ -21,7 +20,6 @@ onSkillAttack = function(){
 	ApplyShield(self, getMaxHp() / 10);
 	if (passives[1]) ApplyTeamShield(getMaxHp() * 0.05);
 
-	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
@@ -29,7 +27,6 @@ onUltimateAttack = function(){
 	energy = 0;
 	ApplyTeamShield(getMaxHp() / 4);
 
-	oTeamManager.onTeammateUlt(self);
 }
 
 onHit = function(_enemy){

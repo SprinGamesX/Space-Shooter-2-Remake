@@ -27,10 +27,13 @@ if (keyboard_check_pressed(global.key_confirm)){
 		case 2: 
 			room_goto(rParty);
 		break;
-		case 3: 
+		case 3:
 			room_goto(rHangar);
 		break;
 		case 4: 
+			room_goto(rShipRolling);
+		break;
+		case 5: 
 			game_end();
 		break;
 		

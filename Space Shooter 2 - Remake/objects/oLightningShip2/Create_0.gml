@@ -12,7 +12,6 @@ onBasicAttack = function(){
 	}
 	ammo--;
 	
-	oTeamManager.onTeammateBasic(self);
 }
 
 // Skill attack
@@ -20,7 +19,6 @@ onSkillAttack = function(){
 	GenerateEnergy(self, 10);
 	GenerateEnergy(oTeamManager.team[0], 30);
 
-	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
@@ -29,8 +27,7 @@ onUltimateAttack = function(){
 	ApplyTeamBuff("Charged", false, true, STAT.ENERGYBOOST, 0.25, seconds(20),,,,true);
 	GenerateTeamEnergy(70, true);
 	if (passives[2]) ApplyTeamBuff("Overclocked", false, true, STAT.UT_BONUS, 0.75, seconds(15),,,,true);
-	
-	oTeamManager.onTeammateUlt(self);
+
 }
 
 // called once the ship hits an enemy

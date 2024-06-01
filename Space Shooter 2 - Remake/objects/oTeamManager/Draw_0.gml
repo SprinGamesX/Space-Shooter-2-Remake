@@ -17,7 +17,7 @@ var _skill_cd_progress = 100 - ((_s.skill_cd/_s.base_skill_cd) * 100)
 var _ult_cd_progress = ((_s.energy/_s.max_energy) * 100)
 draw_sprite_stretched_ext(sShipGuiBarHP, 0, _xx + 4, _yy - 24,(216 * _hp / 100), 20, _color, _alpha);
 if (_s.shield > 0){
-	draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 4, _yy - 24,(216 * _shield / 100), 20, _color, _alpha);
+	draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 4, _yy - 24,(216 * _shield / 100), 20, _color, _alpha - 0.4);
 }
 draw_sprite_stretched_ext(sShipGuiBarCDs, 1, _xx + 96, _yy - 42,(124 * _skill_cd_progress / 100), 14, _color, _alpha);
 draw_sprite_stretched_ext(sShipGuiInactiveCD2, 0, _xx + 4 , _yy - 30 - (88 * _ult_cd_progress / 100), 88, (88 * _ult_cd_progress / 100), ColorForElement(_s.element), _ult_cd_progress == 100 ? _alpha - 0.1 : _alpha - 0.7);
@@ -56,7 +56,7 @@ for (var i = 0; i < 2; i++){
 		_ult_cd_progress = ((_s.energy/_s.max_energy) * 100)
 		draw_sprite_stretched_ext(sShipGuiBarHP, 0, _xx + 2, _yy - 24,(92 * _hp / 100), 20, _color, _alpha);
 		if (_s.shield > 0){
-			draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 2, _yy - 24,(92 * _shield / 100), 20, _color, _alpha);
+			draw_sprite_stretched_ext(sShipGuiBarHP, 1, _xx + 2, _yy - 24,(92 * _shield / 100), 20, _color, _alpha - 0.4);
 		}
 		draw_sprite_stretched_ext(sShipGuiInactiveCD, 0, _xx + 96 , _yy - 2 - (118 * _skill_cd_progress / 100), 14, (118 * _skill_cd_progress / 100), _color, _alpha);
 	

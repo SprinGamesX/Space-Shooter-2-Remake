@@ -10,3 +10,15 @@ onEntrance = function(){
 	}
 	else entrance_done = true;
 }
+
+onDeath = function(){
+	ApplyDebuff(leader, "Wrecked Shield", 10, true, false, STAT.SPD, 0.25, 1, 2,,oTeamManager.getActiveShip(),true);
+	leader.shield_exists = false;
+	
+	var _ships = oTeamManager.getAllShips();
+	for (var i = 0; i < 3; i++){
+		_ships[i].onKill();
+	}
+	
+	instance_destroy();
+}

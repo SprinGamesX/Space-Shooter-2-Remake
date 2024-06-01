@@ -122,6 +122,81 @@ function GetShipTree(_id){
 			[CHIPSTAT.SPD, 0.1], // DEFENSIVE
 			[CHIPSTAT.ENERGYBOOST, 0.1], // OFFENSIVE (+)
 		];
+		case 8: 
+		return [
+			// ASC1
+			[CHIPSTAT.ATK, 0.1], // OFFENSIVE
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			// ASC2
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			[CHIPSTAT.ICEDMG, 0.05], // OFFENSIVE
+			[CHIPSTAT.ATK, 0.15], // OFFENSIVE
+			[CHIPSTAT.CRITRATE, 0.1], // OFFENSIVE (+)
+			// ASC3
+			[CHIPSTAT.ICEDMG, 0.2], // OFFENSIVE (+)
+			[CHIPSTAT.SPD, 0.1], // DEFENSIVE
+			[CHIPSTAT.CRITRATE, 0.15], // OFFENSIVE (+)
+		];
+		case 9: 
+		return [
+			// ASC1
+			[CHIPSTAT.ATK, 0.1], // OFFENSIVE
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			// ASC2
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			[CHIPSTAT.ENERGYBOOST, 0.05], // OFFENSIVE
+			[CHIPSTAT.ATK, 0.15], // OFFENSIVE
+			[CHIPSTAT.ASPD, 0.05], // OFFENSIVE (+)
+			// ASC3
+			[CHIPSTAT.ENERGYBOOST, 0.1], // OFFENSIVE (+)
+			[CHIPSTAT.SPD, 0.1], // DEFENSIVE
+			[CHIPSTAT.ASPD, 0.1], // OFFENSIVE (+)
+		];
+		case 10: 
+		return [
+			// ASC1
+			[CHIPSTAT.ATK, 0.1], // OFFENSIVE
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			// ASC2
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			[CHIPSTAT.ENERGYBOOST, 0.05], // OFFENSIVE
+			[CHIPSTAT.ATK, 0.15], // OFFENSIVE
+			[CHIPSTAT.RES, 0.05], // OFFENSIVE (+)
+			// ASC3
+			[CHIPSTAT.ENERGYBOOST, 0.1], // OFFENSIVE (+)
+			[CHIPSTAT.SPD, 0.1], // DEFENSIVE
+			[CHIPSTAT.RES, 0.1], // OFFENSIVE (+)
+		];
+		case 11: 
+		return [
+			// ASC1
+			[CHIPSTAT.ATK, 0.1], // OFFENSIVE
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			// ASC2
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			[CHIPSTAT.LIFEDMG, 0.15], // OFFENSIVE
+			[CHIPSTAT.ATK, 0.15], // OFFENSIVE
+			[CHIPSTAT.CRITRATE, 0.1], // OFFENSIVE (+)
+			// ASC3
+			[CHIPSTAT.LIFEDMG, 0.2], // OFFENSIVE (+)
+			[CHIPSTAT.RES, 0.1], // DEFENSIVE
+			[CHIPSTAT.CRITRATE, 0.15], // OFFENSIVE (+)
+		];
+		case 12: 
+		return [
+			// ASC1
+			[CHIPSTAT.ATK, 0.1], // OFFENSIVE
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			// ASC2
+			[CHIPSTAT.HP, 0.1], // DEFENSIVE
+			[CHIPSTAT.VENOMDMG, 0.15], // OFFENSIVE
+			[CHIPSTAT.ATK, 0.15], // OFFENSIVE
+			[CHIPSTAT.ASPD, 0.1], // OFFENSIVE (+)
+			// ASC3
+			[CHIPSTAT.VENOMDMG, 0.2], // OFFENSIVE (+)
+			[CHIPSTAT.SPD, 0.1], // DEFENSIVE
+			[CHIPSTAT.ASPD, 0.15], // OFFENSIVE (+)
+		];
 	}
 	return [];
 }
@@ -268,13 +343,20 @@ function FindDependency(_element,_num){
 	return 0;
 }
 
+function FindLevelDependency(_index){
+	if (_index == 1) return 10;
+	if (_index == 4) return 30;
+	if (_index == 9) return 60;
+	else return 1;
+}
+
 function GetCostForSTNode(_num){
-	if (_num == 1) return 50;
-	if (_num == 4) return 150;
-	if (_num == 9) return 600;
-	if (_num < 4) return 25;
-	if (_num < 9) return 75;
-	if (_num < 13) return 125;
+	if (_num == 1) return 150;
+	if (_num == 4) return 700;
+	if (_num == 9) return 1500;
+	if (_num < 4) return 70;
+	if (_num < 9) return 250;
+	if (_num < 13) return 1000;
 }
 
 function GetSTStat(_id, _stat){

@@ -33,7 +33,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sDrive",
+    "path":"sprites/sDrive/sDrive.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

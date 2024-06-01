@@ -1,11 +1,9 @@
-- ship unlocking
 - domains
 - final boss
 - Dedicated Chip slots
-
-Stuff i have to do before making ships:
-- followers ig
+- Make domains actually do what they are suppose to do
 
 Game Modes:
 Endless - Until death
 Rouge lite
+

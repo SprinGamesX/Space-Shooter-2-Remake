@@ -107,21 +107,18 @@ onAllyHit = function(_enemy, _ally){
 // Basic attack
 onBasicAttack = function(){
 	
-	oTeamManager.onTeammateBasic(self);
 }
 
 // Skill attack
 onSkillAttack = function(){
 	GenerateEnergy(self, 10);
 	
-	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
 onUltimateAttack = function(){
 	energy = 0;
 	
-	oTeamManager.onTeammateUlt(self);
 }
 
 // called when atk/skill/ult hits; calculates base dmg
@@ -155,6 +152,11 @@ onShocked = function(_enemy){
 	var _extra = 0;
 	return (base_atk * (1 + GetBuffByType(self, STAT.ATK))) * (0.3 + _extra);
 }
+
+onPoison = function(_enemy){
+	
+}
+
 onAdditionalDmg = function(_enemy){
 
 }

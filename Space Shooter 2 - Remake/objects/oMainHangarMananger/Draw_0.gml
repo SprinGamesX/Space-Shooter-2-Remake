@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-var _ship = global.ships[ship_index];
+var _ship = shiplist[ship_index];
 var _s = instance_create_layer(-100, -100, "Instances", _ship);
 draw_sprite_ext(object_get_sprite(_ship), 0, room_width/2, room_height/2, 2, 2, 90, c_white, 1);
 
@@ -13,7 +13,7 @@ draw_sprite_ext(sArrow, 0, room_width/2, 45, 1, 1, 90, c_white, 1);
 draw_text_scribble(room_width/4 * 3, room_height - 110, "D");
 draw_text_scribble(room_width/4, room_height - 110, "A");
 draw_text_scribble(room_width/2, 90, "SKILLS(W)");
-if (global.shipLv[global.currentShip] < 100)
+if (global.shipLv[shipIndexs[ship_index]] < 100)
 	draw_text_scribble(room_width/2, room_height - 90, (cost > global.drives ? "[c_maroon]" : "") + "Upgrade Ship\nCost: " + string(cost) + " [sDrive]");
 else draw_text_scribble(room_width/2, room_height - 90, "MAXED");
 
@@ -25,7 +25,7 @@ var _yy = 64;
 var _arr = global.chips[ship_index];
 draw_text_scribble(_xx, _yy, "Stats: ");
 draw_setup(font_chips, ColorForElement(_s.element), fa_left);
-draw_text_scribble(_xx, _yy + 32,   "[scale, 0.6]LV: " + string(global.shipLv[ship_index]));
+draw_text_scribble(_xx, _yy + 32,   "[scale, 0.6]LV: " + string(global.shipLv[shipIndexs[ship_index]]));
 _arr = [CHIPSTAT.ATK, CHIPSTAT.HP, CHIPSTAT.SPD, CHIPSTAT.CRITRATE, CHIPSTAT.CRITDMG, CHIPSTAT.RES, CHIPSTAT.ASPD, CHIPSTAT.ENERGYBOOST, CHIPSTAT.EFFECTCHANCE, CHIPSTAT.HEALINGBONUS, GetChipForElement(_s.element)];
 for (var i = 0; i < array_length(_arr); i++){
 

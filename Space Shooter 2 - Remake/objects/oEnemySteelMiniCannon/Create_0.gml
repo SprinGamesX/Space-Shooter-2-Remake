@@ -27,5 +27,11 @@ skill = function(){
 onDeath = function(){
 	ApplyDebuff(leader, "Wrecked Cannon", 10, true, false, STAT.DMG_RECIVED, 0.1, seconds(60), 10,,oTeamManager.getActiveShip(),true);
 	ApplyDebuff(leader, "Wrecked Cannon2", 10, true, false, STAT.COOLDOWN, 1, seconds(1), 10,1,oTeamManager.getActiveShip(),true);
+	
+	var _ships = oTeamManager.getAllShips();
+	for (var i = 0; i < 3; i++){
+		_ships[i].onKill();
+	}
+	
 	instance_destroy();
 }

@@ -129,3 +129,11 @@ enum DIRECTION{
 	DOWN = 270,
 	UP = 90,
 }
+
+enum DOMAIN{
+	COMBAT = 0,
+	CHALLANGE = 1,
+	MYSTERY = 2,
+	HEAL = 3,
+	BOSS = 4
+}

@@ -2,8 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function CheckForExistingBuffs(_list, _name){
 	var existing = -1;
-	for (var i = 0; i < ds_list_size(_list); i++){
-		if (_list[|i].name == _name) existing = i;
+	for (var i = 0; ds_exists(_list, ds_type_list) and i < ds_list_size(_list); i++){
+		if (instance_exists(_list[|i]) and _list[|i].name == _name) existing = i;
 	}
 	return existing;
 }
@@ -108,7 +108,12 @@ function ApplyDebuff(_enemy,_name ,_chance,_isInfinite, _isPositive, _stat, _sca
 		else{
 			// if buff does/doesn't stack
 			if (_stacking == 1){
-				ds_list_replace(_list,_check,_inst);
+				if (_scale > _list[|_check].scale){
+					ds_list_replace(_list,_check,_inst);
+				}
+				else if (_duration > _list[|_check].duration and _scale >= _list[|_check].scale){
+					ds_list_replace(_list,_check,_inst);
+				}
 			}
 			else {
 				_inst = _list[| _check];
@@ -256,9 +261,15 @@ function CheckForStatusByName(_target, _name){
 	var _found = false;
 	if (instance_exists(_target) and ds_exists(_target.statuses, ds_type_list)){
 		for (var i = 0; i < ds_list_size(_target.statuses) and instance_exists(_target); i++){
-			if (instance_exists(_target) and (_target.statuses[|i].name == _name)){
-				_found = true;
-				break;
+			var _item = ds_list_find_value(_target.statuses, i);
+			try {
+				if (instance_exists(_target) and ds_exists(_target.statuses, ds_type_list) and (_item.name == _name)){
+					_found = true;
+					break;
+				}
+			}
+			catch(_exception){
+				show_debug_message(_exception);
 			}
 		}
 	}

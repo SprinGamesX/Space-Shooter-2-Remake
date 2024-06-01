@@ -10,10 +10,14 @@ for (var i = 0; i < array_length(global.ships); i++){
 	var _alpha = 1;
 	
 	if (i == global.party[global.party_index-1]) _alpha = 0.2;
+	if (global.shipInventory[i] == 0) _alpha = 0.5;
 	
 	draw_sprite_ext(sShipSelector, 0, _xx, _yy, 1, 1, 0, ColorForElement(_s.element), _alpha);
 	if (i == selection) draw_sprite_ext(sShipSelector, 1, _xx, _yy, 1, 1, 0, c_white, 1);
 	draw_sprite_ext(_s.sprite_index, 0, _xx, _yy, 1, 1, 0, c_white, _alpha);
+	if (global.shipInventory[i] == 0){
+		draw_sprite_ext(sSelectionLock, 0, _xx, _yy, 1, 1, 0, c_white, 1);
+	}
 	
 	_xx += 128;
 	if (_xx > XLIM) {

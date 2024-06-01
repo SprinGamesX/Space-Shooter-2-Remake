@@ -9,7 +9,6 @@ onBasicAttack = function(){
 	ConsumeHp(self, base_hp * 0.01);
 	ammo--;
 	
-	oTeamManager.onTeammateBasic(self);
 }
 
 // Skill attack
@@ -18,7 +17,6 @@ onSkillAttack = function(){
 	if (passives[0]) RestoreTeamHp(base_hp * 0.1, self);
 	RestoreHp(self, base_hp * 0.15, self);
 	
-	oTeamManager.onTeammateSkill(self);
 }
 
 // Ultimate attack
@@ -31,8 +29,7 @@ onUltimateAttack = function(){
 	for (var i = 0; i < 2; i++){
 		_team[i].onAllyUlt(self);
 	}
-	
-	oTeamManager.onTeammateUlt(self);
+
 }
 
 onHpRestoration = function(_amount){

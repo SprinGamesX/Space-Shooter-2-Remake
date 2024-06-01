@@ -122,6 +122,96 @@ function GetDescForAttack(_id, _attack){
 					_d = "All shots this character shoots will also be applied with CRACKSHOT. CRACKSHOT will track the enemy after travelling a certain amount of distance.";
 				break;
 			} break;
+		case 7:
+			switch(_attack){
+				case 0:
+					_d = "Deals LIGNTNING damage equal to [c_orange]3x" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Generates [c_orange]30 [c_white]Energy to the first ship in the team.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Generates [c_orange]70 [c_white]Energy to the entire team except for itself, Additionally Give all ships 25% ENERGY BOOST for 20 seconds.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "Increase the ENERGY BOOST of all allies by 10%.";
+				break;
+			} break;
+		case 8:
+			switch(_attack){
+				case 0:
+					_d = "Deals ICE damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Applies Target to the closest elite, When an enemy is targeted this ships' projectiles will only hit this enemy and will ignore all other enemies.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Enters Glacial Hunt state, when in that state, Hitting an enemy will trigger a follow up attack that deals ICE damage equal to [c_orange] " + ud + "[c_white] of ATK to the Target enemy.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "Hitting a Target enemy has 30% increased CRIT RATE.";
+				break;
+			} break;
+		case 9:
+			switch(_attack){
+				case 0:
+					_d = "Deals FIRE damage equal to [c_orange]2x" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Generates 30 AMMO for all allies.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Gives all allies: 10% ASPD, 20 MAX AMMO and 20% DMG BONUS.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "When an enemy is killed, regenerate 5 AMMO for all allies.";
+				break;
+			} break;
+		case 10:
+			switch(_attack){
+				case 0:
+					_d = "Deals ICE damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Summons Icy Cannon, Icy Cannon will shoot every 0.5 seconds at the closest enemy, dealing AOE ICE damage equal to [c_orange]" + bd + "%[c_white] of ATK and has a 100% chance to decrease the enemy's SPD by 50% for 15 seconds.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Fires a precise bullet that seeks the elite enemy and has a 100% chance to decrease their SPD by 90% for 15 seconds.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "Bullets fired by this ship will have 100% chance to decrease the hit enemy's SPD by 10% for 15 seconds.";
+				break;
+			} break;
+		case 11:
+			switch(_attack){
+				case 0:
+					_d = "Deals LIFE damage equal to [c_orange]" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Consume [c_orange]40%[c_white] of HP and enhances BASIC ATTACK for 10 seconds, enhanced BASIC ATTACK deals LIFE damage equal to [c_orange]2x" + bd + "%[c_white] of ATK and [c_orange]2x" + sd + "%[c_white] of HP.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Consume [c_orange]50%[c_white] of HP and gain a shield equal to [c_orange]25%[c_white] of HP.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "For every 1% of difference between MAX HP and current HP, gain 1% DMG BONUS.";
+				break;
+			} break;
+		case 12:
+			switch(_attack){
+				case 0:
+					_d = "Deals VENOM damage equal to [c_orange]2x" + bd + "%[c_white] of ATK.\n\nCD: " + bc + " seconds\nAmmo: " + ba + "\nReload CD: " + br + " seconds";
+				break;
+				case 1:
+					_d = "Summon two Buffers that fire a soundwave that deals VENOM damage equal to [c_orange]10x" + sd + "%[c_white] of ATK and applies Vibration.\n\nVibration:\nDeals DoT VENOM damage equal to [c_orange]50%[c_white] of ATK.\n\nCD: " + sc + " seconds" ;
+				break;
+				case 2:
+					_d = "Instantly inflicts all enemies with 5 stacks of Strong Vibration.\n\nStrong Vibration:\nDeals DoT VENOM damage equal to [c_orange]300%[c_white] of ATK.\n\nCD: " + uc + " energy";
+				break;
+				case 3:
+					_d = "Each time any type of POISON is triggered gain 1% ATK bonus up to 100%.";
+				break;
+			} break;
 		
 	}
 	
@@ -177,6 +267,42 @@ function GetDescForPassive(_id, _num){
 				case 1: return "Passive: \nUltimate now grants 50% ASPD for 5 seconds";
 				case 4: return "Passive: \nWhen skill hits an elite enemy(or boss) give all allies 5% CRITDMG stacking up to 10 times and lasting for 10 seconds";
 				case 9: return "Passive: \nWhen in ENTANGLED state: this ship will not consume AMMO";
+		} break;
+		case 7:
+			switch(_num){
+				case 1: return "Passive: \nWhen scoring a CRIT generate 1 ENERGY";
+				case 4: return "Passive: \nWhen an ally uses an ultimate: Regenerate energy equal 5% of the ally's ultimate cost";
+				case 9: return "Passive: \nUltimate now increases all allies ultimate damage by 75% for 15 seconds";
+		} break;
+		case 8:
+			switch(_num){
+				case 1: return "Passive: \nTargeted enemies have their ICE RES decreased by 25%";
+				case 4: return "Passive: \nWhen activating the ultimate: reactivate skill";
+				case 9: return "Passive: \nWhen an enemy is targeted, fired bullets will now be shot towards the targeted enemy";
+		} break;
+		case 9:
+			switch(_num){
+				case 1: return "Passive: \nSkill Additionally increases all allies ASPD by 25% for 15 seconds";
+				case 4: return "Passive: \nUsing ultimate will restore 10 ENERGY.";
+				case 9: return "Passive: \nSPD is increased by 25%";
+		} break;
+		case 10:
+			switch(_num){
+				case 1: return "Passive: \nWhen Icy Cannon shoots: Provide the active ship a shield equal to 1% of ATK";
+				case 4: return "Passive: \nWhen any ally hits an enemy, decrease its SPD by 10%";
+				case 9: return "Passive: \nIcy Cannon now fires 2 additional bullets";
+		} break;
+		case 11:
+			switch(_num){
+				case 1: return "Passive: \nSkill increaeses ASPD by 50% for 10 seconds";
+				case 4: return "Passive: \nWhen an enhanced BASIC-ATTACK hits, recover 1 AMMO";
+				case 9: return "Passive: \nWhen HP is below 25% gain 20% DEF PEN";
+		} break;
+		case 12:
+			switch(_num){
+				case 1: return "Passive: \nEnemies hit by Soundwave (Skill) will have a 150% chance to have their DEF decreaed by 20% for 10 seconds";
+				case 4: return "Passive: \nPassive now additionally has a 75% chance to inflict the poisoned enemy with -2% VENOM RES for 3 seconds, this can stack up to 5 times";
+				case 9: return "Passive: \nWhen using the ultimate additionally trigger all DoTs that are on ELITE enemies";
 		} break;
 		
 	}

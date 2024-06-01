@@ -10,8 +10,6 @@ onBasicAttack = function(){
 		CreateProjectile(oFireBall1, self, x, y, 5, random_range(-10, 10), ATTACK_TYPE.BASIC_ATTACK, element);
 		ammo--;
 	}
-	
-	oTeamManager.onTeammateBasic(self);
 }
 
 onSkillAttack = function(){
@@ -22,8 +20,6 @@ onSkillAttack = function(){
 			CreateProjectile(oFireBall1, self, x, y, 5, i, ATTACK_TYPE.SKILL, element);
 		}
 	}
-	
-	oTeamManager.onTeammateSkill(self);
 }
 
 onUltimateAttack = function(){
@@ -32,8 +28,6 @@ onUltimateAttack = function(){
 	if (passives[0]){
 		ApplyBuff(self, "Blazing Defense", false, true, STAT.RES, 0.15, seconds(10),,,,true);
 	}
-	
-	oTeamManager.onTeammateUlt(self);
 }
 
 onHit = function(_enemy){

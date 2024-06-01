@@ -9,12 +9,12 @@ function draw_setup(_font = font_fipps, _color = c_white, _halign = fa_center, _
 
 function CreateDmgIndicator(_text, _x, _y, _element = ELEMENT.NONE){
 	with(instance_create_layer(_x, _y, "Misc", oDamage)){
-		onCreate(_text, ColorForElement(_element));
+		onCreate(_text, ColorForElement(_element),Color2ForElement(_element));
 	}
 }
 function CreateIndicator(_text, _x, _y, _element = ELEMENT.NONE, _font = font_stat){
 	with(instance_create_layer(_x, _y, "Misc", oDamage)){
-		onCreate(_text, ColorForElement(_element));
+		onCreate(_text, ColorForElement(_element),Color2ForElement(_element));
 		font = _font;
 	}
 }
@@ -28,6 +28,19 @@ function ColorForElement(_element){
 		case ELEMENT.STEEL: return make_color_rgb(176, 172, 158);
 		case ELEMENT.QUANTUM: return make_color_rgb(79,53,165);
 		case ELEMENT.VENOM: return make_color_rgb(190, 83, 190);
+		case ELEMENT.NONE: return make_color_rgb(192, 32, 43);
+	}
+}
+
+function Color2ForElement(_element){
+	switch(_element){
+		case ELEMENT.ICE: return make_color_rgb(67, 130, 131);
+		case ELEMENT.FIRE: return make_color_rgb(159, 92, 43);
+		case ELEMENT.LIFE: return make_color_rgb(50, 148, 54);
+		case ELEMENT.LIGHTNING: return make_color_rgb(162, 160, 33);
+		case ELEMENT.STEEL: return make_color_rgb(114, 111, 102);
+		case ELEMENT.QUANTUM: return make_color_rgb(49,33,103);
+		case ELEMENT.VENOM: return make_color_rgb(124, 54, 124);
 		case ELEMENT.NONE: return make_color_rgb(192, 32, 43);
 	}
 }
@@ -63,5 +76,13 @@ function StatToString(_stat){
 		case STAT.EFFECT_CHANCE: return "EFFECT CHANCE";
 		case STAT.COOLDOWN: return "COOLDOWN";
 		case STAT.FUA_BONUS: return "FOLLOW-UP BONUS";
+		
+		case STAT.ICERES: return "ICE RES";
+		case STAT.FIRERES: return "FIRE RES";
+		case STAT.LIFERES: return "LIFE RES";
+		case STAT.LIGHTNINGRES: return "LIGHTNING RES";
+		case STAT.VENOMRES: return "VENOM RES";
+		case STAT.STEELRES: return "STEEL RES";
+		case STAT.QUANTUMRES: return "QUANTUM RES";
 	}
 }

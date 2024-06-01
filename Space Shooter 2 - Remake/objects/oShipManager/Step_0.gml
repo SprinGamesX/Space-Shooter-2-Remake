@@ -29,6 +29,16 @@ else {
 	var _cost = GetCostForSTNode(_index);
 	var _unlockable = global.shipST[global.currentShip][FindDependency(_s.element,_index)] and global.scraps >= _cost;
 	
+	if (_index == 1) and (_unlockable) {
+		_unlockable = global.shipLv[global.currentShip] >= 10;
+	}
+	if (_index == 4) and (_unlockable) {
+		_unlockable = global.shipLv[global.currentShip] >= 30;
+	}
+	if (_index == 9) and (_unlockable) {
+		_unlockable = global.shipLv[global.currentShip] >= 60;
+	}
+	
 	
 	
 	if (keyboard_check_pressed(global.key_right) and cursor[0] < 6){

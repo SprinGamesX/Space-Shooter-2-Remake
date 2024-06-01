@@ -74,6 +74,11 @@ if (room == rHangar){
 	draw_sprite(sDrive, 0, room_width - 32, 16);
 	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.drives));
 }
+if (room == rShipRolling){
+	draw_setup(font_chips,,fa_right);
+	draw_sprite(sEmerald, 0, room_width - 48, 24);
+	draw_text_scribble(room_width - 72, 24, "[scale, 0.5]" + string(global.emeralds));
+}
 if (room == rRewards){
 	draw_setup(font_chips,,fa_right);
 	draw_text_scribble(room_width - 48, 16, "[scale, 0.5]" + string(global.drives) + "[scale, 1][sDrive][scale, 0.5]   " + string(global.scraps) + "[scale, 1][sChipScrap]");

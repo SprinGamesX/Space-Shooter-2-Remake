@@ -2,12 +2,12 @@
 // You can write your code in this editor
 if (keyboard_check_pressed(global.key_right)){
 	ship_index++;
-	if (ship_index >= array_length(global.ships)) ship_index = 0;
+	if (ship_index >= array_length(shiplist)) ship_index = 0;
 	updateCost();
 }
 if (keyboard_check_pressed(global.key_left)){
 	ship_index--;
-	if (ship_index < 0) ship_index = array_length(global.ships) - 1;
+	if (ship_index < 0) ship_index = array_length(shiplist) - 1;
 	updateCost();
 }
 global.currentShip = ship_index;
@@ -68,12 +68,12 @@ if (keyboard_check_pressed(vk_escape)){
 }
 
 if (keyboard_check_pressed(global.key_up)){
-	global.currentShip = ship_index;
+	global.currentShip = shipIndexs[ship_index];
 	room_goto(rShipDetails);
 }
 
-if (keyboard_check_pressed(global.key_confirm) and global.shipLv[global.currentShip] < 100 and cost <= global.drives){
-	global.shipLv[global.currentShip]++;
+if (keyboard_check_pressed(global.key_confirm) and global.shipLv[shipIndexs[ship_index]] < 100 and cost <= global.drives){
+	global.shipLv[shipIndexs[ship_index]]++;
 	global.drives -= cost;
 	updateCost();
 	SaveShips();

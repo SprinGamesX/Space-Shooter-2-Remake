@@ -12,11 +12,13 @@ for (var i = 0; i < 0; i++){
 	part_particles_create(sys, x + random_range(-_w, _w) , y + random_range(-_h, _h), part, 1);
 }
 
-if (!instance_exists(mini_cannons[0])) {
+if (mini_cannons[0] != noone and !instance_exists(mini_cannons[0]) ) {
 	mini_cannons[0] = noone;
+	alarm[1] = RandomizeTime(seconds(20), seconds(3));
 }
-if (!instance_exists(mini_cannons[1])) {
+if (mini_cannons[1] != noone and !instance_exists(mini_cannons[1])) {
 	mini_cannons[1] = noone;
+	alarm[1] = RandomizeTime(seconds(20), seconds(3));
 }
 
 var _s = oTeamManager.getActiveShip();

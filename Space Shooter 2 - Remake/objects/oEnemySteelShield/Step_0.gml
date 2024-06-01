@@ -29,4 +29,7 @@ if (!entrance_done){
 if (explosive_immune > 0){
 	explosive_immune--;
 }
+
+if (!instance_exists(leader)) instance_destroy();
+
 image_angle = direction - 180;

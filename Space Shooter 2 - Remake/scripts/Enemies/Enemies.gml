@@ -149,3 +149,17 @@ function AdditionallDamage(_target, _attacker, _scale, _element, _hpscale = fals
 	
 }
 
+function GetAllEnemies(){
+	var _list = ds_list_create();
+	var _c = collision_rectangle_list(0, 0, room_width, room_height, oParentEnemy, 0, 1, _list, false);
+	
+	return _list;
+}
+function GetAllElites(){
+	var _list = ds_list_create();
+	var _c = collision_rectangle_list(0, 0, room_width, room_height, oParentElite, 0, 1, _list, false);
+	
+	return _list;
+}
+
+
